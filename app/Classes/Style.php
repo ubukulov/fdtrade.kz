@@ -17,4 +17,31 @@ class Style
 
         return $response->getBody()->getContents();
     }
+
+    public function getProducts($offset = 0)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $response = $client->request('GET', 'elements?access-token=' . $this->access_token . '&limit=250&offset=' . $offset);
+        return $response->getBody()->getContents();
+    }
+
+    public function getProductInfo($article)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $response = $client->request('GET', 'images?access-token=' . $this->access_token . '&article=' . $article);
+
+        $arrImages = [];
+
+        $result = $response->getBody()->getContents();
+        $result = (array) json_decode($result);
+        $arrImages['images'] = $result[$article];
+
+        $response = $client->request('GET', 'images?access-token=' . $this->access_token . '&article=' . $article . '&thumbs=1');
+
+        $result = $response->getBody()->getContents();
+        $result = (array) json_decode($result);
+        $arrImages['thumbs'] = $result[$article];
+
+        return $arrImages;
+    }
 }

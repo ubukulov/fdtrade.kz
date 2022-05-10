@@ -10,6 +10,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-
+        dd(Style::getProductInfo(42130));
     }
 }
