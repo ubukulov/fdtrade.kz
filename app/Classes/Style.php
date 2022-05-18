@@ -44,4 +44,24 @@ class Style
 
         return $arrImages;
     }
+
+    public function getProductFeature($article)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $params = [
+            'description',
+            'brand',
+            'weight',
+            'warranty',
+            'barcode',
+            'reducedprice',
+            'expectedArrivalDate',
+            'detailtext',
+            'properties',
+        ];
+
+        $response = $client->request('GET', 'element-info?access-token=' . $this->access_token . '&article=' . $article . '&additional_fields=' . implode(",", $params));
+
+        return $response->getBody()->getContents();
+    }
 }
