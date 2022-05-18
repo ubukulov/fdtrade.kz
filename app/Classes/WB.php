@@ -36,4 +36,28 @@ class WB
         $response = $request->getBody()->getContents();
         dd($response);
     }
+
+    public function getCategories()
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('GET', '/api/v1/config/get/object/parent/list?top=1000', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ]
+        ]);
+        return $request->getBody()->getContents();
+    }
+
+    public function getCategoryChild($parent_name)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('GET', '/api/v1/config/object/byparent?parent=' . $parent_name, [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ]
+        ]);
+        return $request->getBody()->getContents();
+    }
 }

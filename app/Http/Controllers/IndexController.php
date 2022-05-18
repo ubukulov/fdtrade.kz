@@ -12,6 +12,8 @@ class IndexController extends Controller
 {
     public function index()
     {
+        $childs = WB::getCategoryChild("Модули зажигания");
+        dd(json_decode($childs));
         $product = Product::find(7587);
 
         $product_feature = json_decode(Style::getProductFeature($product->article));
