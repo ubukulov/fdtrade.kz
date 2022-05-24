@@ -27,7 +27,7 @@ class ProductController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Product());
-        $grid->model()->whereRaw('price <> 0');
+        $grid->model()->where('price', '>', 0);
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Название'))->sortable();

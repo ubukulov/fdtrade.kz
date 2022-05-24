@@ -80,6 +80,7 @@ class WB
                             "params"=> [
                                 [
                                     "count"=> $product->price,
+                                    "units" => "тенге"
                                 ]
                             ]
                         ],

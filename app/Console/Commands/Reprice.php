@@ -42,7 +42,7 @@ class Reprice extends Command
             foreach($products as $product) {
                 if($product->quantity == '0') continue;
                 $category = $product->category;
-                $product->price = $product->price1 + ($product->price1 * ($category->margin / 100));
+                $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
                 $product->save();
             }
         });
