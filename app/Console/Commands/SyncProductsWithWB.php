@@ -43,24 +43,26 @@ class SyncProductsWithWB extends Command
     public function handle()
     {
         $al_wb_categories = AlWbCategory::all();
-        foreach($al_wb_categories as $al_wb_category) {
-            $products = Product::where(['category_id' => $al_wb_category->al_category_id])
+        if(count($al_wb_categories) > 0) {
+            foreach($al_wb_categories as $al_wb_category) {
+                $products = Product::where(['category_id' => $al_wb_category->al_category_id])
                     ->where('price', '<>', 0)
                     ->get();
-            $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
-            foreach($products as $product) {
-                $response = WB::createProduct($product, $wb_category);
-                $response = json_decode($response);
-                if(isset($response->result)) {
-                    $this->info("The product with $product->id successfully added.");
-                } else {
-                    $this->info("The product with $product->id failed.");
+                $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
+                foreach($products as $product) {
+                    $response = WB::createProduct($product, $wb_category);
+                    $response = json_decode($response);
+                    if(isset($response->result)) {
+                        $this->info("The product with $product->id successfully added.");
+                    } else {
+                        $this->info("The product with $product->id failed.");
+                    }
                 }
             }
+
+            DB::update("DELETE FROM al_wb_categories");
+
+            $this->info('The process "sync-products-with-wb" is finished.');
         }
-
-        DB::update("DELETE FROM al_wb_categories");
-
-        $this->info('The process "sync-products-with-wb" is finished.');
     }
 }

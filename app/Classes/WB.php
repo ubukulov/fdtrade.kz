@@ -24,15 +24,6 @@ class WB
     {
         $product_feature = json_decode(Style::getProductFeature($product->article));
         $product_feature = $product_feature[0];
-        $adds = [];
-        foreach($product_feature->properties as $key=>$val) {
-            $adds[] = [
-                'type' => $key,
-                'params' => [
-                    'value' => $val
-                ]
-            ];
-        }
 
         $product_images = [];
         foreach($product->images as $image) {
@@ -44,6 +35,9 @@ class WB
 
         $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
+        $arr = (array) $product_feature->properties;
+        $complex_name = $product->name . " - 1" . $arr['Базовая единица'];
+        $general_color = $arr['Цвет'];
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -71,16 +65,7 @@ class WB
                             "type"=> "Комплектация",
                             "params"=> [
                                 [
-                                    "value"=> $product->name
-                                ]
-                            ]
-                        ],
-                        [
-                            "type"=> "Розничная цена",
-                            "params"=> [
-                                [
-                                    "count"=> $product->price,
-                                    "units" => "тенге"
+                                    "value"=> $complex_name
                                 ]
                             ]
                         ],
@@ -107,24 +92,24 @@ class WB
                                     "value"=> "$product->article",
                                 ]
                             ]
+                        ],
+                        [
+                            "type"=> "Основной цвет",
+                            "params"=> [
+                                [
+                                    "value"=> $general_color,
+                                ]
+                            ]
                         ]
                     ],
                     "countryProduction"=> "Китай",
                     //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
-                    //"id"=> WB::getSupplierId(),
-//                    "imtId"=> $product->id,
+                    "id"=> (string) Str::uuid(),
+                    //"imtId"=> $product->id,
                     //"imtSupplierId"=> $product->id,
                     "nomenclatures"=> [
                         [
                             "addin"=> [
-                                [
-                                    "type"=> "Розничная цена",
-                                    "params"=> [
-                                        [
-                                            "count"=> $product->price,
-                                        ]
-                                    ]
-                                ],
                                 [
                                     "type"=> "Фото",
                                     "params"=> [
@@ -137,23 +122,16 @@ class WB
                             "concatVendorCode"=> $article_pn,
                             "id"=> (string) Str::uuid(),
                             "isArchive"=> false,
-                            //"nmId"=> $product->id,
+                            "nmId"=> $product->id,
                             "variations"=> [
                                 [
                                     "addin"=> [
-                                        [
-                                            "type"=> "Фото",
-                                            "params"=> [
-                                                [
-                                                    'value' => $product_images[0]['value']
-                                                ]
-                                            ]
-                                        ],
                                         [
                                             "type"=> "Розничная цена",
                                             "params"=> [
                                                 [
                                                     "count"=> $product->price,
+                                                    "units" => "тенге"
                                                 ]
                                             ]
                                         ]
@@ -259,7 +237,6 @@ class WB
                 "warehouseId" => $this->warehouseId
             ]
         ];
-        dd($data);
 
         $request = $client->request('POST', '/api/v2/stocks', [
             'headers' => [
