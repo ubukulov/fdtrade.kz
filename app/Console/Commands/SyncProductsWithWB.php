@@ -6,6 +6,7 @@ use App\Models\AlWbCategory;
 use App\Models\Product;
 use App\Models\WBCategory;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use WB;
 
 class SyncProductsWithWB extends Command
@@ -50,7 +51,6 @@ class SyncProductsWithWB extends Command
             foreach($products as $product) {
                 $response = WB::createProduct($product, $wb_category);
                 $response = json_decode($response);
-                dd($response);
                 if(isset($response->result)) {
                     $this->info("The product with $product->id successfully added.");
                 } else {
@@ -58,6 +58,8 @@ class SyncProductsWithWB extends Command
                 }
             }
         }
+
+        DB::update("DELETE FROM al_wb_categories");
 
         $this->info('The process "sync-products-with-wb" is finished.');
     }

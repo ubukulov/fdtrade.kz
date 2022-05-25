@@ -10,9 +10,10 @@ use Illuminate\Support\Str;
 
 class WB
 {
-    protected $supplierId = '92a14265-9512-4ef8-85c1-8c2f5c672957';
+    protected $supplierId = 'f24a7a98-07b8-4b76-841c-3701f8779b6c';
     protected $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NJRCI6IjEyZWVjYTI3LWM4NzAtNDZiNi04YzczLWM2NzIwMmJiMGJjYSJ9.yivi1D6nyAwA1ScI-opX2tmejPqN0DH3hMDUqP4pqgA';
     protected $api = 'https://suppliers-api.wildberries.ru/';
+    protected $warehouseId = 248653;
 
     public function getSupplierId()
     {
@@ -33,8 +34,6 @@ class WB
             ];
         }
 
-        //dd($product_feature, $product);
-
         $product_images = [];
         foreach($product->images as $image) {
             if($image->thumbs == 0) {
@@ -42,11 +41,12 @@ class WB
             }
         }
 
-        //dd($product_images);
+
         $article_pn = str_replace(" ", '-', $product->article_pn);
+        $barcode = $this->getGeneratedBarcodeForProduct();
 
         $data = [
-            "id"=> $product->id,
+            "id"=> (string) Str::uuid(),
             "jsonrpc"=> "2.0",
             "params"=> [
                 "card"=> [
@@ -112,8 +112,8 @@ class WB
                     "countryProduction"=> "Китай",
                     //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
                     //"id"=> WB::getSupplierId(),
-                    "imtId"=> $product->id,
-                    "imtSupplierId"=> $product->id,
+//                    "imtId"=> $product->id,
+                    //"imtSupplierId"=> $product->id,
                     "nomenclatures"=> [
                         [
                             "addin"=> [
@@ -135,9 +135,9 @@ class WB
                                 ]
                             ],
                             "concatVendorCode"=> $article_pn,
-                            "id"=> $this->supplierId,
+                            "id"=> (string) Str::uuid(),
                             "isArchive"=> false,
-                            "nmId"=> $product->id,
+                            //"nmId"=> $product->id,
                             "variations"=> [
                                 [
                                     "addin"=> [
@@ -158,15 +158,15 @@ class WB
                                             ]
                                         ]
                                     ],
-                                    "barcode"=> "17".$product_feature->barcode,
+                                    "barcode"=> $barcode,
                                     "barcodes"=> [
-                                        "string"
+                                        $barcode
                                     ],
                                     "chrtId"=> 0,
                                     "errors"=> [
                                         "string"
                                     ],
-                                    "id"=> $this->supplierId
+                                    "id"=> (string) Str::uuid()
                                 ]
                             ],
                             "vendorCode"=> "$product->article"
@@ -218,5 +218,80 @@ class WB
             ]
         ]);
         return $request->getBody()->getContents();
+    }
+
+    public function getProductStocks()
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('GET', '/api/v2/stocks?skip=0&take=1000', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ]
+        ]);
+        return $request->getBody()->getContents();
+    }
+
+    public function getWarehouses()
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('GET', '/api/v2/warehouses', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ]
+        ]);
+        return $request->getBody()->getContents();
+    }
+
+    public function updateStocks($product)
+    {
+        $product_feature = json_decode(Style::getProductFeature($product->article));
+        $product_feature = $product_feature[0];
+
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "id"=> (string) Str::uuid(),
+            "jsonrpc"=> "2.0",
+            "params" => [
+                "barcode" => $product_feature->barcode,
+                "stock" => $product->getQuantity(),
+                "warehouseId" => $this->warehouseId
+            ]
+        ];
+        dd($data);
+
+        $request = $client->request('POST', '/api/v2/stocks', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return $request->getBody()->getContents();
+    }
+
+    public function getGeneratedBarcodeForProduct()
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "id"=> (string) Str::uuid(),
+            "jsonrpc"=> "2.0",
+            "params" => [
+                "quantity" => 1,
+            ]
+        ];
+
+        $request = $client->request('POST', '/card/getBarcodes', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        $barcode = json_decode($request->getBody()->getContents());
+        return $barcode->result->barcodes[0];
     }
 }
