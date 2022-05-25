@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'category_id', 'article', 'name', 'full_name', 'sort', 'price1', 'price2', 'price', 'quantity', 'isnew',
-        'ishit', 'ispromo', 'article_pn', 'active'
+        'ishit', 'ispromo', 'article_pn', 'active', 'wb_imtId'
     ];
 
     protected $dates = [

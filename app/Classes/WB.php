@@ -105,7 +105,7 @@ class WB
                     "countryProduction"=> "Китай",
                     //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
                     "id"=> (string) Str::uuid(),
-                    //"imtId"=> $product->id,
+                    //"imtId"=> $product->article,
                     //"imtSupplierId"=> $product->id,
                     "nomenclatures"=> [
                         [
@@ -122,7 +122,7 @@ class WB
                             "concatVendorCode"=> $article_pn,
                             "id"=> (string) Str::uuid(),
                             "isArchive"=> false,
-                            "nmId"=> $product->id,
+                            //"nmId"=> $product->id,
                             "variations"=> [
                                 [
                                     "addin"=> [
@@ -153,7 +153,7 @@ class WB
                     "object"=> $wb_category->name,
                     //"parent"=> "string",
                     "supplierId"=> $this->supplierId,
-                    "supplierVendorCode"=> $article_pn,
+                    "supplierVendorCode"=> $product->article,
                     //"updatedAt"=> "2022-05-18T09=>37=>19.706Z",
                     //"uploadID"=> "92a14265-9512-4ef8-85c1-8c2f5c672957",
                     //"userId"=> 1
@@ -224,18 +224,11 @@ class WB
 
     public function updateStocks($product)
     {
-        $product_feature = json_decode(Style::getProductFeature($product->article));
-        $product_feature = $product_feature[0];
-
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "id"=> (string) Str::uuid(),
-            "jsonrpc"=> "2.0",
-            "params" => [
-                "barcode" => $product_feature->barcode,
-                "stock" => $product->getQuantity(),
-                "warehouseId" => $this->warehouseId
-            ]
+            //"barcode" => $product_feature->barcode,
+            "stock" => $product->getQuantity(),
+            "warehouseId" => $this->warehouseId
         ];
 
         $request = $client->request('POST', '/api/v2/stocks', [
@@ -270,5 +263,36 @@ class WB
 
         $barcode = json_decode($request->getBody()->getContents());
         return $barcode->result->barcodes[0];
+    }
+
+    public function getProductCardList($limit = 0, $offset = 0)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "id"=> (string) Str::uuid(),
+            "jsonrpc"=> "2.0",
+            "params" => [
+                "filter" => [
+                    "order" => [
+                        "column"    => "updatedAt",
+                        "order"     => "desc"
+                    ]
+                ],
+                "query" => [
+                    "limit"     => $limit,
+                    "offset"    => $offset
+                ]
+            ]
+        ];
+
+        $request = $client->request('POST', '/card/list', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return json_decode($request->getBody()->getContents());
     }
 }
