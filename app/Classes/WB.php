@@ -69,14 +69,14 @@ class WB
                                 ]
                             ]
                         ],
-                        [
+                        /*[
                             "type"=> "Описание",
                             "params"=> [
                                 [
                                     "value"=> Str::limit(strip_tags($product_feature->detailtext), 1000),
                                 ]
                             ]
-                        ],
+                        ],*/
                         [
                             "type"=> "Гарантийный срок",
                             "params"=> [
