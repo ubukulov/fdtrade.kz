@@ -22,7 +22,7 @@ class WB
 
     public function createProduct($product, $wb_category)
     {
-        $product_feature = json_decode(Style::getProductFeature($product->article));
+        $product_feature = Style::getProductFeature($product->article);
         $product_feature = $product_feature[0];
 
         $product_images = [];
@@ -131,7 +131,8 @@ class WB
                                             "params"=> [
                                                 [
                                                     "count"=> $product->price,
-                                                    "units" => "тенге"
+                                                    "units" => "тенге",
+                                                    "value" => "тенге"
                                                 ]
                                             ]
                                         ]
@@ -147,7 +148,7 @@ class WB
                                     "id"=> (string) Str::uuid()
                                 ]
                             ],
-                            "vendorCode"=> "$product->article"
+                            "vendorCode"=> (string) $product->article
                         ]
                     ],
                     "object"=> $wb_category->name,
@@ -163,7 +164,7 @@ class WB
         ];
 
         $client = new Client(['base_uri' => $this->api]);
-        $request = $client->request('POST', 'card/update', [
+        $request = $client->request('POST', 'card/create', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -231,12 +232,14 @@ class WB
             "warehouseId" => (int) $this->warehouseId
         ];
 
+        $data = "[".json_encode($data)."]";
+
         $request = $client->request('POST', '/api/v2/stocks', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
             ],
-            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+            'body' => $data
         ]);
 
         return $request->getBody()->getContents();
@@ -304,12 +307,14 @@ class WB
             "price" => (int) $product->price
         ];
 
+        $data = "[" . json_encode($data) . "]";
+
         $request = $client->request('POST', '/public/api/v1/prices', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
             ],
-            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+            'body' => $data
         ]);
 
         return $request->getBody()->getContents();
@@ -336,5 +341,126 @@ class WB
         ]);
 
         return json_decode($request->getBody()->getContents());
+    }
+
+    public function updateProduct($wb_product, $product)
+    {
+        $product_feature = Style::getProductFeature($product->article);
+        $product_feature = $product_feature[0];
+
+        $product_images = [];
+        foreach($product->images as $image) {
+            if($image->thumbs == 0) {
+                $product_images[]['value'] = $image->path;
+            }
+        }
+
+
+        $article_pn = str_replace(" ", '-', $product->article_pn);
+        $barcode = $product->wb_barcode;
+        $nmId = $wb_product->result->card->nomenclatures[0]->nmId;
+        $cat = $wb_product->result->card->object;
+        $parent = $wb_product->result->card->parent;
+
+        $data = [
+            "id"=> (string) Str::uuid(),
+            "jsonrpc"=> "2.0",
+            "params"=> [
+                "card"=> [
+                    "addin"=> [
+                        [
+                            [
+                                "type"=> "Описание",
+                                "params"=> [
+                                    [
+                                        "value"=> (string) Str::limit(strip_tags($product_feature->detailtext), 1000),
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "countryProduction"=> "Китай",
+                    //"createdAt"=> "2022-05-26T08=>09=>14.805Z",
+                    "id"=> (string) Str::uuid(),
+                    "imtId"=> $product->wb_imtId,
+                    //"imtSupplierId"=> 0,
+                    "nomenclatures"=> [
+                        [
+//                            "addin"=> [
+//                                [
+//                                    "type"=> "Фото",
+//                                    "params"=> [
+//                                        [
+//                                            'value' => $product_images[0]['value']
+//                                        ]
+//                                    ]
+//                                ]
+//                            ],
+                            "concatVendorCode"=> $article_pn,
+                            "id"=> (string) Str::uuid(),
+                            "isArchive"=> false,
+                            "nmId"=> $nmId,
+                            "variations"=> [
+                                [
+                                    "addin"=> [
+                                        [
+                                            "type"=> "Розничная цена",
+                                            "params"=> [
+                                                [
+                                                    "count"=> (int) $product->price,
+                                                    "units" => "тенге",
+                                                    "value" => "тенге"
+                                                ]
+                                            ]
+                                        ]
+                                    ],
+                                    "barcode"=> $barcode,
+                                    "barcodes"=> [
+                                        $barcode
+                                    ],
+                                    "chrtId"=> 0,
+                                    "errors"=> [
+                                        "string"
+                                    ],
+                                    "id"=> (string) Str::uuid()
+                                ]
+                            ],
+                            "vendorCode"=> (string) $product->article
+                        ]
+                    ],
+                    "object"=> $cat,
+                    "parent"=> $parent,
+                    "supplierId"=> $this->supplierId,
+                    "supplierVendorCode"=> (string) $product->article,
+                    //"updatedAt"=> "2022-05-26T08=>09=>14.805Z",
+                    //"uploadID"=> "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "userId"=> 0
+                ],
+                "supplierID"=> $this->supplierId
+            ]
+        ];
+
+        /*foreach($product_images as $image) {
+            $data["params"]["card"]["nomenclatures"][0]["addin"][] = [
+                "type"=> "Фото",
+                "params"=> [
+                    [
+                        'value' => $image['value']
+                    ]
+                ]
+            ];
+        }*/
+
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'card/update', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return $request->getBody()->getContents();
+
     }
 }

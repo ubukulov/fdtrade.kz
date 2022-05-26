@@ -16,7 +16,8 @@ class IndexController extends Controller
         $product = Product::findOrFail(2230);
         $wl_category = WBCategory::find(2786);
 //        dd(WB::getProductStocks());
-        dd(WB::updateStocks($product));
+//        dd(WB::updateStocks($product));
+//        dd(WB::updatePrices($product, 84317767));
 //        $barcode = json_decode(WB::getGeneratedBarcodeForProduct());
 //        dd($barcode->result->barcodes[0]);
 //        dd(WB::createProduct($product, $wl_category));
@@ -25,8 +26,12 @@ class IndexController extends Controller
 //        dd($ss);
 //        $p = Style::getProductPriceAndQuantity(19708);
 //        dd($p['19708']->price1);
-        $getProductCardList = WB::getProductCardList();
-        dd($getProductCardList);
-        dd(WB::getProductByImtId($product));
+//        $getProductCardList = WB::getProductCardList();
+//        dd($getProductCardList);
+//        dd(WB::getProductByImtId($product));
+//        dd(Style::getProductFeature($product->article));
+
+        $wb_product = WB::getProductByImtId($product);
+        dd(WB::updateProduct($wb_product, $product));
     }
 }

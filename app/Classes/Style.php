@@ -62,7 +62,7 @@ class Style
 
         $response = $client->request('GET', 'element-info?access-token=' . $this->access_token . '&article=' . $article . '&additional_fields=' . implode(",", $params));
 
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 
     public function getProductPriceAndQuantity($article)
