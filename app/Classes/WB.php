@@ -93,14 +93,14 @@ class WB
                                 ]
                             ]
                         ],
-                        [
+                        /*[
                             "type"=> "Основной цвет",
                             "params"=> [
                                 [
                                     "value"=> $general_color,
                                 ]
                             ]
-                        ]
+                        ]*/
                     ],
                     "countryProduction"=> "Китай",
                     //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
