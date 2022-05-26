@@ -37,7 +37,7 @@ class WB
         $barcode = $this->getGeneratedBarcodeForProduct();
         $arr = (array) $product_feature->properties;
         $complex_name = $product->name . " - 1" . $arr['Базовая единица'];
-        $general_color = $arr['Цвет'];
+        $general_color = (isset($arr['Цвет'])) ? $arr['Цвет'] : "";
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -153,7 +153,7 @@ class WB
                     "object"=> $wb_category->name,
                     //"parent"=> "string",
                     "supplierId"=> $this->supplierId,
-                    "supplierVendorCode"=> $product->article,
+                    "supplierVendorCode"=> (string) $product->article,
                     //"updatedAt"=> "2022-05-18T09=>37=>19.706Z",
                     //"uploadID"=> "92a14265-9512-4ef8-85c1-8c2f5c672957",
                     //"userId"=> 1
