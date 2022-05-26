@@ -69,14 +69,14 @@ class WB
                                 ]
                             ]
                         ],
-                        /*[
+                        [
                             "type"=> "Описание",
                             "params"=> [
                                 [
                                     "value"=> Str::limit(strip_tags($product_feature->detailtext), 1000),
                                 ]
                             ]
-                        ],*/
+                        ],
                         [
                             "type"=> "Гарантийный срок",
                             "params"=> [
@@ -207,7 +207,7 @@ class WB
                 'Content-type' => 'application/json'
             ]
         ]);
-        return $request->getBody()->getContents();
+        return json_decode($request->getBody()->getContents());
     }
 
     public function getWarehouses()
@@ -226,7 +226,7 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            //"barcode" => $product_feature->barcode,
+            "barcode" => $product->wb_barcode,
             "stock" => $product->getQuantity(),
             "warehouseId" => $this->warehouseId
         ];
@@ -294,5 +294,24 @@ class WB
         ]);
 
         return json_decode($request->getBody()->getContents());
+    }
+
+    public function updatePrices($product, $nmId)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "nmId" => $nmId,
+            "price" => $product->price
+        ];
+
+        $request = $client->request('POST', '/public/api/v1/prices', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return $request->getBody()->getContents();
     }
 }

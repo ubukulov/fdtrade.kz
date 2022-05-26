@@ -6,14 +6,14 @@ use App\Models\Product;
 use Illuminate\Console\Command;
 use WB;
 
-class GetWbImtIdForProduct extends Command
+class SyncProductPricesAndQuantityWB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'wb:get-imtId-for-product';
+    protected $signature = 'wb:sync-product-prices-and-quantity';
 
     /**
      * The console command description.
@@ -40,12 +40,12 @@ class GetWbImtIdForProduct extends Command
     public function handle()
     {
         $getProductCardList = WB::getProductCardList();
-        foreach ($getProductCardList->result->cards as $card) {
-            $product = Product::where(['article' => $card->supplierVendorCode])->first();
-            if($product && empty($product->wb_imtId)) {
-                $product->wb_imtId      = $card->imtId;
-                $product->wb_barcode    = $card->nomenclatures[0]->variations[0]->barcodes[0];
-                $product->save();
+        foreach($getProductCardList->result as $item) {
+            if(empty($item->supplierVendorCode)) continue;
+            $product = Product::where(['article' => $item->supplierVendorCode])->first();
+            if($product) {
+                WB::updateStocks($product);
+                WB::updatePrices($product, $item->nomenclatures[0]->nmId);
             }
         }
     }

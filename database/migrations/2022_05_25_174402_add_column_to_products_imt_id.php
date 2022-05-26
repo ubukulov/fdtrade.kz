@@ -15,6 +15,7 @@ class AddColumnToProductsImtId extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->string('wb_imtId')->after('active')->nullable();
+            $table->string('wb_barcode')->after('wb_imtId')->nullable();
         });
     }
 
@@ -26,7 +27,7 @@ class AddColumnToProductsImtId extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('wb_imtId');
+            $table->dropColumn('wb_imtId', 'wb_barcode');
         });
     }
 }

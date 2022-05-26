@@ -8,6 +8,7 @@ use App\Models\WBCategory;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use WB;
+use Artisan;
 
 class SyncProductsWithWB extends Command
 {
@@ -63,6 +64,8 @@ class SyncProductsWithWB extends Command
             DB::update("DELETE FROM al_wb_categories");
 
             $this->info('The process "sync-products-with-wb" is finished.');
+
+            Artisan::call('wb:get-imtId-for-product');
         }
     }
 }
