@@ -25,8 +25,8 @@ class IndexController extends Controller
 //        dd($ss);
 //        $p = Style::getProductPriceAndQuantity(19708);
 //        dd($p['19708']->price1);
-//        $getProductCardList = WB::getProductCardList();
-//        dd($getProductCardList->result->cards[3]);
+        $getProductCardList = WB::getProductCardList();
+        dd($getProductCardList);
         dd(WB::getProductByImtId($product));
     }
 }

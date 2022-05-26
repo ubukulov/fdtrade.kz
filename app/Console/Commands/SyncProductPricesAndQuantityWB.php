@@ -40,7 +40,7 @@ class SyncProductPricesAndQuantityWB extends Command
     public function handle()
     {
         $getProductCardList = WB::getProductCardList();
-        foreach($getProductCardList->result as $item) {
+        foreach($getProductCardList->result->cards as $item) {
             if(empty($item->supplierVendorCode)) continue;
             $product = Product::where(['article' => $item->supplierVendorCode])->first();
             if($product) {
