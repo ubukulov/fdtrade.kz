@@ -50,18 +50,22 @@ class SyncProductsWithWB extends Command
                     ->where('price', '<>', 0)
                     ->get();
                 $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
+
                 foreach($products as $product) {
-                    $response = WB::createProduct($product, $wb_category);
-                    $response = json_decode($response);
-                    if(isset($response->result)) {
-                        $this->info("The product with $product->id successfully added.");
-                    } else {
-                        $this->info("The product with $product->id failed.");
+                    $wb_product = WB::getProductByImtId($product);
+                    if($wb_product && isset($wb_product->error)) {
+                        $response = WB::createProduct($product, $wb_category);
+                        $response = json_decode($response);
+                        if(isset($response->result)) {
+                            $this->info("The product with $product->id successfully added.");
+                        } else {
+                            $this->info("The product with $product->id failed.");
+                        }
                     }
                 }
             }
 
-            DB::update("DELETE FROM al_wb_categories");
+            //DB::update("DELETE FROM al_wb_categories");
 
             $this->info('The process "sync-products-with-wb" is finished.');
 

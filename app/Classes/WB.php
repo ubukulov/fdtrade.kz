@@ -227,8 +227,8 @@ class WB
         $client = new Client(['base_uri' => $this->api]);
         $data = [
             "barcode" => $product->wb_barcode,
-            "stock" => $product->getQuantity(),
-            "warehouseId" => $this->warehouseId
+            "stock" => (int) $product->getQuantity(),
+            "warehouseId" => (int) $this->warehouseId
         ];
 
         $request = $client->request('POST', '/api/v2/stocks', [
@@ -300,8 +300,8 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "nmId" => $nmId,
-            "price" => $product->price
+            "nmId" => (int) $nmId,
+            "price" => (int) $product->price
         ];
 
         $request = $client->request('POST', '/public/api/v1/prices', [
@@ -313,5 +313,28 @@ class WB
         ]);
 
         return $request->getBody()->getContents();
+    }
+
+    public function getProductByImtId($product)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "id" => (string) Str::uuid(),
+            "jsonrpc" => "2.0",
+            "params" => [
+                "imtID" => (int) $product->wb_imtId,
+                "supplierID" => $this->supplierId
+            ]
+        ];
+
+        $request = $client->request('POST', '/card/cardByImtID', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return json_decode($request->getBody()->getContents());
     }
 }
