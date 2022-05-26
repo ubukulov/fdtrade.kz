@@ -48,28 +48,32 @@ class SyncProductsWithWB extends Command
             foreach($al_wb_categories as $al_wb_category) {
                 $products = Product::where(['category_id' => $al_wb_category->al_category_id])
                     ->where('price', '<>', 0)
+                    ->whereNull('wb_imtId')
                     ->get();
                 $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
 
-                foreach($products as $product) {
-                    $wb_product = WB::getProductByImtId($product);
-                    if($wb_product && isset($wb_product->error)) {
-                        $response = WB::createProduct($product, $wb_category);
-                        $response = json_decode($response);
-                        if(isset($response->result)) {
-                            $this->info("The product with $product->id successfully added.");
-                        } else {
-                            $this->info("The product with $product->id failed.");
+                if(count($products) > 0) {
+                    foreach($products as $product) {
+                        $wb_product = WB::getProductByImtId($product);
+                        if($wb_product && isset($wb_product->error)) {
+                            $response = WB::createProduct($product, $wb_category);
+                            $response = json_decode($response);
+                            if(isset($response->result)) {
+                                $this->info("The product with $product->id successfully added.");
+                            } else {
+                                $this->info("The product with $product->id failed.");
+                            }
                         }
                     }
+
+                    Artisan::call('wb:get-imtId-for-product');
                 }
+
             }
 
             //DB::update("DELETE FROM al_wb_categories");
 
             $this->info('The process "sync-products-with-wb" is finished.');
-
-            Artisan::call('wb:get-imtId-for-product');
         }
     }
 }
