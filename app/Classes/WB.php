@@ -226,7 +226,7 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "barcode" => $product->wb_barcode,
+            "barcode" => (string) $product->wb_barcode,
             "stock" => (int) $product->getQuantity(),
             "warehouseId" => (int) $this->warehouseId
         ];
