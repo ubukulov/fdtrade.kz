@@ -45,7 +45,7 @@ class SyncProductPricesAndQuantityWB extends Command
             $product = Product::where(['article' => $item->supplierVendorCode])->first();
             if($product) {
                 WB::updateStocks($product);
-                WB::updatePrices($product, $item->nomenclatures[0]->nmId);
+                //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
             }
         }
     }
