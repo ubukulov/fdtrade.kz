@@ -268,7 +268,7 @@ class WB
         return $barcode->result->barcodes[0];
     }
 
-    public function getProductCardList($limit = 0, $offset = 0)
+    public function getProductCardList($limit = 1000, $offset = 0)
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
