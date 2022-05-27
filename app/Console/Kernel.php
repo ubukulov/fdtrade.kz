@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('sync:products-with-wb')->everyMinute();
          $schedule->command('sync:price-and-quantity-with-al-style')->everyThirtyMinutes();
          $schedule->command('wb:sync-product-prices-and-quantity')->hourly();
+         $schedule->command('get:actual-rates')->cron('0 8 * * *');
     }
 
     /**

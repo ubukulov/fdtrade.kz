@@ -39,4 +39,29 @@ class Product extends Model
         $quantity = str_replace('<', '', $quantity);
         return (int) $quantity;
     }
+
+    public function convertPrice($currency = 'RUB')
+    {
+        $exchange_rate = ExchangeRate::findOrFail(1);
+
+        switch ($currency) {
+            case "RUB":
+                $converted_currency = $exchange_rate->RUB;
+                break;
+
+            case "EUR":
+                $converted_currency = $exchange_rate->EUR;
+                break;
+
+            case "USD":
+                $converted_currency = $exchange_rate->USD;
+                break;
+
+            default:
+                $converted_currency = $exchange_rate->RUB;
+                break;
+        }
+
+        return round($this->price * $converted_currency);
+    }
 }

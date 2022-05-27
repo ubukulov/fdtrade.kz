@@ -130,9 +130,9 @@ class WB
                                             "type"=> "Розничная цена",
                                             "params"=> [
                                                 [
-                                                    "count"=> $product->price,
-                                                    "units" => "тенге",
-                                                    "value" => "тенге"
+                                                    "count"=> $product->convertPrice(),
+                                                    "units" => "рубли",
+                                                    "value" => "рубли"
                                                 ]
                                             ]
                                         ]
@@ -304,7 +304,7 @@ class WB
         $client = new Client(['base_uri' => $this->api]);
         $data = [
             "nmId" => (int) $nmId,
-            "price" => (int) $product->price
+            "price" => (int) $product->convertPrice()
         ];
 
         $data = "[" . json_encode($data) . "]";
@@ -407,9 +407,9 @@ class WB
                                             "type"=> "Розничная цена",
                                             "params"=> [
                                                 [
-                                                    "count"=> (int) $product->price,
-                                                    "units" => "тенге",
-                                                    "value" => "тенге"
+                                                    "count"=> (int) $product->convertPrice(),
+                                                    "units" => "рубли",
+                                                    "value" => "рубли"
                                                 ]
                                             ]
                                         ]
