@@ -35,8 +35,8 @@ class ProductController extends AdminController
             return Category::find($categoryId)->name;
         });
         $grid->column('article', __('Артикуль'));
-        $grid->column('price1', __('Цена1'));
         $grid->column('price2', __('Цена2'));
+        $grid->column('price', __('Цена'));
         $grid->column('quantity', __('Кол-во'));
         $grid->column('updated_at', __('Дата изменение'))->display(function ($updated_at) {
             return date('d.m.Y H:i', strtotime($updated_at));
