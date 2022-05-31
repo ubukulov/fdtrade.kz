@@ -6,7 +6,9 @@ use App\Models\AlWbCategory;
 use App\Models\Product;
 use App\Models\WBCategory;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use WB;
+use Artisan;
 
 class SyncProductsWithWB extends Command
 {
@@ -42,23 +44,36 @@ class SyncProductsWithWB extends Command
     public function handle()
     {
         $al_wb_categories = AlWbCategory::all();
-        foreach($al_wb_categories as $al_wb_category) {
-            $products = Product::where(['category_id' => $al_wb_category->al_category_id])
+        if(count($al_wb_categories) > 0) {
+            foreach($al_wb_categories as $al_wb_category) {
+                $products = Product::where(['category_id' => $al_wb_category->al_category_id])
                     ->where('price', '<>', 0)
+                    ->whereNull('wb_imtId')
                     ->get();
-            $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
-            foreach($products as $product) {
-                $response = WB::createProduct($product, $wb_category);
-                $response = json_decode($response);
-                dd($response);
-                if(isset($response->result)) {
-                    $this->info("The product with $product->id successfully added.");
-                } else {
-                    $this->info("The product with $product->id failed.");
-                }
-            }
-        }
+                $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
 
-        $this->info('The process "sync-products-with-wb" is finished.');
+                if(count($products) > 0) {
+                    foreach($products as $product) {
+                        $wb_product = WB::getProductByImtId($product);
+                        if($wb_product && isset($wb_product->error)) {
+                            $response = WB::createProduct($product, $wb_category);
+                            $response = json_decode($response);
+                            if(isset($response->result)) {
+                                $this->info("The product with $product->id successfully added.");
+                            } else {
+                                $this->info("The product with $product->id failed.");
+                            }
+                        }
+                    }
+
+                    Artisan::call('wb:get-imtId-for-product');
+                }
+
+            }
+
+            //DB::update("DELETE FROM al_wb_categories");
+
+            $this->info('The process "sync-products-with-wb" is finished.');
+        }
     }
 }

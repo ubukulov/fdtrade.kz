@@ -4,15 +4,16 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use Style;
 
-class Reprice extends Command
+class SyncWithAlstyle extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'style:reprice';
+    protected $signature = 'sync:price-and-quantity-with-al-style';
 
     /**
      * The console command description.
@@ -40,9 +41,14 @@ class Reprice extends Command
     {
         Product::chunk(50, function($products){
             foreach($products as $product) {
-                if($product->quantity == '0') continue;
+                $priceAndQuantity  = Style::getProductPriceAndQuantity($product->article);
+                $product->quantity = $priceAndQuantity[$product->article]->quantity;
+                $product->price1   = $priceAndQuantity[$product->article]->price1;
+                $product->price2   = $priceAndQuantity[$product->article]->price2;
+
                 $category = $product->category;
-                $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
+
+                $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
                 $product->save();
             }
         });

@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\SyncProductsWithWB;
+use App\Console\Commands\SyncWithAlstyle;
+use App\Console\Commands\SyncProductPricesAndQuantityWB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +16,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SyncProductsWithWB::class,
+        SyncWithAlstyle::class,
+        SyncProductPricesAndQuantityWB::class
     ];
 
     /**
@@ -24,7 +29,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+         $schedule->command('sync:products-with-wb')->everyMinute();
+         $schedule->command('sync:price-and-quantity-with-al-style')->everyThirtyMinutes();
+         $schedule->command('wb:sync-product-prices-and-quantity')->hourly();
+         $schedule->command('get:actual-rates')->cron('0 8 * * *');
     }
 
     /**

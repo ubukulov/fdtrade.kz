@@ -10,14 +10,14 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class ProductController extends AdminController
+class WbProductController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Товары';
+    protected $title = 'WB Товары';
 
     /**
      * Make a grid builder.
@@ -27,7 +27,7 @@ class ProductController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Product());
-        $grid->model()->where('quantity', '!=', "0");
+        $grid->model()->whereNotNull('wb_imtId');
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Название'))->sortable();
@@ -36,7 +36,7 @@ class ProductController extends AdminController
         });
         $grid->column('article', __('Артикуль'));
         $grid->column('price2', __('Цена2'));
-        $grid->column('price', __('Цена'));
+        $grid->column('price', __('WB цена'));
         $grid->column('quantity', __('Кол-во'));
         $grid->column('updated_at', __('Дата изменение'))->display(function ($updated_at) {
             return date('d.m.Y H:i', strtotime($updated_at));
@@ -66,7 +66,6 @@ class ProductController extends AdminController
         $show->field('price1', __('Цена1'));
         $show->field('price2', __('Цена2'));
         $show->field('price', __('Ваша цена'));
-        $show->field('quantity', __('Кол-во'));
         $show->field('quantity', __('Кол-во'));
         $show->thumb('Аватар')->image();
         $show->updated_at('Дата изменение')->as(function($updated_at){

@@ -4,15 +4,16 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use WB;
 
-class Reprice extends Command
+class SyncProductPricesAndQuantityWB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'style:reprice';
+    protected $signature = 'wb:sync-product-prices-and-quantity';
 
     /**
      * The console command description.
@@ -38,13 +39,14 @@ class Reprice extends Command
      */
     public function handle()
     {
-        Product::chunk(50, function($products){
-            foreach($products as $product) {
-                if($product->quantity == '0') continue;
-                $category = $product->category;
-                $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
-                $product->save();
+        $getProductCardList = WB::getProductCardList();
+        foreach($getProductCardList->result->cards as $item) {
+            if(empty($item->supplierVendorCode)) continue;
+            $product = Product::where(['article' => $item->supplierVendorCode])->first();
+            if($product) {
+                WB::updateStocks($product);
+                //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
             }
-        });
+        }
     }
 }
