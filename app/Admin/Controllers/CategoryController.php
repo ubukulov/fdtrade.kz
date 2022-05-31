@@ -64,9 +64,8 @@ class CategoryController extends AdminController
     {
         $form = new Form(new Category());
 
-        $form->display('id', __('ID'));
-        $form->display('created_at', __('Created At'));
-        $form->display('updated_at', __('Updated At'));
+        $form->display('name', __('Название'));
+        $form->decimal('margin', __('Маржа в %  '));
 
         return $form;
     }
