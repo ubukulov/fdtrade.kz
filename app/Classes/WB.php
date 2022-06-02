@@ -27,8 +27,12 @@ class WB
             $product_feature = $product_feature[0];
             $arr = (array) $product_feature->properties;
             $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
+            $brand = $product_feature->brand;
+            $warranty = $product_feature->warranty;
         } else {
             $complex_name = str_replace("/", " ", $product->name) . " - 1шт";
+            $brand = "";
+            $warranty = "";
         }
 
         $product_images = [];
@@ -50,7 +54,7 @@ class WB
                         [
                             "params"=> [
                                 [
-                                    "value"=> $product_feature->brand
+                                    "value"=> $brand
                                 ]
                             ],
                             "type"=> "Бренд"
@@ -83,7 +87,7 @@ class WB
                             "type"=> "Гарантийный срок",
                             "params"=> [
                                 [
-                                    "value"=> $product_feature->warranty,
+                                    "value"=> $warranty,
                                 ]
                             ]
                         ],
