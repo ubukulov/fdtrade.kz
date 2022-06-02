@@ -54,15 +54,12 @@ class SyncProductsWithWB extends Command
 
                 if(count($products) > 0) {
                     foreach($products as $product) {
-                        $wb_product = WB::getProductByImtId($product);
-                        if($wb_product && isset($wb_product->error)) {
-                            $response = WB::createProduct($product, $wb_category);
-                            $response = json_decode($response);
-                            if(isset($response->result)) {
-                                $this->info("The product with $product->id successfully added.");
-                            } else {
-                                $this->info("The product with $product->id failed.");
-                            }
+                        $response = WB::createProduct($product, $wb_category);
+                        $response = json_decode($response);
+                        if(isset($response->result)) {
+                            $this->info("The product with $product->id successfully added.");
+                        } else {
+                            $this->info("The product with $product->id failed.");
                         }
                     }
 
