@@ -29,10 +29,13 @@ class WB
             $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
             $brand = $product_feature->brand;
             $warranty = $product_feature->warranty;
+            $detail_text = Str::limit(strip_tags($product_feature->detailtext), 999);
+            $detail_text = str_replace("/", " ", $detail_text);
         } else {
             $complex_name = str_replace("/", " ", $product->name) . " - 1шт";
             $brand = "";
             $warranty = "";
+            $detail_text = "";
         }
 
         $product_images = [];
@@ -82,14 +85,14 @@ class WB
                                 ]
                             ]
                         ],
-                        /*[
+                        [
                             "type"=> "Описание",
                             "params"=> [
                                 [
-                                    "value"=> Str::limit(strip_tags($product_feature->detailtext), 1000),
+                                    "value"=> $detail_text,
                                 ]
                             ]
-                        ],*/
+                        ],
                         [
                             "type"=> "Гарантийный срок",
                             "params"=> [
