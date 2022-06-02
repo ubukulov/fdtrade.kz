@@ -36,7 +36,7 @@ class WB
         $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
         $arr = (array) $product_feature->properties;
-        $complex_name = $product->name . " - 1" . $arr['Базовая единица'];
+        $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
         $general_color = (isset($arr['Цвет'])) ? $arr['Цвет'] : "";
 
         $data = [
