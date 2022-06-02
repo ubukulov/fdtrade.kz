@@ -23,7 +23,13 @@ class WB
     public function createProduct($product, $wb_category)
     {
         $product_feature = Style::getProductFeature($product->article);
-        $product_feature = $product_feature[0];
+        if(isset($product_feature[0])) {
+            $product_feature = $product_feature[0];
+            $arr = (array) $product_feature->properties;
+            $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
+        } else {
+            $complex_name = str_replace("/", " ", $product->name) . " - 1шт";
+        }
 
         $product_images = [];
         foreach($product->images as $image) {
@@ -32,12 +38,8 @@ class WB
             }
         }
 
-
         $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
-        $arr = (array) $product_feature->properties;
-        $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
-        $general_color = (isset($arr['Цвет'])) ? $arr['Цвет'] : "";
 
         $data = [
             "id"=> (string) Str::uuid(),

@@ -26,12 +26,19 @@ class IndexController extends Controller
 //        dd($ss);
 //        $p = Style::getProductPriceAndQuantity(19708);
 //        dd($p['19708']->price1);
-//        $getProductCardList = WB::getProductCardList();
-//        dd($getProductCardList);
+        $getProductCardList = WB::getProductCardList();
+        $arr = [];
+        foreach ($getProductCardList->result->cards as $card) {
+            if($card->supplierVendorCode == 'MS212') {
+                //dd($card);
+            }
+        }
+
+        dd($arr);
 //        dd(WB::getProductByImtId($product));
 //        dd(Style::getProductFeature($product->article));
 
-        $wb_product = WB::getProductByImtId($product);
-        dd(WB::updateProduct($wb_product, $product));
+//        $wb_product = WB::getProductByImtId($product);
+//        dd(WB::updateProduct($wb_product, $product));
     }
 }
