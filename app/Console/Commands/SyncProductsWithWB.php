@@ -57,9 +57,9 @@ class SyncProductsWithWB extends Command
                         $response = WB::createProduct($product, $wb_category);
                         $response = json_decode($response);
                         if(isset($response->result)) {
-                            $this->info("The product with $product->id successfully added.");
+                            $this->info("The product with $product->article successfully added.");
                         } else {
-                            $this->info("The product with $product->id failed.");
+                            $this->info("The product with $product->article failed.");
                         }
                     }
 
