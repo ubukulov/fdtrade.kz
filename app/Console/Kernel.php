@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('sync:products-with-wb')->everyMinute();
+         $schedule->command('sync:products-with-wb')->everyFifteenMinutes();
          $schedule->command('sync:price-and-quantity-with-al-style')->everyThirtyMinutes();
          $schedule->command('wb:sync-product-prices-and-quantity')->hourly();
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
