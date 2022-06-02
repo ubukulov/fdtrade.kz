@@ -36,11 +36,18 @@ class WB
         }
 
         $product_images = [];
-        foreach($product->images as $image) {
-            if($image->thumbs == 0) {
-                $product_images[]['value'] = $image->path;
+        $images = $product->images;
+        if($images) {
+            foreach($images as $image) {
+                if($image->thumbs == 0) {
+                    $product_images[]['value'] = $image->path;
+                }
             }
+            $product_image = $product_images[0]['value'];
+        } else {
+            $product_image = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         }
+
 
         $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
@@ -120,7 +127,7 @@ class WB
                                     "type"=> "Фото",
                                     "params"=> [
                                         [
-                                            'value' => $product_images[0]['value']
+                                            'value' => $product_image
                                         ]
                                     ]
                                 ]
