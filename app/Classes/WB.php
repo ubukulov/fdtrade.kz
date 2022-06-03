@@ -58,7 +58,7 @@ class WB
                         [
                             "params"=> [
                                 [
-                                    "value"=> $product->name
+                                    "value"=> $properties['name']
                                 ]
                             ],
                             "type"=> "Наименование"
@@ -480,6 +480,7 @@ class WB
         if(isset($product_feature[0])) {
             $product_feature = $product_feature[0];
             $arr = (array) $product_feature->properties;
+            $properties['name'] = $this->removeSymbols($product->name);
             $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
             $properties['brand'] = (isset($product_feature->brand)) ? $product_feature->brand : 'No name';
             $properties['warranty'] = (isset($product_feature->warranty)) ? $product_feature->warranty : null;
@@ -503,6 +504,7 @@ class WB
             $properties['wireless_charger'] = (isset($arr['Беспроводная зарядка'])) ? $arr['Беспроводная зарядка'] : null;
             $properties['general_color'] = (isset($arr['Цвет'])) ? $arr['Цвет'] : null;
         } else {
+            $properties['name'] = $this->removeSymbols($product->name);
             $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1шт";
             $properties['brand'] = "No name";
             $properties['warranty'] = null;
@@ -526,5 +528,16 @@ class WB
         }
 
         return $properties;
+    }
+
+    public function removeSymbols($string) :string
+    {
+        $symbols = [
+            '/', '*', '#', '@', '$', '%'
+        ];
+        foreach($symbols as $symbol) {
+            $string = str_replace($symbol, ' ', $string);
+        }
+        return $string;
     }
 }
