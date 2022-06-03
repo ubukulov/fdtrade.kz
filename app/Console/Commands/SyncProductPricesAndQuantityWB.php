@@ -41,11 +41,12 @@ class SyncProductPricesAndQuantityWB extends Command
     {
         $getProductCardList = WB::getProductCardList();
         foreach($getProductCardList->result->cards as $item) {
-            if(empty($item->supplierVendorCode)) continue;
-            $product = Product::where(['article' => $item->supplierVendorCode])->first();
-            if($product) {
-                WB::updateStocks($product);
-                //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
+            if(!empty($item->supplierVendorCode)) {
+                $product = Product::where(['article' => $item->supplierVendorCode])->first();
+                if($product) {
+                    WB::updateStocks($product);
+                    //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
+                }
             }
         }
     }
