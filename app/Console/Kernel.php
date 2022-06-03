@@ -7,6 +7,8 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SyncProductsWithWB;
 use App\Console\Commands\SyncWithAlstyle;
 use App\Console\Commands\SyncProductPricesAndQuantityWB;
+use App\Console\Commands\GetWbImtIdForProduct;
+use App\Console\Commands\GetActualRates;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,7 +20,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         SyncProductsWithWB::class,
         SyncWithAlstyle::class,
-        SyncProductPricesAndQuantityWB::class
+        SyncProductPricesAndQuantityWB::class,
+        GetWbImtIdForProduct::class,
+        GetActualRates::class,
     ];
 
     /**
