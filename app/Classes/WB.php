@@ -22,21 +22,7 @@ class WB
 
     public function createProduct($product, $wb_category)
     {
-        $product_feature = Style::getProductFeature($product->article);
-        if(isset($product_feature[0])) {
-            $product_feature = $product_feature[0];
-            $arr = (array) $product_feature->properties;
-            $complex_name = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
-            $brand = $product_feature->brand;
-            $warranty = $product_feature->warranty;
-            $detail_text = Str::limit(strip_tags($product_feature->detailtext), 999);
-            $detail_text = str_replace("/", " ", $detail_text);
-        } else {
-            $complex_name = str_replace("/", " ", $product->name) . " - 1шт";
-            $brand = "";
-            $warranty = "";
-            $detail_text = "";
-        }
+        $properties = $this->getStyleProductProperties($product);
 
         $product_images = [];
         $images = $product->images;
@@ -64,7 +50,7 @@ class WB
                         [
                             "params"=> [
                                 [
-                                    "value"=> $brand
+                                    "value"=> $properties['brand']
                                 ]
                             ],
                             "type"=> "Бренд"
@@ -81,7 +67,7 @@ class WB
                             "type"=> "Комплектация",
                             "params"=> [
                                 [
-                                    "value"=> $complex_name
+                                    "value"=> $properties['complex_name']
                                 ]
                             ]
                         ],
@@ -89,15 +75,7 @@ class WB
                             "type"=> "Описание",
                             "params"=> [
                                 [
-                                    "value"=> $detail_text,
-                                ]
-                            ]
-                        ],
-                        [
-                            "type"=> "Гарантийный срок",
-                            "params"=> [
-                                [
-                                    "value"=> $warranty,
+                                    "value"=> $properties['detail_text'],
                                 ]
                             ]
                         ],
@@ -109,16 +87,8 @@ class WB
                                 ]
                             ]
                         ],
-                        /*[
-                            "type"=> "Основной цвет",
-                            "params"=> [
-                                [
-                                    "value"=> $general_color,
-                                ]
-                            ]
-                        ]*/
                     ],
-                    "countryProduction"=> "Китай",
+                    "countryProduction"=> $properties['country'],
                     //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
                     "id"=> (string) Str::uuid(),
                     //"imtId"=> $product->article,
@@ -178,6 +148,29 @@ class WB
                 "supplierID"=> $this->supplierId
             ]
         ];
+
+        if(!is_null($properties['warranty'])) {
+            $data['params']['card']['addin'][] = [
+                "type"=> "Гарантийный срок",
+                "params"=> [
+                    [
+                        "value"=> $properties['warranty'],
+                    ]
+                ]
+            ];
+        }
+
+        if(!is_null($properties['general_color'])) {
+            $data['params']['card']['addin'][] = [
+                "type"=> "Основной цвет",
+                "params"=> [
+                    [
+                        "value"=> $properties['general_color'],
+                    ]
+                ]
+            ];
+        }
+
 
         $client = new Client(['base_uri' => $this->api]);
         $request = $client->request('POST', 'card/create', [
@@ -478,5 +471,60 @@ class WB
 
         return $request->getBody()->getContents();
 
+    }
+
+    public function getStyleProductProperties($product) :array
+    {
+        $properties = [];
+        $product_feature = Style::getProductFeature($product->article);
+        if(isset($product_feature[0])) {
+            $product_feature = $product_feature[0];
+            $arr = (array) $product_feature->properties;
+            $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
+            $properties['brand'] = (isset($product_feature->brand)) ? $product_feature->brand : 'No name';
+            $properties['warranty'] = (isset($product_feature->warranty)) ? $product_feature->warranty : null;
+            $properties['detail_text'] = Str::limit(strip_tags($product_feature->detailtext), 999);
+            $properties['detail_text'] = str_replace("/", " ", $properties['detail_text']);
+            $properties['country'] = (isset($arr['Страна производства'])) ? $arr['Страна производства'] : "Китай";
+            $properties['main_camera'] = (isset($arr['Основная камера'])) ? $arr['Основная камера'] : null;
+            $properties['ram'] = (isset($arr['Оперативная память'])) ? $arr['Оперативная память'] : null;
+            $properties['cpu'] = (isset($arr['Процессор'])) ? $arr['Процессор'] : null;
+            $properties['cpu_frequency'] = (isset($arr['Частота процессора'])) ? $arr['Частота процессора'] : null;
+            $properties['battery'] = (isset($arr['Аккумулятор'])) ? $arr['Аккумулятор'] : null;
+            $properties['number_cores'] = (isset($arr['Количество ядер'])) ? $arr['Количество ядер'] : null;
+            $properties['built_memory'] = (isset($arr['Встроенная память'])) ? $arr['Встроенная память'] : null;
+            $properties['screen_diagonal'] = (isset($arr['Диагональ экрана'])) ? $arr['Диагональ экрана'] : null;
+            $properties['screen_resolution'] = (isset($arr['Разрешение экрана'])) ? $arr['Разрешение экрана'] : null;
+            $properties['wifi'] = (isset($arr['Wi-Fi'])) ? $arr['Wi-Fi'] : null;
+            $properties['front_camera'] = (isset($arr['Фронтальная камера'])) ? $arr['Фронтальная камера'] : null;
+            $properties['bluetooth'] = (isset($arr['Bluetooth'])) ? $arr['Bluetooth'] : null;
+            $properties['sim_card'] = (isset($arr['Количество SIM-карт'])) ? $arr['Количество SIM-карт'] : null;
+            $properties['weight'] = (isset($arr['Вес'])) ? $arr['Вес'] : null;
+            $properties['wireless_charger'] = (isset($arr['Беспроводная зарядка'])) ? $arr['Беспроводная зарядка'] : null;
+            $properties['general_color'] = (isset($arr['Цвет'])) ? $arr['Цвет'] : null;
+        } else {
+            $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1шт";
+            $properties['brand'] = "No name";
+            $properties['warranty'] = null;
+            $properties['detail_text'] = "";
+            $properties['country'] = 'Китай';
+            $properties['main_camera'] = null;
+            $properties['ram'] = null;
+            $properties['cpu'] = null;
+            $properties['cpu_frequency'] = null;
+            $properties['battery'] = null;
+            $properties['built_memory'] = null;
+            $properties['screen_diagonal'] = null;
+            $properties['screen_resolution'] = null;
+            $properties['wifi'] = null;
+            $properties['front_camera'] = null;
+            $properties['bluetooth'] = null;
+            $properties['sim_card'] = null;
+            $properties['weight'] = null;
+            $properties['wireless_charger'] = null;
+            $properties['general_color'] = null;
+        }
+
+        return $properties;
     }
 }

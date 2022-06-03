@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $product = Product::findOrFail(2230);
+        $product = Product::findOrFail(500);
         $wl_category = WBCategory::find(2786);
 //        dd(WB::getProductStocks());
 //        dd(WB::updateStocks($product));
@@ -21,9 +21,9 @@ class IndexController extends Controller
 //        $barcode = json_decode(WB::getGeneratedBarcodeForProduct());
 //        dd($barcode->result->barcodes[0]);
 //        dd(WB::createProduct($product, $wl_category));
-//        $ss = Style::getProductFeature($product->article);
+        $ss = Style::getProductFeature($product->article);
 //        $ss = (array) $ss[0]->properties;
-//        dd($ss);
+        dd($ss);
 //        $p = Style::getProductPriceAndQuantity(19708);
 //        dd($p['19708']->price1);
         $getProductCardList = WB::getProductCardList();
