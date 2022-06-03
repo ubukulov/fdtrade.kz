@@ -48,7 +48,7 @@ class GetWbImtIdForProduct extends Command
                 $product->wb_imtId      = $card->imtId;
                 $product->wb_barcode    = $card->nomenclatures[0]->variations[0]->barcodes[0];
                 $product->save();
-                $this->info("The product with article {$product->article} has imtId.");
+                $this->info("The product with article {$product->article} has imtId successfully.");
             } else {
                 $this->info("The product with article {$card->supplierVendorCode} don't found.");
             }

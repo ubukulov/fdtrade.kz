@@ -481,12 +481,13 @@ class WB
             $product_feature = $product_feature[0];
             $arr = (array) $product_feature->properties;
             $properties['name'] = $this->removeSymbols($product->name);
-            $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1" . $arr['Базовая единица'];
+            $properties['complex_name'] = $this->removeSymbols($product->name) . " - 1" . $arr['Базовая единица'];
             $properties['brand'] = (isset($product_feature->brand)) ? $product_feature->brand : 'No name';
             $properties['warranty'] = (isset($product_feature->warranty)) ? $product_feature->warranty : null;
             $properties['detail_text'] = Str::limit(strip_tags($product_feature->detailtext), 999);
-            $properties['detail_text'] = str_replace("/", " ", $properties['detail_text']);
+            $properties['detail_text'] = $this->removeSymbols($properties['detail_text']);
             $properties['country'] = (isset($arr['Страна производства'])) ? $arr['Страна производства'] : "Китай";
+            $properties['country'] = ($arr['Страна производства'] == 'Сделано в Китае') ? "Китай" : $arr['Страна производства'];
             $properties['main_camera'] = (isset($arr['Основная камера'])) ? $arr['Основная камера'] : null;
             $properties['ram'] = (isset($arr['Оперативная память'])) ? $arr['Оперативная память'] : null;
             $properties['cpu'] = (isset($arr['Процессор'])) ? $arr['Процессор'] : null;
@@ -505,7 +506,7 @@ class WB
             $properties['general_color'] = (isset($arr['Цвет'])) ? $arr['Цвет'] : null;
         } else {
             $properties['name'] = $this->removeSymbols($product->name);
-            $properties['complex_name'] = str_replace("/", " ", $product->name) . " - 1шт";
+            $properties['complex_name'] = $this->removeSymbols($product->name) . " - 1шт";
             $properties['brand'] = "No name";
             $properties['warranty'] = null;
             $properties['detail_text'] = "";
