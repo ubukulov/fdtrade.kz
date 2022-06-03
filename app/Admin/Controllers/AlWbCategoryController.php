@@ -10,6 +10,7 @@ use App\Models\WBCategory;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Illuminate\Support\Facades\DB;
 
 class AlWbCategoryController extends AdminController
 {
@@ -34,6 +35,13 @@ class AlWbCategoryController extends AdminController
         });
         $grid->column('wb_category_id', __('Категория (WB)'))->display(function($categoryId) {
             return WBCategory::find($categoryId)->name;
+        });
+
+        $grid->column('id', __('Кол-во товаров'))->display(function($id) {
+            $al_wb_category = AlWbCategory::findOrFail($id);
+            $categoryId = $al_wb_category->al_category_id;
+            $result = DB::select("SELECT COUNT(*) as cnt FROM products WHERE category_id=$categoryId AND price <> 0");
+            return (isset($result[0])) ? $result[0]->cnt : 0;
         });
 
         $grid->column('updated_at', __('Дата изменение'))->display(function ($updated_at) {
