@@ -32,7 +32,7 @@ class WB
                     $product_images[]['value'] = $image->path;
                 }
             }
-            $product_image = $product_images[0]['value'];
+            $product_image = (isset($product_images[0])) ? $product_images[0]['value'] : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
         } else {
             $product_image = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         }
