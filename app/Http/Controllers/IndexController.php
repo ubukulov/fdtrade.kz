@@ -13,8 +13,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $product = Product::findOrFail(500);
-        $wl_category = WBCategory::find(2786);
+        $product = Product::whereArticle(37439)->first();
+        $wl_category = WBCategory::find(2573);
 //        dd(WB::getProductStocks());
 //        dd(WB::updateStocks($product));
 //        dd(WB::updatePrices($product, 84317767));

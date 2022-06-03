@@ -484,7 +484,7 @@ class WB
             $properties['complex_name'] = $this->removeSymbols($product->name) . " - 1" . $arr['Базовая единица'];
             $properties['brand'] = (isset($product_feature->brand)) ? $product_feature->brand : 'No name';
             $properties['warranty'] = (isset($product_feature->warranty)) ? $product_feature->warranty : null;
-            $properties['detail_text'] = Str::limit(strip_tags($product_feature->detailtext), 999);
+            $properties['detail_text'] = Str::limit($product_feature->detailtext, 999);
             $properties['detail_text'] = $this->removeSymbols($properties['detail_text']);
             $properties['country'] = (isset($arr['Страна производства'])) ? $arr['Страна производства'] : "Китай";
             $properties['country'] = ($properties['country'] == 'Сделано в Китае') ? "Китай" : $properties['country'];
@@ -504,6 +504,8 @@ class WB
             $properties['weight'] = (isset($arr['Вес'])) ? $arr['Вес'] : null;
             $properties['wireless_charger'] = (isset($arr['Беспроводная зарядка'])) ? $arr['Беспроводная зарядка'] : null;
             $properties['general_color'] = (isset($arr['Цвет'])) ? $arr['Цвет'] : null;
+            $properties['general_color'] = ($properties['general_color'] == 'Чёрный') ? 'Черный' : $properties['general_color'];
+            $properties['general_color'] = ($properties['general_color'] == 'Чрный') ? 'Черный' : $properties['general_color'];
         } else {
             $properties['name'] = $this->removeSymbols($product->name);
             $properties['complex_name'] = $this->removeSymbols($product->name) . " - 1шт";
@@ -534,7 +536,7 @@ class WB
     public function removeSymbols($string) :string
     {
         $symbols = [
-            '/', '*', '#', '@', '$', '%'
+            '/', '*', '#', '@', '$', '®'
         ];
         foreach($symbols as $symbol) {
             $string = str_replace($symbol, ' ', $string);
