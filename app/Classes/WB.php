@@ -487,7 +487,7 @@ class WB
             $properties['detail_text'] = Str::limit(strip_tags($product_feature->detailtext), 999);
             $properties['detail_text'] = $this->removeSymbols($properties['detail_text']);
             $properties['country'] = (isset($arr['Страна производства'])) ? $arr['Страна производства'] : "Китай";
-            $properties['country'] = ($arr['Страна производства'] == 'Сделано в Китае') ? "Китай" : $arr['Страна производства'];
+            $properties['country'] = ($properties['country'] == 'Сделано в Китае') ? "Китай" : $properties['country'];
             $properties['main_camera'] = (isset($arr['Основная камера'])) ? $arr['Основная камера'] : null;
             $properties['ram'] = (isset($arr['Оперативная память'])) ? $arr['Оперативная память'] : null;
             $properties['cpu'] = (isset($arr['Процессор'])) ? $arr['Процессор'] : null;
