@@ -506,6 +506,7 @@ class WB
             $properties['general_color'] = (isset($arr['Цвет'])) ? $arr['Цвет'] : null;
             $properties['general_color'] = ($properties['general_color'] == 'Чёрный') ? 'Черный' : $properties['general_color'];
             $properties['general_color'] = ($properties['general_color'] == 'Чрный') ? 'Черный' : $properties['general_color'];
+            $properties['general_color'] = mb_strtolower($properties['general_color']);
         } else {
             $properties['name'] = $this->removeSymbols($product->name);
             $properties['complex_name'] = $this->removeSymbols($product->name) . " - 1шт";
