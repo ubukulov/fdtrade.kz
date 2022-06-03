@@ -48,6 +48,7 @@ class SyncProductPricesAndQuantityWB extends Command
                     if(isset($updateStocks->result)) {
                         $this->info("Product: {$product->article} stocks success.");
                     } else {
+                        dd($updateStocks);
                         $this->info("Product: {$product->article} stocks failed.");
                     }
                     //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
