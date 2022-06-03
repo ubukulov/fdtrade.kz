@@ -45,11 +45,10 @@ class SyncProductPricesAndQuantityWB extends Command
                 $product = Product::where(['article' => $item->supplierVendorCode])->first();
                 if($product) {
                     $updateStocks = json_decode(WB::updateStocks($product));
-                    if(isset($updateStocks->result)) {
-                        $this->info("Product: {$product->article} stocks success.");
-                    } else {
-                        dd($updateStocks);
+                    if($updateStocks->error) {
                         $this->info("Product: {$product->article} stocks failed.");
+                    } else {
+                        $this->info("Product: {$product->article} stocks success.");
                     }
                     //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
                 }
