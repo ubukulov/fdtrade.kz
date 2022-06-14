@@ -65,7 +65,7 @@ class AlWbCategoryController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Название'));
         $grid->column('quantity', __('Кол-во'));
-        $grid->column('price1', __('Цена в AL'));
+        $grid->column('price2', __('Цена в AL'));
         $grid->column('price', __('Цена в WB'));
         $grid->column('margin', __('Маржа в %'))->display(function(){
             return $this->category->margin;
