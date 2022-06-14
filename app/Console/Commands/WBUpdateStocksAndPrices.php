@@ -6,14 +6,14 @@ use App\Models\Product;
 use Illuminate\Console\Command;
 use WB;
 
-class SyncProductPricesAndQuantityWB extends Command
+class WBUpdateStocksAndPrices extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'wb:sync-product-prices-and-quantity';
+    protected $signature = 'wb:update-stocks-prices';
 
     /**
      * The console command description.
@@ -44,13 +44,20 @@ class SyncProductPricesAndQuantityWB extends Command
             if(!empty($item->supplierVendorCode)) {
                 $product = Product::where(['article' => $item->supplierVendorCode])->first();
                 if($product) {
+
                     $updateStocks = json_decode(WB::updateStocks($product));
                     if($updateStocks->error) {
                         $this->info("Product: {$product->article} stocks failed.");
                     } else {
                         $this->info("Product: {$product->article} stocks success.");
                     }
-                    //WB::updatePrices($product, $item->nomenclatures[0]->nmId);
+
+                    $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
+                    if($updatePrices->error) {
+                        $this->info("Product: {$product->article} prices failed.");
+                    } else {
+                        $this->info("Product: {$product->article} prices success.");
+                    }
                 }
             }
         }
