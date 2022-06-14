@@ -52,11 +52,13 @@ class WBUpdateStocksAndPrices extends Command
                         $this->info("Product: {$product->article} stocks success.");
                     }
 
-                    $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
-                    if($updatePrices->error) {
-                        $this->info("Product: {$product->article} prices failed.");
-                    } else {
-                        $this->info("Product: {$product->article} prices success.");
+                    if(isset($item->nomenclatures[0])) {
+                        $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
+                        if(isset($updatePrices->errors)) {
+                            $this->info("Product: {$product->article} prices failed.");
+                        } else {
+                            $this->info("Product: {$product->article} prices success.");
+                        }
                     }
                 }
             }
