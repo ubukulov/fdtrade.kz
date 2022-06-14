@@ -47,9 +47,12 @@ class SyncWithAlstyle extends Command
                 $product->price2   = $priceAndQuantity[$product->article]->price2;
 
                 $category = $product->category;
+                if($category) {
+                    $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
+                    $product->save();
 
-                $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
-                $product->save();
+                    $this->info("Sync with Al: Product {$product->article} is updated.");
+                }
             }
         });
     }
