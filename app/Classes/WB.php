@@ -89,10 +89,7 @@ class WB
                         ],
                     ],
                     "countryProduction"=> $properties['country'],
-                    //"createdAt"=> "2022-05-18T09=>37=>19.706Z",
                     "id"=> (string) Str::uuid(),
-                    //"imtId"=> $product->article,
-                    //"imtSupplierId"=> $product->id,
                     "nomenclatures"=> [
                         [
                             "addin"=> [
@@ -108,7 +105,6 @@ class WB
                             "concatVendorCode"=> $article_pn,
                             "id"=> (string) Str::uuid(),
                             "isArchive"=> false,
-                            //"nmId"=> $product->id,
                             "variations"=> [
                                 [
                                     "addin"=> [
@@ -138,12 +134,8 @@ class WB
                         ]
                     ],
                     "object"=> $wb_category->name,
-                    //"parent"=> "string",
                     "supplierId"=> $this->supplierId,
                     "supplierVendorCode"=> (string) $product->article,
-                    //"updatedAt"=> "2022-05-18T09=>37=>19.706Z",
-                    //"uploadID"=> "92a14265-9512-4ef8-85c1-8c2f5c672957",
-                    //"userId"=> 1
                 ],
                 "supplierID"=> $this->supplierId
             ]
@@ -169,6 +161,23 @@ class WB
                     ]
                 ]
             ];
+        }
+
+        if(count($product_images) > 1) {
+            foreach($product_images as $key=>$value) {
+                if($key == 0) {
+                    continue;
+                }
+
+                $data['params']['card']['nomenclatures'][0]['addin'] = [
+                    "type"=> "Фото",
+                    "params"=> [
+                        [
+                            "value"=> $value,
+                        ]
+                    ]
+                ];
+            }
         }
 
 
