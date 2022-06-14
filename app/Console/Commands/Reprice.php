@@ -38,13 +38,19 @@ class Reprice extends Command
      */
     public function handle()
     {
-        Product::chunk(50, function($products){
+        $count = 0;
+        Product::chunk(50, function($products) use ($count){
             foreach($products as $product) {
                 if($product->quantity == '0') continue;
                 $category = $product->category;
-                $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
-                $product->save();
+                if($category) {
+                    $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
+                    $product->save();
+                    $this->info("Product {$product->article} prices updated.");
+                    $count++;
+                }
             }
         });
+        $this->info("{$count} products is updated.");
     }
 }
