@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use App\Classes\WB;
 
 class CancelProducts extends Command
 {
