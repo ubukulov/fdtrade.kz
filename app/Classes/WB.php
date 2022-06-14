@@ -169,7 +169,7 @@ class WB
                     continue;
                 }
 
-                $data['params']['card']['nomenclatures'][0]['addin'] = [
+                $data['params']['card']['nomenclatures'][0]['addin'][] = [
                     "type"=> "Фото",
                     "params"=> [
                         [
