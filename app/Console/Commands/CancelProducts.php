@@ -45,7 +45,7 @@ class CancelProducts extends Command
                 $product = Product::where(['article' => $item->supplierVendorCode])->first();
                 if($product) {
 
-                    $updateStocks = json_decode(WB::updateStocks($product, true));
+                    $updateStocks = json_decode(WB::cancelStocks($product));
                     if($updateStocks->error) {
                         $this->info("Product: {$product->article} stocks failed.");
                     } else {

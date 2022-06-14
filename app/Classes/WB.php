@@ -241,22 +241,37 @@ class WB
         return $request->getBody()->getContents();
     }
 
-    public function updateStocks($product, $cancel = false)
+    public function updateStocks($product)
     {
         $client = new Client(['base_uri' => $this->api]);
-        if($cancel) {
-            $data = [
-                "barcode" => (string) $product->wb_barcode,
-                "stock" => 0,
-                "warehouseId" => (int) $this->warehouseId
-            ];
-        } else {
-            $data = [
-                "barcode" => (string) $product->wb_barcode,
-                "stock" => (int) $product->getQuantity(),
-                "warehouseId" => (int) $this->warehouseId
-            ];
-        }
+        $data = [
+            "barcode" => (string) $product->wb_barcode,
+            "stock" => (int) $product->getQuantity(),
+            "warehouseId" => (int) $this->warehouseId
+        ];
+
+
+        $data = "[".json_encode($data)."]";
+
+        $request = $client->request('POST', '/api/v2/stocks', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => $data
+        ]);
+
+        return $request->getBody()->getContents();
+    }
+
+    public function cancelStocks($product)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "barcode" => (string) $product->wb_barcode,
+            "stock" => 0,
+            "warehouseId" => (int) $this->warehouseId
+        ];
 
 
         $data = "[".json_encode($data)."]";
