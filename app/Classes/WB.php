@@ -164,7 +164,7 @@ class WB
         }
 
         if(count($product_images) > 1) {
-            foreach($product_images as $key=>$value) {
+            foreach($product_images as $key=>$arr) {
                 if($key == 0) {
                     continue;
                 }
@@ -173,7 +173,7 @@ class WB
                     "type"=> "Фото",
                     "params"=> [
                         [
-                            "value"=> (string) $value,
+                            "value"=> $arr['value'],
                         ]
                     ]
                 ];
