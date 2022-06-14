@@ -57,5 +57,6 @@ class SyncWithAlstyle extends Command
                 }
             }
         });
+        $this->info('Process is finished.');
     }
 }
