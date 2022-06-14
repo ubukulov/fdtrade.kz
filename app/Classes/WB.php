@@ -241,14 +241,23 @@ class WB
         return $request->getBody()->getContents();
     }
 
-    public function updateStocks($product)
+    public function updateStocks($product, $cancel = false)
     {
         $client = new Client(['base_uri' => $this->api]);
-        $data = [
-            "barcode" => (string) $product->wb_barcode,
-            "stock" => (int) $product->getQuantity(),
-            "warehouseId" => (int) $this->warehouseId
-        ];
+        if($cancel) {
+            $data = [
+                "barcode" => (string) $product->wb_barcode,
+                "stock" => 0,
+                "warehouseId" => (int) $this->warehouseId
+            ];
+        } else {
+            $data = [
+                "barcode" => (string) $product->wb_barcode,
+                "stock" => (int) $product->getQuantity(),
+                "warehouseId" => (int) $this->warehouseId
+            ];
+        }
+
 
         $data = "[".json_encode($data)."]";
 
