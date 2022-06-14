@@ -173,7 +173,7 @@ class WB
                     "type"=> "Фото",
                     "params"=> [
                         [
-                            "value"=> $value,
+                            "value"=> (string) $value,
                         ]
                     ]
                 ];
