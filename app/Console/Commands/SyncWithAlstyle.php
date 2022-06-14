@@ -42,16 +42,18 @@ class SyncWithAlstyle extends Command
         Product::chunk(50, function($products){
             foreach($products as $product) {
                 $priceAndQuantity  = Style::getProductPriceAndQuantity($product->article);
-                $product->quantity = $priceAndQuantity[$product->article]->quantity;
-                $product->price1   = $priceAndQuantity[$product->article]->price1;
-                $product->price2   = $priceAndQuantity[$product->article]->price2;
+                if(isset($priceAndQuantity[$product->article])) {
+                    $product->quantity = $priceAndQuantity[$product->article]->quantity;
+                    $product->price1   = $priceAndQuantity[$product->article]->price1;
+                    $product->price2   = $priceAndQuantity[$product->article]->price2;
 
-                $category = $product->category;
-                if($category) {
-                    $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
-                    $product->save();
+                    $category = $product->category;
+                    if($category) {
+                        $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
+                        $product->save();
 
-                    $this->info("Sync with Al: Product {$product->article} is updated.");
+                        $this->info("Sync with Al: Product {$product->article} is updated.");
+                    }
                 }
             }
         });

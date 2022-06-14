@@ -16,7 +16,7 @@ class IndexController extends Controller
         $product = Product::whereArticle(30948)->first();
         $wl_category = WBCategory::find(2573);
 //        dd(WB::getProductByImtId($product));
-        dd(WB::getProductStocks());
+//        dd(WB::getProductStocks());
 //        dd(WB::updateStocks($product));
 //        dd(WB::updatePrices($product, 84317767));
 //        $barcode = json_decode(WB::getGeneratedBarcodeForProduct());
