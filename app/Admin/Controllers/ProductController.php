@@ -56,7 +56,7 @@ class ProductController extends AdminController
         //$show = new Show(Product::findOrFail($id));
         $product = Product::with('thumb')->whereId($id)->first();
         $show = new Show($product);
-        $product->thumb = $product->thumb[0]->path;
+
         $show->field('id', __('ID'));
         $show->field('article', __('Артикуль'));
         $show->field('name', __('Название'));
@@ -67,8 +67,15 @@ class ProductController extends AdminController
         $show->field('price2', __('Цена2'));
         $show->field('price', __('Ваша цена'));
         $show->field('quantity', __('Кол-во'));
-        $show->field('quantity', __('Кол-во'));
-        $show->thumb('Аватар')->image();
+
+        if(isset($product->thumb[0])) {
+            $product->thumb = $product->thumb[0]->path;
+            $show->thumb('Аватар')->image();
+        } else {
+            $product->thumb = url("/uploads/products/" . $product->images[0]->path);
+            $show->thumb('Аватар')->image();
+        }
+
         $show->updated_at('Дата изменение')->as(function($updated_at){
             return date('d.m.Y H:i', strtotime($updated_at));
         });
@@ -86,9 +93,13 @@ class ProductController extends AdminController
         $form = new Form(new Product());
 
         $form->display('id', __('ID'));
-        $form->display('price1', __('Цена1'));
-        $form->display('price2', __('Цена2'));
+        $form->text('name', __('Название'));
+        $form->number('article', __('Артикуль'));
+        $form->select('category_id', 'Выберите категория (Al-style)')->options(Category::all()->pluck('name', 'id'));
+        $form->number('quantity', __('Кол-во'));
         $form->number('price', __('Ваша цена'));
+
+        $form->multipleFile('attachments','Attachments')->pathColumn('path')->removable();
 
         return $form;
     }

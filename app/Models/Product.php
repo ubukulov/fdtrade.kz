@@ -33,6 +33,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class)->where('thumbs', 1);
     }
 
+    public function attachments()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     public function getQuantity()
     {
         $quantity = str_replace('>', '', $this->quantity);
