@@ -95,9 +95,10 @@ class ProductController extends AdminController
         $form->display('id', __('ID'));
         $form->text('name', __('Название'));
         $form->number('article', __('Артикуль'));
-        $form->select('category_id', 'Выберите категория (Al-style)')->options(Category::all()->pluck('name', 'id'));
+        $form->select('category_id', 'Выберите категория')->options(Category::all()->pluck('name', 'id'));
         $form->number('quantity', __('Кол-во'));
         $form->number('price', __('Ваша цена'));
+        $form->ckeditor('description', 'Описание');
 
         $form->multipleFile('attachments','Attachments')->pathColumn('path')->removable();
 

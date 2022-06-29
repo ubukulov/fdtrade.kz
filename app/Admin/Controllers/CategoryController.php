@@ -64,7 +64,7 @@ class CategoryController extends AdminController
     {
         $form = new Form(new Category());
 
-        $form->display('name', __('Название'));
+        $form->text('name', __('Название'));
         $form->decimal('margin', __('Маржа в %  '));
 
         return $form;
