@@ -6,7 +6,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SyncProductsWithWB;
 use App\Console\Commands\SyncWithAlstyle;
-use App\Console\Commands\WBUpdateStocksAndPrices;
+use App\Console\Commands\WBUpdateStocks;
+use App\Console\Commands\WBUpdatePrices;
 use App\Console\Commands\GetWbImtIdForProduct;
 use App\Console\Commands\GetActualRates;
 
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         SyncProductsWithWB::class,
         SyncWithAlstyle::class,
-        WBUpdateStocksAndPrices::class,
+        WBUpdateStocks::class,
+        WBUpdatePrices::class,
         GetWbImtIdForProduct::class,
         GetActualRates::class,
     ];
@@ -36,7 +38,8 @@ class Kernel extends ConsoleKernel
          $schedule->command('sync:products-with-wb')->everyFifteenMinutes();
          $schedule->command('wb:get-imtId-for-product')->everyThirtyMinutes();
          $schedule->command('sync:price-and-quantity-with-al-style')->hourly();
-         $schedule->command('wb:update-stocks-prices')->everyTwoHours();
+         $schedule->command('wb:update-stocks')->everyTwoHours();
+         $schedule->command('wb:update-prices')->everyFourHours();
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
     }
 

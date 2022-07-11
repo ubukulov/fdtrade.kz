@@ -6,14 +6,14 @@ use App\Models\Product;
 use Illuminate\Console\Command;
 use WB;
 
-class WBUpdateStocksAndPrices extends Command
+class WBUpdatePrices extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'wb:update-stocks-prices';
+    protected $signature = 'wb:update-prices';
 
     /**
      * The console command description.
@@ -43,22 +43,12 @@ class WBUpdateStocksAndPrices extends Command
         foreach($getProductCardList->result->cards as $item) {
             if(!empty($item->supplierVendorCode)) {
                 $product = Product::where(['article' => $item->supplierVendorCode])->first();
-                if($product) {
-
-                    $updateStocks = json_decode(WB::updateStocks($product));
-                    if($updateStocks->error) {
-                        $this->info("Product: {$product->article} stocks failed.");
+                if($product && isset($item->nomenclatures[0])) {
+                    $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
+                    if(isset($updatePrices->errors)) {
+                        $this->info("Product: {$product->article} prices failed.");
                     } else {
-                        $this->info("Product: {$product->article} stocks success.");
-                    }
-
-                    if(isset($item->nomenclatures[0])) {
-                        $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
-                        if(isset($updatePrices->errors)) {
-                            $this->info("Product: {$product->article} prices failed.");
-                        } else {
-                            $this->info("Product: {$product->article} prices success.");
-                        }
+                        $this->info("Product: {$product->article} prices success.");
                     }
                 }
             }
