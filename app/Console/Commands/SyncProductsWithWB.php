@@ -55,7 +55,10 @@ class SyncProductsWithWB extends Command
                     foreach($products as $product) {
                         $response = WB::createProduct($product, $wb_category);
 
-                        if(!$response) continue;
+                        if(!$response) {
+                            $this->info("Product {$product->article} don't created.");
+                            continue;
+                        }
 
                         $response = json_decode($response);
                         if(isset($response->result)) {
