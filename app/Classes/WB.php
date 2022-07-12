@@ -40,6 +40,9 @@ class WB
 
         $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
+        if(!$barcode) {
+            return false;
+        }
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -307,7 +310,11 @@ class WB
         ]);
 
         $barcode = json_decode($request->getBody()->getContents());
-        return $barcode->result->barcodes[0];
+        if(isset($barcode->result->barcodes[0])) {
+            return $barcode->result->barcodes[0];
+        }
+
+        return false;
     }
 
     public function getProductCardList($limit = 1000, $offset = 0)
