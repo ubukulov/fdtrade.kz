@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\StyleServiceProvider::class,
         App\Providers\WbServiceProvider::class,
+        App\Providers\HalykServiceProvider::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Style' => App\Facades\Style::class,
         'WB' => App\Facades\WB::class,
+        'HK' => App\Facades\HK::class,
     ],
 
 ];
