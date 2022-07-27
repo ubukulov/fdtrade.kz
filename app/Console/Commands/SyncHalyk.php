@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use HK;
 
-class GenerateHalykXml extends Command
+class SyncHalyk extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'halyk:generate-xml';
+    protected $signature = 'sync:halyk';
 
     /**
      * The console command description.

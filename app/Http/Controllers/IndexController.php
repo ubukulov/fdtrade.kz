@@ -48,6 +48,6 @@ class IndexController extends Controller
     public function halykXml()
     {
         $xml = HK::createOrUpdate();
-        return response()->xml($xml);
+        return response()->view('xml', $xml, 200)->header('Content-Type', 'text/xml');
     }
 }
