@@ -8,6 +8,7 @@ use App\Models\WBCategory;
 use Illuminate\Http\Request;
 use WB;
 use Style;
+use HK;
 
 class IndexController extends Controller
 {
@@ -42,5 +43,11 @@ class IndexController extends Controller
 
 //        $wb_product = WB::getProductByImtId($product);
 //        dd(WB::updateProduct($wb_product, $product));
+    }
+
+    public function halykXml()
+    {
+        $xml = HK::createOrUpdate();
+        return response()->xml($xml);
     }
 }
