@@ -17,4 +17,5 @@ Route::group([
     $router->resource('/wb-categories', 'WbCategoryController');
     $router->resource('/al-wb-categories', 'AlWbCategoryController');
     $router->resource('/wb-products', 'WbProductController');
+    $router->resource('market-places', 'MarketController');
 });
