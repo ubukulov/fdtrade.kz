@@ -3,17 +3,33 @@
 
 namespace App\Classes;
 
+use App\Models\MarketPlace;
 use App\Models\Product;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Style;
 use Illuminate\Support\Str;
 
 class WB
 {
-    protected $supplierId = 'f24a7a98-07b8-4b76-841c-3701f8779b6c';
-    protected $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NJRCI6IjEyZWVjYTI3LWM4NzAtNDZiNi04YzczLWM2NzIwMmJiMGJjYSJ9.yivi1D6nyAwA1ScI-opX2tmejPqN0DH3hMDUqP4pqgA';
-    protected $api = 'https://suppliers-api.wildberries.ru/';
+    protected $supplierId = '';
+    protected $token = '';
+    protected $api = '';
     protected $warehouseId = 248653;
+
+    public function __construct()
+    {
+        if($this->supplierId == '' || $this->token == '' || $this->api == '') {
+            $marketplace = MarketPlace::where(['title' => 'wildberries'])->first();
+            if(!$marketplace) {
+                abort(500, 'В таблице marketplaces отсутствует запись про Wildberries');
+            }
+
+            $this->supplierId   = $marketplace->client_id;
+            $this->api          = $marketplace->api;
+            $this->token        = $marketplace->client_secret;
+        }
+    }
 
     public function getSupplierId()
     {
