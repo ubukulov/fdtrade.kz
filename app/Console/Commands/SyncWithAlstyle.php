@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Style;
 
@@ -50,6 +51,7 @@ class SyncWithAlstyle extends Command
                     $category = $product->category;
                     if($category) {
                         $product->price = $priceAndQuantity[$product->article]->price2 + ($priceAndQuantity[$product->article]->price2 * ($category->margin / 100));
+                        $product->updated_at = Carbon::now();
                         $product->save();
 
                         $this->info("Sync with Al: Product {$product->article} is updated.");

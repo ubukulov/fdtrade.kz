@@ -8,13 +8,12 @@ use App\Models\Product;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
-use GuzzleHttp\Psr7;
 use Style;
+use Illuminate\Support\Facades\Http;
 
 class Halyk
 {
     protected $api = '';
-    protected $goods = '';
     protected $access_token = '';
 
     public function __construct()
@@ -58,90 +57,13 @@ class Halyk
         }
     }
 
-    public function generateXml()
-    {
-        $xml = '<?xml version="1.0" encoding="UTF-8"?><merchant_offers date="string"
- xmlns="halyk_market"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
- <company>FastDev Trade</company>
- <merchantid>830706301762</merchantid><brand>Brand test</brand><offers>
-';
-
-        $products = Product::limit(50)->get();
-        foreach($products as $product) {
-            $qty = $product->getQuantity();
-            if($qty != 0) {
-                $product_feature = Style::getProductFeature($product->article);
-                if(isset($product_feature[0])) {
-                    $brand = $product_feature[0]->brand;
-                    //$barcode = $product_feature[0]->barcode;
-
-                    $this->goods .= '<offer sku="'.$product->article.'">';
-                    $this->goods .= '<model>'.$product->name.'</model>';
-                    $this->goods .= '<brand>'.$brand.'</brand>';
-                    $this->goods .= '<stocks>';
-                    for($i=1; $i<=22; $i++) {
-                        $storeId = 'fastdev_pp' . $i;
-                        $this->goods .= '<stock available="yes" stockLevel="'.$qty.'" storeId="'.$storeId.'"/>';
-                    }
-                    $this->goods .= '</stocks>';
-                    $this->goods .= '<price>'.$product->price.'</price>';
-                    $this->goods .= '<loanPeriod>24</loanPeriod>';
-                    $this->goods .= '</offer>';
-                }
-            }
-        }
-
-        //$product = Product::find(3);
-
-
-        /*Product::chunk(100, function($products){
-            foreach($products as $product) {
-                $qty = $product->getQuantity();
-                if($qty == 0) {
-                    continue;
-                }
-
-                $this->goods .= '<good sku="'.$product->article.'">';
-                $this->goods .= '<name>'.$product->name.'</name>';
-                $this->goods .= '<stocks>';
-                for($i=1; $i<=22; $i++) {
-                    $storeId = 'fastdev_pp' . $i;
-                    $this->goods .= '<stock availability="'.$qty.'" storeId="'.$storeId.'"/>';
-                }
-                $this->goods .= '</stocks>';
-                $this->goods .= '<price>'.$product->price.'</price>';
-                $this->goods .= '<loanPeriod>24</loanPeriod>';
-                $this->goods .= '</good>';
-            }
-        });*/
-
-        $xml .= $this->goods . '</offers></merchant_offers>';
-        Storage::disk('public')->put('halyk/stocks.xml', $xml);
-    }
-
     public function createOrUpdate()
     {
-        //$this->generateXml();
-        $client = new Client(['base_uri' => $this->api]);
-        $request = $client->request('POST', 'offers/upload', [
-            'headers' => [
-                'Authorization' => "Bearer " . $this->access_token,
-                'Content-type' => 'multipart/form-data'
-            ],
-            'multipart' => [
-                /*[
-                    'name' => 'stocks-' . date('Y-m-d H:i:s'),
-                    'contents' => fopen(public_path() . '/storage/halyk/stocks.xml', 'r')
-                ],*/
-                [
-                    'name'     => 'stockss',
-                    'contents' => file_get_contents(public_path() . '/storage/halyk/stocks.xml'),
-                    'filename' => 'stocks.xml'
-                ],
-            ]
-        ]);
+        $apiUrl = $this->api . 'offers/upload/';
+        $response = Http::withToken($this->access_token)->attach(
+            'file', file_get_contents(public_path() . '/storage/halyk/stocks.xml'), 'stocks.xml'
+        )->post($apiUrl);
 
-        dd($request->getBody()->getContents());
+        return ($response->successful()) ? true : false;
     }
 }

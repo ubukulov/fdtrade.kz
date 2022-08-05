@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\GenerateXalykXml;
+use App\Console\Commands\SyncHalyk;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SyncProductsWithWB;
@@ -25,6 +27,8 @@ class Kernel extends ConsoleKernel
         WBUpdatePrices::class,
         GetWbImtIdForProduct::class,
         GetActualRates::class,
+        GenerateXalykXml::class,
+        SyncHalyk::class
     ];
 
     /**
@@ -35,11 +39,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('sync:products-with-wb')->everyFiveMinutes();
-         $schedule->command('wb:get-imtId-for-product')->everyTenMinutes();
+        /* WB */
+         //$schedule->command('sync:products-with-wb')->everyFiveMinutes();
+         //$schedule->command('wb:get-imtId-for-product')->everyTenMinutes();
          $schedule->command('sync:price-and-quantity-with-al-style')->everyFifteenMinutes();
          $schedule->command('wb:update-stocks')->everyThirtyMinutes();
          $schedule->command('wb:update-prices')->everyFourHours();
+
+         /* Halyk */
+         $schedule->command('generate:halyk-xml')->everyTwoHours();
+         $schedule->command('sync:halyk')->everyThreeHours();
+
+         /* Get Actual Rates */
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
     }
 
