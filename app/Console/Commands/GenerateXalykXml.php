@@ -50,7 +50,7 @@ class GenerateXalykXml extends Command
                  <merchantid>830706301762</merchantid><brand>FastDev Trade</brand><offers>
                 ';
 
-        Product::whereNotNull('brand')->chunk(100, function($products){
+        Product::whereNotNull('brand')->where('brand', '!=', 'A&P')->chunk(100, function($products){
             foreach($products as $product) {
                 $qty = $product->getQuantity();
                 if($qty == 0) {
@@ -60,8 +60,8 @@ class GenerateXalykXml extends Command
                 $category = $product->category;
                 if($category) {
                     $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
-                    $brand = htmlentities($product->brand);
-                    $name = htmlentities($product->name);
+                    $brand = $product->brand;
+                    $name = $product->name;
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$name.'</model>';
                     $this->contents .= '<brand>'.$brand.'</brand>';
