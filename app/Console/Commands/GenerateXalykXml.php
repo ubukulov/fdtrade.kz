@@ -59,7 +59,7 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
-                    $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
+                    $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$product->name.'</model>';
                     $this->contents .= '<brand>'.$product->brand.'</brand>';
