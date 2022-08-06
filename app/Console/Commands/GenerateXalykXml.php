@@ -10,6 +10,7 @@ use Style;
 class GenerateXalykXml extends Command
 {
     protected $contents = '';
+    protected $count = 0;
 
     /**
      * The name and signature of the console command.
@@ -74,9 +75,11 @@ class GenerateXalykXml extends Command
                         $this->contents .= '<price>'.$price.'</price>';
                         $this->contents .= '<loanPeriod>24</loanPeriod>';
                         $this->contents .= '</offer>';
+                        $this->count++;
                     }
                 }
             }
+            $this->info($this->count . " products has been added to xml.");
         });
 
         $xml .= $this->contents . '</offers></merchant_offers>';
