@@ -50,7 +50,7 @@ class GenerateXalykXml extends Command
                  <merchantid>830706301762</merchantid><brand>FastDev Trade</brand><offers>
                 ';
 
-        Product::chunk(100, function($products){
+        Product::whereNotNull('brand')->chunk(100, function($products){
             foreach($products as $product) {
                 $qty = $product->getQuantity();
                 if($qty == 0) {
@@ -59,24 +59,20 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
-                    $product_feature = Style::getProductFeature($product->article);
-                    if(isset($product_feature[0])) {
-                        $brand = $product_feature[0]->brand;
-                        $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
-                        $this->contents .= '<offer sku="'.$product->article.'">';
-                        $this->contents .= '<model>'.$product->name.'</model>';
-                        $this->contents .= '<brand>'.$brand.'</brand>';
-                        $this->contents .= '<stocks>';
-                        for($i=1; $i<=22; $i++) {
-                            $storeId = 'fastdev_pp' . $i;
-                            $this->contents .= '<stock available="yes" stockLevel="'.$qty.'" storeId="'.$storeId.'"/>';
-                        }
-                        $this->contents .= '</stocks>';
-                        $this->contents .= '<price>'.$price.'</price>';
-                        $this->contents .= '<loanPeriod>24</loanPeriod>';
-                        $this->contents .= '</offer>';
-                        $this->count++;
+                    $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
+                    $this->contents .= '<offer sku="'.$product->article.'">';
+                    $this->contents .= '<model>'.$product->name.'</model>';
+                    $this->contents .= '<brand>'.$product->brand.'</brand>';
+                    $this->contents .= '<stocks>';
+                    for($i=1; $i<=22; $i++) {
+                        $storeId = 'fastdev_pp' . $i;
+                        $this->contents .= '<stock available="yes" stockLevel="'.$qty.'" storeId="'.$storeId.'"/>';
                     }
+                    $this->contents .= '</stocks>';
+                    $this->contents .= '<price>'.$price.'</price>';
+                    $this->contents .= '<loanPeriod>24</loanPeriod>';
+                    $this->contents .= '</offer>';
+                    $this->count++;
                 }
             }
             $this->info($this->count . " products has been added to xml.");
