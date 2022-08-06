@@ -39,7 +39,7 @@ class StyleBrand extends Command
      */
     public function handle()
     {
-        Product::whereNotNull('brand')->chunk(100, function($products){
+        Product::whereNull('brand')->chunk(100, function($products){
             foreach($products as $product) {
                 $product_feature = Style::getProductFeature($product->article);
                 if(isset($product_feature[0])) {
