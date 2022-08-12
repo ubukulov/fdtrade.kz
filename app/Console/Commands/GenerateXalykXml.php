@@ -59,19 +59,10 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
-<<<<<<< HEAD
                     $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$product->name.'</model>';
                     $this->contents .= '<brand>'.$product->brand.'</brand>';
-=======
-                    $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
-                    $brand = $product->brand;
-                    $name = $product->name;
-                    $this->contents .= '<offer sku="'.$product->article.'">';
-                    $this->contents .= '<model>'.$name.'</model>';
-                    $this->contents .= '<brand>'.$brand.'</brand>';
->>>>>>> 1f96634f603616e1c73a9f55ae123ce5d664cef7
                     $this->contents .= '<stocks>';
                     for($i=1; $i<=22; $i++) {
                         $storeId = 'fastdev_pp' . $i;
@@ -81,10 +72,7 @@ class GenerateXalykXml extends Command
                     $this->contents .= '<price>'.$price.'</price>';
                     $this->contents .= '<loanPeriod>24</loanPeriod>';
                     $this->contents .= '</offer>';
-<<<<<<< HEAD
-=======
                     $this->count++;
->>>>>>> 1f96634f603616e1c73a9f55ae123ce5d664cef7
                 }
             }
             $this->info($this->count . " products has been added to xml.");
