@@ -63,6 +63,7 @@ class GenerateXalykXml extends Command
                     $name = str_replace('quot;', '', $product->name);
                     $name = str_replace('&', '', $name);
                     $name = str_replace('#', ' ', $name);
+                    $name = str_replace('%', ' ', $name);
                     $brand = $product->brand;
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$name.'</model>';
