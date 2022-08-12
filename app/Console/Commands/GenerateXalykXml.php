@@ -51,7 +51,7 @@ class GenerateXalykXml extends Command
                 ';
 
         $arr = [
-            ,23985
+            23985
             ,12773
             ,18925
             ,6702
