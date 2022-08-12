@@ -50,15 +50,8 @@ class GenerateXalykXml extends Command
                  <merchantid>830706301762</merchantid><brand>FastDev Trade</brand><offers>
                 ';
 
-        $arr = [
-            23985, 12773, 18925, 6702, 6703
-        ];
-
-        Product::whereNotNull('brand')->where('brand', '!=', 'A&P')->chunk(100, function($products) use ($arr){
+        Product::whereNotNull('brand')->where('brand', '!=', 'A&P')->chunk(100, function($products){
             foreach($products as $product) {
-                if(!in_array($product->article, $arr)){
-                    continue;
-                }
                 $qty = $product->getQuantity();
                 if($qty == 0) {
                     continue;
