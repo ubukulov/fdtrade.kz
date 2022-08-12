@@ -59,7 +59,7 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
-                    $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
+                    $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
                     $name = str_replace('quot;', '', $product->name);
                     $name = str_replace('&', '', $name);
                     $name = str_replace('#', ' ', $name);
