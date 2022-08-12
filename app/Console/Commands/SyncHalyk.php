@@ -40,7 +40,8 @@ class SyncHalyk extends Command
     {
         if (HK::createOrUpdate()) {
             $this->info('Halyk: success.');
+        } else {
+            $this->warn('Halyk: failed.');
         }
-        $this->warn('Halyk: failed.');
     }
 }

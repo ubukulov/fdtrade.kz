@@ -60,10 +60,12 @@ class GenerateXalykXml extends Command
                 $category = $product->category;
                 if($category) {
                     $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
-                    $name = str_replace('&', ' ', $product->name);
+                    //$name = str_replace('&', ' ', $product->name);
+                    $brand = htmlentities($product->brand);
+                    $name = htmlentities($product->name);
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$name.'</model>';
-                    $this->contents .= '<brand>'.$product->brand.'</brand>';
+                    $this->contents .= '<brand>'.$brand.'</brand>';
                     $this->contents .= '<stocks>';
                     for($i=1; $i<=22; $i++) {
                         $storeId = 'fastdev_pp' . $i;
