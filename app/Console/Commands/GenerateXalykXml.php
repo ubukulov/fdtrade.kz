@@ -10,6 +10,7 @@ use Style;
 class GenerateXalykXml extends Command
 {
     protected $contents = '';
+    protected $count = 0;
 
     /**
      * The name and signature of the console command.
@@ -49,7 +50,7 @@ class GenerateXalykXml extends Command
                  <merchantid>830706301762</merchantid><brand>FastDev Trade</brand><offers>
                 ';
 
-        Product::chunk(100, function($products){
+        Product::whereNotNull('brand')->where('brand', '!=', 'A&P')->chunk(100, function($products){
             foreach($products as $product) {
                 $qty = $product->getQuantity();
                 if($qty == 0) {
@@ -58,10 +59,19 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
+<<<<<<< HEAD
                     $price = $product->price2 + ($product->price2 * ($category->margin_halyk / 100));
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$product->name.'</model>';
                     $this->contents .= '<brand>'.$product->brand.'</brand>';
+=======
+                    $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
+                    $brand = $product->brand;
+                    $name = $product->name;
+                    $this->contents .= '<offer sku="'.$product->article.'">';
+                    $this->contents .= '<model>'.$name.'</model>';
+                    $this->contents .= '<brand>'.$brand.'</brand>';
+>>>>>>> 1f96634f603616e1c73a9f55ae123ce5d664cef7
                     $this->contents .= '<stocks>';
                     for($i=1; $i<=22; $i++) {
                         $storeId = 'fastdev_pp' . $i;
@@ -71,8 +81,13 @@ class GenerateXalykXml extends Command
                     $this->contents .= '<price>'.$price.'</price>';
                     $this->contents .= '<loanPeriod>24</loanPeriod>';
                     $this->contents .= '</offer>';
+<<<<<<< HEAD
+=======
+                    $this->count++;
+>>>>>>> 1f96634f603616e1c73a9f55ae123ce5d664cef7
                 }
             }
+            $this->info($this->count . " products has been added to xml.");
         });
 
         $xml .= $this->contents . '</offers></merchant_offers>';
