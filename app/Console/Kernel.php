@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
 
          /* Halyk */
          $schedule->command('generate:halyk-xml')->everyTwoHours();
-         $schedule->command('sync:halyk')->everyThreeHours();
+         //$schedule->command('sync:halyk')->everyThreeHours();
 
          /* Get Actual Rates */
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
