@@ -1,132 +1,6091 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Laravel</title>
+<head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
-        </style>
+    <title>Supermarket - Neoncart HTML5 Template</title>
+    <link rel="shortcut icon" href="assets/images/logo/favourite_icon_01.png">
 
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+    <!-- fraimwork - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endif
+    <!-- icon - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
+
+    <!-- animation - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+
+    <!-- nice select - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/nice-select.css">
+
+    <!-- carousel - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+
+    <!-- popup images & videos - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+
+    <!-- jquery ui - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css">
+
+    <!-- custom - css include -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+
+<body class="home_supermarket">
+
+
+<!-- backtotop - start -->
+<div id="thetop"></div>
+<div class="backtotop bg_supermarket_red">
+    <a href="#" class="scroll">
+        <i class="far fa-arrow-up"></i>
+    </a>
+</div>
+<!-- backtotop - end -->
+
+<!-- preloader - start -->
+<!-- <div id="preloader"></div> -->
+<!-- preloader - end -->
+
+
+<!-- header_section - start
+		================================================== -->
+<header class="header_section supermarket_header bg-white clearfix">
+    <div class="header_top text-white clearfix">
+        <div class="container maxw_1460">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-5">
+                    <p class="welcome_text mb-0">Welcome to Worldwide Online marketplace Store</p>
                 </div>
-            @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                        <g clip-path="url(#clip0)" fill="#EF3B2D">
-                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                        </g>
-                    </svg>
+                <div class="col-lg-7">
+                    <ul class="info_list ul_li_right clearfix">
+                        <li><a href="#!"><i class="fal fa-map-marker-alt"></i> Store Locator</a></li>
+                        <li><a href="#!"><i class="fal fa-truck"></i> Track Your Order</a></li>
+                        <li>
+                            <form action="#">
+                                <div class="currency_select option_select mb-0">
+                                    <select>
+                                        <option value="USD" selected>US Dollars</option>
+                                        <option value="EUR">Euro</option>
+                                        <option value="GBP">UK Pounds</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                            </div>
+    <div class="header_middle clearfix">
+        <div class="container maxw_1460">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-3">
+                    <div class="brand_logo">
+                        <a class="brand_link" href="index.html">
+                            <img src="assets/images/logo/logo_18_1x.png" srcset="assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
+                        </a>
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="mh_action_btns ul_li clearfix">
+                            <li>
+                                <button type="button" class="search_btn" data-toggle="collapse" data-target="#search_body_collapse" aria-expanded="false" aria-controls="search_body_collapse">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="cart_btn">
+                                    <i class="fal fa-shopping-cart"></i>
+                                    <span class="btn_badge">2</span>
+                                </button>
+                            </li>
+                            <li><button type="button" class="mobile_menu_btn"><i class="far fa-bars"></i></button></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
-
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
+                <div class="col-lg-6">
+                    <form action="#">
+                        <div class="medical_search_bar">
+                            <div class="form_item">
+                                <input type="search" name="search" placeholder="search here...">
+                            </div>
+                            <div class="option_select mb-0">
+                                <select>
+                                    <option data-display="All Category">Select A Option</option>
+                                    <option value="1">Some option</option>
+                                    <option value="2">Another option</option>
+                                    <option value="3" disabled>A disabled option</option>
+                                    <option value="4">Potato</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="submit_btn"><i class="fal fa-search"></i></button>
                         </div>
-                    </div>
+                    </form>
+                </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Build v{{ Illuminate\Foundation\Application::VERSION }}
+                <div class="col-lg-3">
+                    <div class="supermarket_header_btns clearfix">
+                        <ul class="action_btns_group ul_li_right clearfix">
+                            <li>
+                                <button type="button">
+                                    <span>Need</span>
+                                    <strong>Help?</strong>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button">
+                                    <span>Your</span>
+                                    <strong>Account</strong>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="cart_btn">
+                                    <i class="fal fa-shopping-bag"></i>
+                                    <span class="btn_badge">2</span>
+                                </button>
+                            </li>
+                        </ul>
+                        <span class="alart_text float-right">
+									<small>£</small>
+									New here? Get your Coupons!
+								</span>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+
+    <div class="header_bottom clearfix">
+        <div class="container maxw_1460">
+            <nav class="main_menu clearfix">
+                <ul class="ul_li clearfix">
+                    <li>
+                        <button class="alldepartments_btn bg_supermarket_red text-uppercase" type="button" data-toggle="collapse" data-target="#alldepartments_dropdown" aria-expanded="false" aria-controls="alldepartments_dropdown">
+                            <i class="far fa-bars"></i> All Departments
+                        </button>
+                    </li>
+                    <li class="menu_item_has_child">
+                        <a href="#!">Home</a>
+                        <div class="mega_menu text-center">
+                            <div class="background" data-bg-color="#ffffff">
+                                <div class="container">
+                                    <ul class="home_pages ul_li clearfix">
+                                        <li>
+                                            <a href="home_carparts.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/carparts.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Car Parts</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_classic_ecommerce.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/classic_ecommarce.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Classic Ecommerce</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_creative_onelook.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/creative_onelook.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Creative Onelook</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_electronic.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/electronic.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Electronic</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_fashion.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/fashion.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Fashion</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_fashion_minimal.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/fashion_minimal.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Fashion Minimal</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_furniture.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/furniture.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Furniture</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_gadget.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/gadget.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Gadget</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_lookbook_creative.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/lookbook_creative.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Lookbook Creative</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_lookbook_slide.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/lookbook_slide.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Lookbook Slide</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_medical.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/medical.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Medical</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_modern.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/modern.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Modern</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_modern_minimal.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/modern_minimal.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Modern Minimal</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_motorcycle.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/motorcycle.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Motorcycle</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_parallax_shop.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/parallax_shop.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Parallax Shop</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_simple_shop.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/simple_shop.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Simple Shop</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_single_story_black.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/single_story_black.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Single Story Black</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_single_story_white.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/single_story_white.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Single Story White</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_sports.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/sports.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Sports Shop</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_supermarket.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/supermarket.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Supermarket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="home_watch.html">
+														<span class="item_image">
+															<img src="assets/images/home_pages/watch.png" alt="image_not_found">
+														</span>
+                                                <span class="item_title">Watch</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_item_has_child">
+                        <a href="#!">Shop</a>
+                        <div class="mega_menu">
+                            <div class="background" data-bg-color="#ffffff">
+                                <div class="container">
+                                    <div class="row mt__30">
+                                        <div class="col-lg-3">
+                                            <div class="page_links">
+                                                <h3 class="title_text">Carparts</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="carparts_shop.html">Shop Page</a></li>
+                                                    <li><a href="carparts_shop_grid.html">Shop Grid</a></li>
+                                                    <li><a href="carparts_shop_list.html">Shop List</a></li>
+                                                    <li><a href="carparts_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Classic Ecommerce</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="classic_ecommerce_shop.html">Shop Page</a></li>
+                                                    <li><a href="classic_ecommerce_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Electronic</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="electronic_shop.html">Shop Page</a></li>
+                                                    <li><a href="electronic_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Fashion</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="fashion_shop.html">Shop Page</a></li>
+                                                    <li><a href="fashion_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="page_links">
+                                                <h3 class="title_text">Fashion Minimal</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
+                                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Fashion Minimal</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
+                                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Furniture</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="furniture_shop.html">Shop Page</a></li>
+                                                    <li><a href="furniture_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Gadget</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="gadget_shop.html">Shop Page</a></li>
+                                                    <li><a href="gadget_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="page_links">
+                                                <h3 class="title_text">Medical</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="medical_shop.html">Shop Page</a></li>
+                                                    <li><a href="medical_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Modern Minimal</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="modern_minimal_shop.html">Shop Page</a></li>
+                                                    <li><a href="modern_minimal_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Modern</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="modern_shop.html">Shop Page</a></li>
+                                                    <li><a href="modern_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Motorcycle</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="motorcycle_shop_grid.html">Shop Grid</a></li>
+                                                    <li><a href="motorcycle_shop_list.html">Shop List</a></li>
+                                                    <li><a href="motorcycle_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="page_links">
+                                                <h3 class="title_text">Simple Shop</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="simple_shop.html">Shop Page</a></li>
+                                                    <li><a href="simple_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Sports</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="sports_shop.html">Shop Page</a></li>
+                                                    <li><a href="sports_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Lookbook</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="lookbook_creative_shop.html">Shop Page</a></li>
+                                                    <li><a href="lookbook_creative_shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="page_links">
+                                                <h3 class="title_text">Shop Other Pages</h3>
+                                                <ul class="ul_li_block">
+                                                    <li><a href="#!"><del>Shop Page</del></a></li>
+                                                    <li><a href="shop_details.html">Shop Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_item_has_child">
+                        <a href="#!">Pages</a>
+                        <ul class="submenu">
+                            <li class="menu_item_has_child">
+                                <a href="#!">Shop Inner Pages</a>
+                                <ul class="submenu">
+                                    <li><a href="shop_cart.html">Shopping Cart</a></li>
+                                    <li><a href="shop_checkout.html">Checkout Step 1</a></li>
+                                    <li><a href="shop_checkout_step2.html">Checkout Step 2</a></li>
+                                    <li><a href="shop_checkout_step3.html">Checkout Step 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="404.html">404 Page</a></li>
+                            <li class="menu_item_has_child">
+                                <a href="#!">Blogs</a>
+                                <ul class="submenu">
+                                    <li><a href="blog.html">Blog Page</a></li>
+                                    <li><a href="blog_details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu_item_has_child">
+                                <a href="#!">Compare</a>
+                                <ul class="submenu">
+                                    <li><a href="compare_1.html">Compare V.1</a></li>
+                                    <li><a href="compare_2.html">Compare V.2</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu_item_has_child">
+                                <a href="#!">Register</a>
+                                <ul class="submenu">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="signup.html">Sign Up</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#!">About us</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div id="search_body_collapse" class="search_body_collapse collapse">
+        <div class="search_body">
+            <div class="container-fluid prl_90">
+                <form action="#">
+                    <div class="form_item mb-0">
+                        <input type="search" name="search" placeholder="Type here...">
+                        <button type="submit"><i class="fal fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header_section - end
+		================================================== -->
+
+
+<!-- main body - start
+		================================================== -->
+<main>
+
+
+    <!-- sidebar mobile menu & sidebar cart - start
+			================================================== -->
+    <div class="sidebar-menu-wrapper">
+        <div class="cart_sidebar">
+            <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
+
+            <ul class="cart_items_list ul_li_block mb_30 clearfix">
+                <li>
+                    <div class="item_image">
+                        <img src="assets/images/cart/img_01.jpg" alt="image_not_found">
+                    </div>
+                    <div class="item_content">
+                        <h4 class="item_title">Yellow Blouse</h4>
+                        <span class="item_price">$30.00</span>
+                    </div>
+                    <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
+                </li>
+                <li>
+                    <div class="item_image">
+                        <img src="assets/images/cart/img_01.jpg" alt="image_not_found">
+                    </div>
+                    <div class="item_content">
+                        <h4 class="item_title">Yellow Blouse</h4>
+                        <span class="item_price">$30.00</span>
+                    </div>
+                    <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
+                </li>
+                <li>
+                    <div class="item_image">
+                        <img src="assets/images/cart/img_01.jpg" alt="image_not_found">
+                    </div>
+                    <div class="item_content">
+                        <h4 class="item_title">Yellow Blouse</h4>
+                        <span class="item_price">$30.00</span>
+                    </div>
+                    <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
+                </li>
+            </ul>
+
+            <ul class="total_price ul_li_block mb_30 clearfix">
+                <li>
+                    <span>Subtotal:</span>
+                    <span>$90</span>
+                </li>
+                <li>
+                    <span>Vat 5%:</span>
+                    <span>$4.5</span>
+                </li>
+                <li>
+                    <span>Discount 20%:</span>
+                    <span>- $18.9</span>
+                </li>
+                <li>
+                    <span>Total:</span>
+                    <span>$75.6</span>
+                </li>
+            </ul>
+
+            <ul class="btns_group ul_li_block clearfix">
+                <li><a href="shop_cart.html">View Cart</a></li>
+                <li><a href="shop_checkout.html">Checkout</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar_mobile_menu">
+            <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
+
+            <div class="msb_widget brand_logo text-center">
+                <a href="index.html">
+                    <img src="assets/images/logo/logo_25_1x.png" srcset="assets/images/logo/logo_25_2x.png 2x" alt="logo_not_found">
+                </a>
+            </div>
+
+            <div class="msb_widget mobile_menu_list clearfix">
+                <h3 class="title_text mb_15 text-uppercase"><i class="far fa-bars mr-2"></i> Menu List</h3>
+                <ul class="ul_li_block clearfix">
+                    <li class="active dropdown">
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                        <ul class="ul_li_block dropdown-menu">
+                            <li><a href="home_carparts.html">Carparts</a></li>
+                            <li><a href="home_classic_ecommerce.html">Classic Ecommerce</a></li>
+                            <li><a href="home_creative_onelook.html">Creative Onelook</a></li>
+                            <li><a href="home_electronic.html">Electronic</a></li>
+                            <li><a href="home_fashion.html">Fashion</a></li>
+                            <li><a href="home_fashion_minimal.html">Fashion Minimal</a></li>
+                            <li><a href="home_furniture.html">Furniture</a></li>
+                            <li><a href="home_gadget.html">Gadget</a></li>
+                            <li><a href="home_lookbook_creative.html">Lookbook Creative</a></li>
+                            <li><a href="home_lookbook_slide.html">Lookbook Slide</a></li>
+                            <li><a href="home_medical.html">Medical</a></li>
+                            <li><a href="home_modern.html">Modern</a></li>
+                            <li><a href="home_modern_minimal.html">Modern Minimal</a></li>
+                            <li><a href="home_motorcycle.html">Motorcycle</a></li>
+                            <li><a href="home_parallax_shop.html">Parallax Shop</a></li>
+                            <li><a href="home_simple_shop.html">Simple Shop</a></li>
+                            <li><a href="home_single_story_black.html">Single Story Black</a></li>
+                            <li><a href="home_single_story_white.html">Single Story White</a></li>
+                            <li><a href="home_sports.html">Sports</a></li>
+                            <li><a href="home_supermarket.html">Supermarket</a></li>
+                            <li><a href="home_watch.html">Watch</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown ul_li_block">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Carparts</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="carparts_shop.html">Shop Page</a></li>
+                                    <li><a href="carparts_shop_grid.html">Shop Grid</a></li>
+                                    <li><a href="carparts_shop_list.html">Shop List</a></li>
+                                    <li><a href="carparts_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classic Ecommerce</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="classic_ecommerce_shop.html">Shop Page</a></li>
+                                    <li><a href="classic_ecommerce_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Electronic</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="electronic_shop.html">Shop Page</a></li>
+                                    <li><a href="electronic_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="fashion_shop.html">Shop Page</a></li>
+                                    <li><a href="fashion_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion Minimal</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
+                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion Minimal</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
+                                    <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Furniture</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="furniture_shop.html">Shop Page</a></li>
+                                    <li><a href="furniture_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gadget</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="gadget_shop.html">Shop Page</a></li>
+                                    <li><a href="gadget_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Medical</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="medical_shop.html">Shop Page</a></li>
+                                    <li><a href="medical_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modern Minimal</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="modern_minimal_shop.html">Shop Page</a></li>
+                                    <li><a href="modern_minimal_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modern</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="modern_shop.html">Shop Page</a></li>
+                                    <li><a href="modern_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Motorcycle</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="motorcycle_shop_grid.html">Shop Grid</a></li>
+                                    <li><a href="motorcycle_shop_list.html">Shop List</a></li>
+                                    <li><a href="motorcycle_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Simple Shop</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="simple_shop.html">Shop Page</a></li>
+                                    <li><a href="simple_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sports</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="sports_shop.html">Shop Page</a></li>
+                                    <li><a href="sports_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lookbook</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="lookbook_creative_shop.html">Shop Page</a></li>
+                                    <li><a href="lookbook_creative_shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop Other Pages</a>
+                                <ul class="dropdown-menu ul_li_block">
+                                    <li><a href="#!"><del>Shop Page</del></a></li>
+                                    <li><a href="shop_details.html">Shop Details</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop Inner Pages</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="shop_cart.html">Shopping Cart</a></li>
+                                    <li><a href="shop_checkout.html">Checkout Step 1</a></li>
+                                    <li><a href="shop_checkout_step2.html">Checkout Step 2</a></li>
+                                    <li><a href="shop_checkout_step3.html">Checkout Step 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="404.html">404 Page</a></li>
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog.html">Blog Page</a></li>
+                                    <li><a href="blog_details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compare</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="compare_1.html">Compare V.1</a></li>
+                                    <li><a href="compare_2.html">Compare V.2</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="signup.html">Sign Up</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Conatct</a></li>
+                </ul>
+            </div>
+
+            <div class="user_info">
+                <h3 class="title_text mb_30 text-uppercase"><i class="fas fa-user mr-2"></i> User Info</h3>
+                <div class="profile_info clearfix">
+                    <div class="user_thumbnail">
+                        <img src="assets/images/meta/img_01.png" alt="thumbnail_not_found">
+                    </div>
+                    <div class="user_content">
+                        <h4 class="user_name">Jone Doe</h4>
+                        <span class="user_title">Seller</span>
+                    </div>
+                </div>
+                <ul class="settings_options ul_li_block clearfix">
+                    <li><a href="#!"><i class="fal fa-user-circle"></i> Profile</a></li>
+                    <li><a href="#!"><i class="fal fa-user-cog"></i> Settings</a></li>
+                    <li><a href="#!"><i class="fal fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+    </div>
+    <!-- sidebar mobile menu & sidebar cart - end
+			================================================== -->
+
+
+    <!-- slider_section - start
+			================================================== -->
+    <section class="slider_section supermarket_slider sec_ptb_50 clearfix" data-background="assets/images/backgrounds/bg_13.jpg">
+        <div class="container maxw_1460">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-3">
+                    <div class="alldepartments_menu_wrap">
+                        <div class="alldepartments_dropdown show_lg collapse" id="alldepartments_dropdown">
+                            <div class="card">
+                                <ul class="alldepartments_menulist ul_li_block clearfix">
+                                    <li>
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_01.png" alt="icon_not_found">
+													</span>
+                                            <strong>Free Gift Product</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_02.png" alt="icon_not_found">
+													</span>
+                                            <strong>Trending Product</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_03.png" alt="icon_not_found">
+													</span>
+                                            <strong>Discount Products</strong>
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_04.png" alt="icon_not_found">
+													</span>
+                                            Beauty & Health
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_05.png" alt="icon_not_found">
+													</span>
+                                            Women's Fashion
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_06.png" alt="icon_not_found">
+													</span>
+                                            Smart Phones & Tablets
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_07.png" alt="icon_not_found">
+													</span>
+                                            Computing & Gaming
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_08.png" alt="icon_not_found">
+													</span>
+                                            Home & Living
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_09.png" alt="icon_not_found">
+													</span>
+                                            Diamond
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_10.png" alt="icon_not_found">
+													</span>
+                                            Men
+                                        </a>
+                                    </li>
+                                    <li class="has_child">
+                                        <a href="#!">
+													<span class="icon">
+														<img src="assets/images/icons/supermarket/icon_11.png" alt="icon_not_found">
+													</span>
+                                            Accesories
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="main_slider clearfix" data-slick='{"arrows": false}'>
+                        <div class="item clearfix" data-bg-color="#ffc156">
+                            <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
+                                <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            </div>
+                            <div class="slider_content">
+                                <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
+                                <h3 data-animation="fadeInUp" data-delay=".6s">The Gift you are Wishing</h3>
+                                <div class="item_price" data-animation="fadeInUp" data-delay=".8s">
+                                    <small>From</small>
+                                    <sup>£</sup>749<sup>99</sup>
+                                </div>
+                                <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay="1s">
+                                    <a href="#!" class="custom_btn btn_round bg_supermarket_red">Start Buying</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item clearfix" data-bg-color="#ffc156">
+                            <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
+                                <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            </div>
+                            <div class="slider_content">
+                                <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
+                                <h3 data-animation="fadeInUp" data-delay=".6s">The Gift you are Wishing</h3>
+                                <div class="item_price" data-animation="fadeInUp" data-delay=".8s">
+                                    <small>From</small>
+                                    <sup>£</sup>749<sup>99</sup>
+                                </div>
+                                <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay="1s">
+                                    <a href="#!" class="custom_btn btn_round bg_supermarket_red">Start Buying</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item clearfix" data-bg-color="#ffc156">
+                            <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
+                                <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            </div>
+                            <div class="slider_content">
+                                <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
+                                <h3 data-animation="fadeInUp" data-delay=".6s">The Gift you are Wishing</h3>
+                                <div class="item_price" data-animation="fadeInUp" data-delay=".8s">
+                                    <small>From</small>
+                                    <sup>£</sup>749<sup>99</sup>
+                                </div>
+                                <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay="1s">
+                                    <a href="#!" class="custom_btn btn_round bg_supermarket_red">Start Buying</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item clearfix" data-bg-color="#ffc156">
+                            <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
+                                <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            </div>
+                            <div class="slider_content">
+                                <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
+                                <h3 data-animation="fadeInUp" data-delay=".6s">The Gift you are Wishing</h3>
+                                <div class="item_price" data-animation="fadeInUp" data-delay=".8s">
+                                    <small>From</small>
+                                    <sup>£</sup>749<sup>99</sup>
+                                </div>
+                                <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay="1s">
+                                    <a href="#!" class="custom_btn btn_round bg_supermarket_red">Start Buying</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="sm_offer_item offer_fullimage text-white mb_30">
+                        <img src="assets/images/offer/supermarket/img_01.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sm_offer_item offer_fullimage text-white mb_30">
+                        <img src="assets/images/offer/supermarket/img_02.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_03.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- slider_section - end
+			================================================== -->
+
+
+    <!-- policy_section - start
+			================================================== -->
+    <section class="policy_section sec_ptb_50 pb-0 clearfix">
+        <div class="container maxw_1460">
+            <div class="supermarket_policy clearfix">
+                <ul class="ul_li clearfix">
+                    <li>
+                        <div class="supermarket_policy_item clearfix">
+                            <div class="item_icon">
+                                <img src="assets/images/icons/supermarket/icon_12.png" alt="icon_not_found">
+                            </div>
+                            <div class="item_content">
+                                <h3 class="text-uppercase">Free Delivery</h3>
+                                <p>For all order over $120</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="supermarket_policy_item clearfix">
+                            <div class="item_icon">
+                                <img src="assets/images/icons/supermarket/icon_13.png" alt="icon_not_found">
+                            </div>
+                            <div class="item_content">
+                                <h3 class="text-uppercase">Safe payment</h3>
+                                <p>100% secure payment</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="supermarket_policy_item clearfix">
+                            <div class="item_icon">
+                                <img src="assets/images/icons/supermarket/icon_14.png" alt="icon_not_found">
+                            </div>
+                            <div class="item_content">
+                                <h3 class="text-uppercase">Shop with confidence</h3>
+                                <p>If goods have problems</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="supermarket_policy_item clearfix">
+                            <div class="item_icon">
+                                <img src="assets/images/icons/supermarket/icon_15.png" alt="icon_not_found">
+                            </div>
+                            <div class="item_content">
+                                <h3 class="text-uppercase">24/7 help center</h3>
+                                <p>Dedicated 24/7 support</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="supermarket_policy_item clearfix">
+                            <div class="item_icon">
+                                <img src="assets/images/icons/supermarket/icon_16.png" alt="icon_not_found">
+                            </div>
+                            <div class="item_content">
+                                <h3 class="text-uppercase">Friendly services</h3>
+                                <p>30 day satisfaction guarantee</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- policy_section - end
+			================================================== -->
+
+
+    <!-- deals_section - start
+			================================================== -->
+    <section class="deals_section sec_ptb_50 clearfix">
+        <div class="container maxw_1460">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="supermarket_section_title clearfix">
+                        <span class="sub_title text-uppercase">A wide selection of items </span>
+                        <h2 class="title_text mb-0">Top Flash Deal</h2>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="gray_line"></div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="carousel_nav align_right">
+                        <button type="button" class="left_arrow5"><i class="fal fa-arrow-left"></i></button>
+                        <button type="button" class="right_arrow5"><i class="fal fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="supermarket_deals_carousel position-relative clearfix">
+                <div class="slideshow5_slider row clearfix" data-slick='{"dots": false}'>
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_03.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_04.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_03.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_04.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat -30%</div>
+                            <a href="#!" class="item_image">
+                                <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="#!"> Baby Shoes </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">21 Products</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- deals_section - end
+			================================================== -->
+
+
+    <!-- product_section - start
+			================================================== -->
+    <section class="product_section sec_ptb_100 bg_white clearfix">
+        <div class="container maxw_1460">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-3">
+                    <div class="supermarket_sidebar_tab mb_30">
+                        <div class="wrap_heade bg_supermarket_red clearfix">
+                            <h2>Top Flash Deal</h2>
+                            <span>A wide selection of items</span>
+                        </div>
+                        <ul class="ul_li_block nav" role="tablist">
+                            <li><a class="active" data-toggle="tab" href="#best_deals_tab">Best Deals</a></li>
+                            <li><a data-toggle="tab" href="#tv_video_tab">TV & Video</a></li>
+                            <li><a data-toggle="tab" href="#cameras_tab">Cameras</a></li>
+                            <li><a data-toggle="tab" href="#audio_tab">Audio</a></li>
+                            <li><a data-toggle="tab" href="#cell_phones_tab">Cell Phones</a></li>
+                            <li><a data-toggle="tab" href="#gps_navi_tab">GPS & Navi</a></li>
+                            <li><a data-toggle="tab" href="#computers_tab">Computers</a></li>
+                            <li><a data-toggle="tab" href="#portable_audio_tab">Portable Audio</a></li>
+                            <li><a data-toggle="tab" href="#accesoriess_tab">Accesoriess</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="supermarket_advertisement_3">
+                        <img src="assets/images/offer/supermarket/img_05.jpg" alt="image_not_found">
+                        <div class="item_content text-white">
+                            <h3 class="item_title text-white">
+                                ALL-NEW-SPORT
+                                <span>STARTING AT</span>
+                            </h3>
+                            <span class="item_price"><sup>£</sup>7,90</span>
+                            <a class="custom_btn bg_black btn_round" href="#!">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="tab-content">
+                        <div id="best_deals_tab" class="tab-pane active">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="supermarket_advertisement_carousel position-relative">
+                                    <div class="slideshow1_slider" data-slick='{"dots": false}'>
+                                        <div class="item">
+                                            <div class="supermarket_advertisement_2">
+                                                <img src="assets/images/offer/supermarket/img_04.jpg" alt="image_not_found">
+                                                <div class="item_content">
+                                                    <span class="text-uppercase">Gaming 4k</span>
+                                                    <h3 class="item_title text-white mb_15">Desktop & Case</h3>
+                                                    <a href="#!" class="custom_btn btn_sm btn_round bg_supermarket_red">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="supermarket_advertisement_2">
+                                                <img src="assets/images/offer/supermarket/img_04.jpg" alt="image_not_found">
+                                                <div class="item_content">
+                                                    <span class="text-uppercase">Gaming 4k</span>
+                                                    <h3 class="item_title text-white mb_15">Desktop & Case</h3>
+                                                    <a href="#!" class="custom_btn btn_sm btn_round bg_supermarket_red">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="supermarket_advertisement_2">
+                                                <img src="assets/images/offer/supermarket/img_04.jpg" alt="image_not_found">
+                                                <div class="item_content">
+                                                    <span class="text-uppercase">Gaming 4k</span>
+                                                    <h3 class="item_title text-white mb_15">Desktop & Case</h3>
+                                                    <a href="#!" class="custom_btn btn_sm btn_round bg_supermarket_red">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel_nav clearfix">
+                                        <button type="button" class="left_arrow"><i class="fal fa-arrow-left"></i></button>
+                                        <button type="button" class="right_arrow"><i class="fal fa-arrow-right"></i></button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="tv_video_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="cameras_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="audio_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="cell_phones_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="gps_navi_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="computers_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="portable_audio_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="accesoriess_tab" class="tab-pane fade">
+                            <ul class="supermarket_product_columns has_4columns ul_li clearfix">
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_05.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_07.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_08.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_09.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#8d8d8d">SOLD OUT</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_10.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_12.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_14.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="supermarket_product_item">
+                                        <ul class="product_label ul_li_block clearfix">
+                                            <li data-bg-color="#cc1414">-70%</li>
+                                            <li data-bg-color="#0062bd">NEW</li>
+                                        </ul>
+                                        <a class="item_image" href="#!">
+                                            <img src="assets/images/shop/supermarket/img_15.png" alt="image_not_found">
+                                        </a>
+                                        <div class="item_content">
+                                            <span class="item_type text-uppercase">Speakers</span>
+                                            <h3 class="item_title">
+                                                <a href="#!">
+                                                    Wireless Audio System Multiroom 360
+                                                </a>
+                                            </h3>
+                                            <div class="item_price">
+                                                <strong>£1,300</strong>
+                                                <del>£2,300</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product_section - end
+			================================================== -->
+
+
+    <!-- advertisement_section - start
+			================================================== -->
+    <section class="advertisement_section sec_ptb_50 pb-0 clearfix">
+        <div class="container maxw_1460">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_06.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_07.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_08.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- advertisement_section - end
+			================================================== -->
+
+
+    <!-- bestseller_section - start
+			================================================== -->
+    <section class="bestseller_section sec_ptb_50 pb-0 clearfix">
+        <div class="container maxw_1460">
+
+            <div class="row mb_50 align-items-center justify-content-lg-between">
+                <div class="col-lg-5">
+                    <div class="supermarket_section_title clearfix">
+                        <span class="sub_title text-uppercase">A wide selection of items</span>
+                        <h2 class="title_text mb-0">Bestseller Products</h2>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <ul class="supermarket_tab_nav ul_li_right nav clearfix" role="tablist">
+                        <li>
+                            <a class="active" data-toggle="tab" href="#top_tab">Top 20</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#phones_tablets_tab">Phones & Tablets</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#laptops_computers_tab">Laptops & Computers</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#video_cameras_tab">Video Cameras</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div id="top_tab" class="tab-pane active">
+                    <ul class="supermarket_product_columns has_3columns ul_li bg_white clearfix">
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="item_image">
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_18.png" alt="image_not_found">
+                                    </div>
+                                    <ul class="countdown_timer content_inbox ul_li_center clearfix" data-countdown="2021/3/24"></ul>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="phones_tablets_tab" class="tab-pane fade">
+                    <ul class="supermarket_product_columns has_3columns ul_li bg_white clearfix">
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="item_image">
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_18.png" alt="image_not_found">
+                                    </div>
+                                    <ul class="countdown_timer content_inbox ul_li_center clearfix" data-countdown="2021/3/24"></ul>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="laptops_computers_tab" class="tab-pane fade">
+                    <ul class="supermarket_product_columns has_3columns ul_li bg_white clearfix">
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="item_image">
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_18.png" alt="image_not_found">
+                                    </div>
+                                    <ul class="countdown_timer content_inbox ul_li_center clearfix" data-countdown="2021/3/24"></ul>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="video_cameras_tab" class="tab-pane fade">
+                    <ul class="supermarket_product_columns has_3columns ul_li bg_white clearfix">
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="item_image">
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_18.png" alt="image_not_found">
+                                    </div>
+                                    <ul class="countdown_timer content_inbox ul_li_center clearfix" data-countdown="2021/3/24"></ul>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_17.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="info_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_20.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="supermarket_product_listlayout">
+                                <div class="slideshow1_slider item_image" data-slick='{"arrows": false}'>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                    </div>
+                                </div>
+                                <div class="item_content">
+                                    <span class="item_type text-uppercase" data-bg-color="#0062bd">Watch</span>
+                                    <div class="rating_star_wrap d-flex align-items-center clearfix">
+                                        <ul class="rating_star ul_li mr-2 clearfix">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <span class="rating_value">4.0</span>
+                                    </div>
+                                    <h3 class="item_title">
+                                        <a href="#!">Relogio Masculino Watches</a>
+                                    </h3>
+                                    <ul class="product_action_btns ul_li clearfix">
+                                        <li><a class="addtocart_btn tooltips" data-placement="top" title="Add To Cart" href="#!">Start Buying</a></li>
+                                        <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
+                                    </ul>
+                                    <ul class="info_list ul_li_block clearfix">
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Estimated Delivery Time: 21-39days
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item_icon">
+                                                <i class="fal fa-truck-moving"></i>
+                                            </div>
+                                            <div class="item_content">
+                                                <p class="mb-0">
+                                                    Total: 1327 orders
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- bestseller_section - end
+			================================================== -->
+
+
+    <!-- advertisement_section - start
+			================================================== -->
+    <section class="advertisement_section sec_ptb_50 clearfix">
+        <div class="container maxw_1460">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_09.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="sm_offer_item offer_fullimage text-white">
+                        <img src="assets/images/offer/supermarket/img_10.jpg" alt="image_not_found">
+                        <div class="item_content">
+                            <h3 class="item_title text-white">
+                                Smartphone Bestseller Products 2019
+                            </h3>
+                            <span class="item_price">Price: $298.99</span>
+                            <a class="text_btn" href="#!">
+                                <span>Pre - Order Now</span>
+                                <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- advertisement_section - end
+			================================================== -->
+
+
+    <!-- supermarket_feature_carousel - start
+			================================================== -->
+    <section class="supermarket_feature_carousel arrow_ycenter clearfix" data-slick='{"dots": false}'>
+        <div class="item sec_ptb_50 d-flex align-items-center" data-bg-color="#18171c">
+            <div class="container maxw_1460">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-7 order-last">
+                        <div class="item_image">
+                            <img src="assets/images/feature/supermarket/img_01.png" alt="image_not_found">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="item_content">
+                            <span class="item_price">£99.00</span>
+                            <h4 class="sub_title text-white">ALL-NEW-SPORT</h4>
+                            <h3 class="item_title text-white mb_30">
+                                Everything you need to Start an online store
+                            </h3>
+                            <a class="custom_btn btn_round bg_electronic_blue" href="#!">Start Buying</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item sec_ptb_50 d-flex align-items-center" data-bg-color="#18171c">
+            <div class="container maxw_1460">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-7 order-last">
+                        <div class="item_image">
+                            <img src="assets/images/feature/supermarket/img_01.png" alt="image_not_found">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="item_content">
+                            <span class="item_price">£99.00</span>
+                            <h4 class="sub_title text-white">ALL-NEW-SPORT</h4>
+                            <h3 class="item_title text-white mb_30">
+                                Everything you need to Start an online store
+                            </h3>
+                            <a class="custom_btn btn_round bg_electronic_blue" href="#!">Start Buying</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item sec_ptb_50 d-flex align-items-center" data-bg-color="#18171c">
+            <div class="container maxw_1460">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-7 order-last">
+                        <div class="item_image">
+                            <img src="assets/images/feature/supermarket/img_01.png" alt="image_not_found">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="item_content">
+                            <span class="item_price">£99.00</span>
+                            <h4 class="sub_title text-white">ALL-NEW-SPORT</h4>
+                            <h3 class="item_title text-white mb_30">
+                                Everything you need to Start an online store
+                            </h3>
+                            <a class="custom_btn btn_round bg_electronic_blue" href="#!">Start Buying</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- supermarket_feature_carousel - end
+			================================================== -->
+
+
+    <!-- bestseller_section - start
+			================================================== -->
+    <section class="bestseller_section sec_ptb_100 clearfix">
+        <div class="container">
+            <div class="row justify-content-lg-between">
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="bestseller_wrap">
+                        <div class="supermarket_section_title mb_50 clearfix">
+                            <span class="sub_title text-uppercase">A wide selection of items</span>
+                            <h2 class="title_text mb-0">Bestseller Products</h2>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_22.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_13.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_16.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="bestseller_wrap">
+                        <div class="supermarket_section_title mb_50 clearfix">
+                            <span class="sub_title text-uppercase">A wide selection of items</span>
+                            <h2 class="title_text mb-0">Bestseller Products</h2>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_11.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_19.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_21.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="bestseller_wrap">
+                        <div class="supermarket_section_title mb_50 clearfix">
+                            <span class="sub_title text-uppercase">A wide selection of items</span>
+                            <h2 class="title_text mb-0">Bestseller Products</h2>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_23.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_24.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <div class="item_image">
+                                <img src="assets/images/shop/supermarket/img_06.png" alt="image_not_found">
+                                <ul class="product_label ul_li_block clearfix">
+                                    <li data-bg-color="#cc1414">-70%</li>
+                                </ul>
+                            </div>
+                            <div class="item_content">
+                                <span class="item_type">Speakers</span>
+                                <h3 class="item_title">
+                                    <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                                </h3>
+                                <span class="item_price">£2,300</span>
+                                <ul class="rating_star ul_li clearfix">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fal fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- bestseller_section - end
+			================================================== -->
+
+
+</main>
+<!-- main body - end
+		================================================== -->
+
+
+<!-- footer_section - start
+		================================================== -->
+<footer class="footer_section supermarket_footer clearfix">
+    <div class="footer_widget_area sec_ptb_100 bg_white clearfix">
+        <div class="container">
+            <div class="row justify-content-lg-between">
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="footer_widget footer_useful_links clearfix">
+                        <h3 class="footer_widget_title">Buyer Central</h3>
+                        <ul class="ul_li_block clearfix">
+                            <li><a href="#!">Sign in</a></li>
+                            <li><a href="#!">Buyer Protection</a></li>
+                            <li><a href="#!">Payment Options</a></li>
+                            <li><a href="#!">Shipping Policy</a></li>
+                            <li><a href="#!">Return Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="footer_widget bestrated_products">
+                        <h3 class="footer_widget_title">Best Rated Products</h3>
+
+                        <div class="supermarket_product_small">
+                            <span class="item_type">Speakers</span>
+                            <h3 class="item_title">
+                                <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                            </h3>
+                            <span class="item_price">£2,300</span>
+                            <ul class="rating_star ul_li clearfix">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fal fa-star"></i></li>
+                            </ul>
+                        </div>
+
+                        <div class="supermarket_product_small">
+                            <span class="item_type">Speakers</span>
+                            <h3 class="item_title">
+                                <a href="#!">Red Wireless Headphone Solo 2 HD</a>
+                            </h3>
+                            <span class="item_price">£2,300</span>
+                            <ul class="rating_star ul_li clearfix">
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fal fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="footer_widget footer_useful_links clearfix">
+                        <h3 class="footer_widget_title">Information</h3>
+                        <ul class="ul_li_block clearfix">
+                            <li><a href="#!">About Us</a></li>
+                            <li><a href="#!">Band of Trust</a></li>
+                            <li><a href="#!">Market History</a></li>
+                            <li><a href="#!">News</a></li>
+                            <li><a href="#!">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="footer_widget supermarket_footer_contact">
+                        <h3 class="footer_widget_title">Contact info</h3>
+                        <ul class="ul_li_block clearfix">
+                            <li>
+                                <div class="item_icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="item_content">
+                                    <p class="mb-0">
+                                        1789 Street Name, City Name, United States
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item_icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="item_content">
+                                    <p class="mb-0">0092 - 123 455 789</p>
+                                    <p class="mb-0">+123 958 789</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item_icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="item_content">
+                                    <p class="mb-0">Email: support@uxnaqvi.com</p>
+                                    <p class="mb-0">9AM-5PM, Mon - Sat, GMT+3</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_middle sec_ptb_50 text-white clearfix" data-bg-color="#23292d">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 col-md-7 col-sm-9 col-xs-12">
+                    <div class="form_item mb-0">
+                        <form action="#">
+                            <input type="email" name="email" placeholder="Enter Your Email Address">
+                            <button type="submit" class="submit_btn">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-7 col-sm-9 col-xs-12">
+                    <div class="footer_electronic_hotline mb_30">
+                        <i class="fal fa-headset"></i>
+                        <h4 class="text-white">GOT QUESTION? CALL US 24/7!</h4>
+                        <span>801 017 197</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-7 col-sm-9 col-xs-12">
+                    <ul class="circle_social_links ul_li_right clearfix">
+                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#!"><i class="fab fa-dribbble"></i></a></li>
+                        <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_bottom text-white clearfix" data-bg-color="#191e22">
+        <div class="container">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <p class="copyright_text mb-0">© <a href="#!" class="author_link text-white">jthemes</a> - All rights Reserved</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="payment_methods float-lg-right float-md-right">
+                        <img src="assets/images/payment_methods_01.png" alt="image_not_found">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer_section - end
+		================================================== -->
+
+
+<!-- fraimwork - jquery include -->
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- mobile menu - jquery include -->
+<script src="assets/js/mCustomScrollbar.js"></script>
+
+<!-- animation - jquery include -->
+<script src="assets/js/parallaxie.js"></script>
+<script src="assets/js/wow.min.js"></script>
+
+<!-- nice select - jquery include -->
+<script src="assets/js/nice-select.min.js"></script>
+
+<!-- carousel - jquery include -->
+<script src="assets/js/slick.min.js"></script>
+
+<!-- countdown timer - jquery include -->
+<script src="assets/js/countdown.js"></script>
+
+<!-- popup images & videos - jquery include -->
+<script src="assets/js/magnific-popup.min.js"></script>
+
+<!-- filtering & masonry layout - jquery include -->
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/masonry.pkgd.min.js"></script>
+<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+
+<!-- jquery ui - jquery include -->
+<script src="assets/js/jquery-ui.js"></script>
+
+<!-- custom - jquery include -->
+<script src="assets/js/custom.js"></script>
+
+
+</body>
 </html>
