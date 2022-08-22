@@ -30,8 +30,8 @@ class CategoryController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Название  '));
         $grid->column('margin', __('Маржа (WB)'))->sortable();
-        $grid->column('margin_halyk', __('Маржа (Halyk))'))->sortable();
-        $grid->column('margin_ozon', __('Маржа (OZON))'))->sortable();
+        $grid->column('margin_halyk', __('Маржа (Halyk)'))->sortable();
+        $grid->column('margin_ozon', __('Маржа (OZON)'))->sortable();
 
         $grid->column('updated_at', __('Дата изменение'))->display(function ($updated_at) {
             return date('d.m.Y H:i', strtotime($updated_at));
