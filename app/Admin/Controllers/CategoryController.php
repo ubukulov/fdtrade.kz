@@ -31,6 +31,7 @@ class CategoryController extends AdminController
         $grid->column('name', __('Название  '));
         $grid->column('margin', __('Маржа (WB)'))->sortable();
         $grid->column('margin_halyk', __('Маржа (Halyk))'))->sortable();
+        $grid->column('margin_ozon', __('Маржа (OZON))'))->sortable();
 
         $grid->column('updated_at', __('Дата изменение'))->display(function ($updated_at) {
             return date('d.m.Y H:i', strtotime($updated_at));
@@ -68,6 +69,7 @@ class CategoryController extends AdminController
         $form->text('name', __('Название'));
         $form->decimal('margin', __('Маржа (WB)'));
         $form->decimal('margin_halyk', __('Маржа (Halyk)'));
+        $form->decimal('margin_ozon', __('Маржа (OZON)'));
 
         return $form;
     }
