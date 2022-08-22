@@ -18,4 +18,5 @@ Route::group([
     $router->resource('/al-wb-categories', 'AlWbCategoryController');
     $router->resource('/wb-products', 'WbProductController');
     $router->resource('market-places', 'MarketController');
+    $router->resource('ozon-categories', 'OzonCategoryController');
 });

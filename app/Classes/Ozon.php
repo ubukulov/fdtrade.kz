@@ -15,7 +15,7 @@ class Ozon
 {
     protected $clientId = '';
     protected $api = '';
-    protected $access_token = '';
+    protected $token = '';
 
     public function __construct()
     {
@@ -29,5 +29,34 @@ class Ozon
             $this->api          = $marketplace->api;
             $this->token        = $marketplace->client_secret;
         }
+    }
+
+    public function getCategories()
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v2/category/tree', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+        ]);
+
+        return $request->getBody()->getContents();
+    }
+
+    public function createOrUpdate($data)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v2/product/import', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return $request->getBody()->getContents();
     }
 }

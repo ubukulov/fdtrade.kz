@@ -177,6 +177,7 @@ return [
         App\Providers\StyleServiceProvider::class,
         App\Providers\WbServiceProvider::class,
         App\Providers\HalykServiceProvider::class,
+        App\Providers\OzonServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'Style' => App\Facades\Style::class,
         'WB' => App\Facades\WB::class,
         'HK' => App\Facades\HK::class,
+        'Ozon' => App\Facades\Ozon::class,
     ],
 
 ];
