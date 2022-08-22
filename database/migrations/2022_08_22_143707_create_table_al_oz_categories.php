@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableOzonCategories extends Migration
+class CreateTableAlOzCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTableOzonCategories extends Migration
      */
     public function up()
     {
-        Schema::create('ozon_categories', function (Blueprint $table) {
+        Schema::create('al_oz_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('oz_category_id')->unique();
-            $table->string('name');
-            $table->integer('parent_id')->default(0);
+            $table->unsignedBigInteger('al_category_id');
+            $table->unsignedBigInteger('oz_category_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTableOzonCategories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ozon_categories');
+        Schema::dropIfExists('al_oz_categories');
     }
 }

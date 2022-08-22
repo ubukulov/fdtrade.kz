@@ -14,9 +14,14 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('/products', 'ProductController');
     $router->resource('/categories', 'CategoryController');
+    $router->resource('market-places', 'MarketController');
+
+    # WB
     $router->resource('/wb-categories', 'WbCategoryController');
     $router->resource('/al-wb-categories', 'AlWbCategoryController');
     $router->resource('/wb-products', 'WbProductController');
-    $router->resource('market-places', 'MarketController');
+
+    # Ozon
     $router->resource('ozon-categories', 'OzonCategoryController');
+    $router->resource('/al-oz-categories', 'AlOzCategoryController');
 });

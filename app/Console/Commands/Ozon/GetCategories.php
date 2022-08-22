@@ -58,9 +58,11 @@ class GetCategories extends Command
                                 continue;
                             } else {
                                 foreach($item2->children as $boy) {
-                                    OZONCategory::create([
-                                        'oz_category_id' => $boy->category_id, 'name' => $boy->title, 'parent_id' => $child->id
-                                    ]);
+                                    if(!OZONCategory::exists($boy->category_id)) {
+                                        OZONCategory::create([
+                                            'oz_category_id' => $boy->category_id, 'name' => $boy->title, 'parent_id' => $child->id
+                                        ]);
+                                    }
                                 }
                             }
                         }

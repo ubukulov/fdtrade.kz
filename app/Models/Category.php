@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $table = 'categories';
     protected $fillable = [
-        'foreign_id', 'name', 'left', 'right', 'level', 'elements', 'margin', 'margin_halyk'
+        'foreign_id', 'name', 'left', 'right', 'level', 'elements', 'margin', 'margin_halyk', 'margin_ozon'
     ];
     protected $dates = [
         'created_at', 'updated_at'
