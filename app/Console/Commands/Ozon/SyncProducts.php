@@ -79,7 +79,9 @@ class SyncProducts extends Command
                             }
                         }
 
-                        $response = OZON::createOrUpdate($arr);
+                        $data['items'][] = $arr;
+
+                        $response = OZON::createOrUpdate($data);
 
                         if(!$response) {
                             $this->info("Product {$product->article} don't created.");
