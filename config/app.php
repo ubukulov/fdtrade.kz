@@ -232,7 +232,7 @@ return [
         'Style' => App\Facades\Style::class,
         'WB' => App\Facades\WB::class,
         'HK' => App\Facades\HK::class,
-        'Ozon' => App\Facades\Ozon::class,
+        'OZON' => App\Facades\Ozon::class,
     ],
 
 ];

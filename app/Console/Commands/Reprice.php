@@ -43,7 +43,7 @@ class Reprice extends Command
                 if($product->quantity == '0') continue;
                 $category = $product->category;
                 if($category) {
-                    $product->price = $product->price2 + ($product->price2 * ($category->margin / 100));
+                    $product->price = round($product->price2 + ($product->price2 * ($category->margin / 100)));
                     $product->save();
                     $this->info("Product {$product->article} prices updated.");
                 }

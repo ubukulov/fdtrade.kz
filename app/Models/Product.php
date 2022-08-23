@@ -45,7 +45,7 @@ class Product extends Model
         return (int) $quantity;
     }
 
-    public function convertPrice($currency = 'RUB')
+    public function convertPrice($currency = 'RUB', $price = null)
     {
         $exchange_rate = ExchangeRate::findOrFail(1);
 
@@ -67,6 +67,12 @@ class Product extends Model
                 break;
         }
 
-        return round($this->price * $converted_currency);
+        if(is_null($price)) {
+            return round($this->price * $converted_currency);
+        } else {
+            return round($price * $converted_currency);
+        }
     }
+
+
 }

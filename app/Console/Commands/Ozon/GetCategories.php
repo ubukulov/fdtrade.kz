@@ -4,7 +4,7 @@ namespace App\Console\Commands\Ozon;
 
 use Illuminate\Console\Command;
 use App\Models\OZONCategory;
-use Ozon;
+use OZON;
 
 class GetCategories extends Command
 {
@@ -39,7 +39,7 @@ class GetCategories extends Command
      */
     public function handle()
     {
-        $categories = json_decode(Ozon::getCategories());
+        $categories = json_decode(OZON::getCategories());
         foreach($categories->result as $item){
             if(!OZONCategory::exists($item->category_id)) {
                 $category = OZONCategory::create([
