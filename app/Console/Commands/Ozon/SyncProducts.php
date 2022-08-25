@@ -119,6 +119,8 @@ class SyncProducts extends Command
 
                         $data['items'][] = $arr;
 
+                        dd(json_encode($data));
+
                         $response = OZON::createOrUpdate($data);
 
                         if(!$response) {
