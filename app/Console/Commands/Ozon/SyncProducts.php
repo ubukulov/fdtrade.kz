@@ -109,6 +109,14 @@ class SyncProducts extends Command
                             ]
                         ];
 
+                        $arr['attributes'][] = [
+                            'complex_id' => 0,
+                            'id' => 9331,
+                            'values' => [
+                                'value' => "Русский"
+                            ]
+                        ];
+
                         $data['items'][] = $arr;
 
                         $response = OZON::createOrUpdate($data);
