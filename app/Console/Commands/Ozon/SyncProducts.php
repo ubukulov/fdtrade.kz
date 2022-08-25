@@ -119,7 +119,7 @@ class SyncProducts extends Command
 
                         $data['items'][] = $arr;
 
-                        dd(json_encode($data));
+                        dd(json_encode($data, JSON_UNESCAPED_UNICODE));
 
                         $response = OZON::createOrUpdate($data);
 
