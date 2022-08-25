@@ -85,6 +85,30 @@ class SyncProducts extends Command
                             }
                         }
 
+                        $arr['attributes'][] = [
+                            'complex_id' => 0,
+                            'id' => 85,
+                            'values' => [
+                                'value' => $product->brand
+                            ]
+                        ];
+
+                        $arr['attributes'][] = [
+                            'complex_id' => 0,
+                            'id' => 4385,
+                            'values' => [
+                                'value' => '1'
+                            ]
+                        ];
+
+                        $arr['attributes'][] = [
+                            'complex_id' => 0,
+                            'id' => 9048,
+                            'values' => [
+                                'value' => $product->name
+                            ]
+                        ];
+
                         $data['items'][] = $arr;
 
                         $response = OZON::createOrUpdate($data);
