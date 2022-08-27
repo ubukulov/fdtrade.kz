@@ -47,6 +47,7 @@ class SyncWithAlstyle extends Command
                     $product->quantity = $priceAndQuantity[$product->article]->quantity;
                     $product->price1   = $priceAndQuantity[$product->article]->price1;
                     $product->price2   = $priceAndQuantity[$product->article]->price2;
+                    $product->save();
 
                     $category = $product->category;
                     if($category) {
