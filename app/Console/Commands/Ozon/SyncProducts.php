@@ -78,7 +78,7 @@ class SyncProducts extends Command
                         } else {
                             foreach($images as $image) {
                                 if($image->thumbs == 1) {
-                                    $arr['images360'] = $image->path;
+                                    $arr['images360'][] = $image->path;
                                 } else {
                                     $arr['images'][] = $image->path;
                                 }
