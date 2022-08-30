@@ -25,12 +25,24 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductImage::class)->where('thumbs', '=', 0);
+    }
+
+    public function getImage()
+    {
+        $images = $this->images;
+        return $images[0]->path;
     }
 
     public function thumb()
     {
         return $this->hasMany(ProductImage::class)->where('thumbs', 1);
+    }
+
+    public function getThumb()
+    {
+        $thumbs = $this->thumb;
+        return $thumbs[0]->path;
     }
 
     public function attachments()
@@ -74,5 +86,8 @@ class Product extends Model
         }
     }
 
-
+    public function getPriceFormatter()
+    {
+        return number_format($this->price, 0, ',', ' ');
+    }
 }
