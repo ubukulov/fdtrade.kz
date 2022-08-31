@@ -60,7 +60,7 @@ class GenerateXalykXml extends Command
                     if($price <= 20) {
                         continue;
                     }
-                    $name = $product->name;
+                    $name = str_replace("-", " ", $product->name);
                     $brand = $product->brand;
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$name.'</model>';
