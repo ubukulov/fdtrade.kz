@@ -83,4 +83,42 @@ class Ozon
 
         return false;
     }
+
+    /**
+     * Метод проверен. Успешно обновляет картинки. Передать в запросе список картинок в виде массива
+     * и передат ид продукта (в ОЗОНЕ)
+     * @return bool|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateProductPictures()
+    {
+        $data = [
+            'color_image' => 'string',
+            'images'    => [
+                "https://img.al-style.kz/34061_1.jpg",
+                "https://img.al-style.kz/34061_2.jpg",
+                "https://img.al-style.kz/34061_3.jpg"
+            ],
+            'images360' => [
+                "https://img.al-style.kz/34061_01.jpg"
+            ],
+            'product_id' => 355006627
+        ];
+
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v1/product/pictures/import', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        if($request->getStatusCode() === 200) {
+            return $request->getBody()->getContents();
+        }
+
+        return false;
+    }
 }
