@@ -53,6 +53,9 @@ class GenerateXalykXml extends Command
         Product::whereNotNull('brand')->where('brand', '!=', 'A&P')->chunk(100, function($products){
             foreach($products as $product) {
                 $qty = $product->getQuantity();
+                if($qty < 0) {
+                    $qty = 0;
+                }
 
                 $category = $product->category;
                 if($category) {
