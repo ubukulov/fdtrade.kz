@@ -61,6 +61,7 @@ class GenerateXalykXml extends Command
                         continue;
                     }
                     $name = str_replace("-", " ", $product->name);
+                    $name = str_replace("&", "", $name);
                     $brand = $product->brand;
                     $this->contents .= '<offer sku="'.$product->article.'">';
                     $this->contents .= '<model>'.$name.'</model>';
