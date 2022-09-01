@@ -55,7 +55,7 @@ class SyncProducts extends Command
 
                 //if(count($products) > 0) {
                     //foreach($products as $product) {
-                        $product = Product::find(500);
+                        $product = Product::find(2272);
                         $category = $product->category;
                         $price = $product->price2 + ($product->price2 * ($category->margin_ozon / 100));
                         $price = $product->convertPrice('RUB', $price);
@@ -77,13 +77,11 @@ class SyncProducts extends Command
                             //continue;
                         } else {
                             foreach($images as $image) {
-                                if($image->thumbs == 1) {
-                                    $arr['images360'][] = $image->path;
-                                } else {
-                                    $arr['images'][] = $image->path;
-                                }
+                                $arr['images'][] = $image->path;
                             }
                         }
+
+                        $arr['images360'][] = $product->getThumb();
 
                         $attributes = OZON::getCategoryAttributes($oz_category->oz_category_id);
                         if($attributes) {
@@ -96,7 +94,7 @@ class SyncProducts extends Command
                                     ];
 
                                     if($attribute->id == 85) {
-                                        $brand = (strtolower($product->brand) == 'no name') ? 'Нет бренда' : $product->brand;
+                                        $brand = (strtolower($product->brand) == 'no name') ? 'Нет бренда' : trim($product->brand);
                                         $att['values'] = [
                                             'value' => $brand
                                         ];
@@ -121,7 +119,7 @@ class SyncProducts extends Command
 
                         $data['items'][] = $arr;
 
-                        dd($data);
+                        //dd($data);
 
                         //dd(json_encode($data, JSON_UNESCAPED_UNICODE));
 
