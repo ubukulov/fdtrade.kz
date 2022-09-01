@@ -85,37 +85,39 @@ class SyncProducts extends Command
                             }
                         }
 
-                        $arr['attributes'][] = [
-                            'complex_id' => 0,
-                            'id' => 85,
-                            'values' => [
-                                'value' => $product->brand
-                            ]
-                        ];
+                        $attributes = OZON::getCategoryAttributes($oz_category->oz_category_id);
+                        if($attributes) {
+                            $attributes = json_decode($attributes);
+                            foreach($attributes->result[0]->attributes as $attribute) {
+                                if($attribute->is_required) {
+                                    $att = [
+                                        'complex_id' => 0,
+                                        'id' => $attribute->id,
+                                    ];
 
-                        $arr['attributes'][] = [
-                            'complex_id' => 0,
-                            'id' => 4385,
-                            'values' => [
-                                'value' => '1'
-                            ]
-                        ];
+                                    if($attribute->id == 85) {
+                                        $brand = (strtolower($product->brand) == 'no name') ? 'Нет бренда' : $product->brand;
+                                        $att['values'] = [
+                                            'value' => $brand
+                                        ];
+                                    }
 
-                        $arr['attributes'][] = [
-                            'complex_id' => 0,
-                            'id' => 9048,
-                            'values' => [
-                                'value' => $product->name
-                            ]
-                        ];
+                                    if($attribute->id == 8229) {
+                                        $att['values'] = [
+                                            'value' => $oz_category->name
+                                        ];
+                                    }
 
-                        $arr['attributes'][] = [
-                            'complex_id' => 0,
-                            'id' => 9331,
-                            'values' => [
-                                'value' => "Русский"
-                            ]
-                        ];
+                                    if($attribute->id == 9048) {
+                                        $att['values'] = [
+                                            'value' => $product->name
+                                        ];
+                                    }
+
+                                    $arr['attributes'][] = $att;
+                                }
+                            }
+                        }
 
                         $data['items'][] = $arr;
 

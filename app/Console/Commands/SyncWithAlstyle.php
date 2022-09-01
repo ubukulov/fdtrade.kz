@@ -40,8 +40,6 @@ class SyncWithAlstyle extends Command
      */
     public function handle()
     {
-        $priceAndQuantity  = Style::getProductPriceAndQuantity(40219);
-        dd($priceAndQuantity);
         Product::chunk(50, function($products){
             foreach($products as $product) {
                 $priceAndQuantity  = Style::getProductPriceAndQuantity($product->article);

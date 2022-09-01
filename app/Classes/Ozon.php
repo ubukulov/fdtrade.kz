@@ -59,4 +59,28 @@ class Ozon
 
         return $request->getBody()->getContents();
     }
+
+    public function getCategoryAttributes($category_id)
+    {
+        $data = [
+            'attribute_type' => 'ALL',
+            'category_id'    => [$category_id],
+            'language' => 'DEFAULT'
+        ];
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v3/category/attribute', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        if($request->getStatusCode() === 200) {
+            return $request->getBody()->getContents();
+        }
+
+        return false;
+    }
 }
