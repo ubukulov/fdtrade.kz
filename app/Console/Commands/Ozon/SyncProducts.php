@@ -55,7 +55,7 @@ class SyncProducts extends Command
 
                 //if(count($products) > 0) {
                     //foreach($products as $product) {
-                        $product = Product::find(2272);
+                        $product = Product::find(42304);
                         $category = $product->category;
                         $price = $product->price2 + ($product->price2 * ($category->margin_ozon / 100));
                         $price = $product->convertPrice('RUB', $price);
