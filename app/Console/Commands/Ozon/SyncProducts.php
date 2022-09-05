@@ -64,7 +64,7 @@ class SyncProducts extends Command
                             'price' => (int) $price,
                             'category_id' => $oz_category->oz_category_id,
                             'offer_id' => $product->article,
-                            'vat' => 0,
+                            'vat' => 'Не облагается',
                             'weight' => 100,
                             'depth' => 10,
                             'width' => 150,
@@ -97,6 +97,18 @@ class SyncProducts extends Command
                                     if($attribute->id == 9048) {
                                         $att['values'] = [
                                             'value' => $product->name
+                                        ];
+                                    }
+
+                                    if($attribute->id == 4381) {
+                                        $att['values'] = [
+                                            'value' => $product->article
+                                        ];
+                                    }
+
+                                    if($attribute->id == 4385) {
+                                        $att['values'] = [
+                                            'value' => 1
                                         ];
                                     }
 
