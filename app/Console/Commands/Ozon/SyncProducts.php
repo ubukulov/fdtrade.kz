@@ -71,6 +71,18 @@ class SyncProducts extends Command
                             'height' => 250,
                         ];
 
+                        // Картинки
+                        $images = $product->images;
+                        if(count($images) <= 1) {
+                            //continue;
+                        } else {
+                            foreach($images as $image) {
+                                $arr['images'][] = $image->path;
+                            }
+                        }
+
+                        $arr['images360'][] = $product->getThumb();
+
                         $attributes = OZON::getCategoryAttributes($oz_category->oz_category_id);
                         if($attributes) {
                             $attributes = json_decode($attributes);
