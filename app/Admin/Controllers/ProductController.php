@@ -60,6 +60,7 @@ class ProductController extends AdminController
         $show->field('id', __('ID'));
         $show->field('article', __('Артикуль'));
         $show->field('name', __('Название'));
+        $show->field('brand', __('Бренд'));
         $show->category_id('Категория')->as(function($categoryId){
             return Category::find($categoryId)->name;
         });
@@ -94,6 +95,7 @@ class ProductController extends AdminController
 
         $form->display('id', __('ID'));
         $form->text('name', __('Название'));
+        $form->text('brand', __('Бренд'));
         $form->number('article', __('Артикуль'));
         $form->select('category_id', 'Выберите категория')->options(Category::all()->pluck('name', 'id'));
         $form->number('quantity', __('Кол-во'));
