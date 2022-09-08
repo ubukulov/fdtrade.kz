@@ -59,7 +59,12 @@ class GenerateXalykXml extends Command
 
                 $category = $product->category;
                 if($category) {
-                    $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
+                    if($category->id >= 567 && $category->id < 570) {
+                        $price = round($product->price + ($product->price * ($category->margin_halyk / 100)));
+                    } else {
+                        $price = round($product->price2 + ($product->price2 * ($category->margin_halyk / 100)));
+                    }
+
                     if($price <= 20) {
                         continue;
                     }
