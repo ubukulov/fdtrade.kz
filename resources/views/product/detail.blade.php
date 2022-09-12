@@ -140,9 +140,15 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div id="description_tab" class="tab-pane active">
-                    <p class="mb-0">
-                        {!! $product_feature[0]->detailtext !!}
-                    </p>
+                    @if($product->category_id > 566)
+                        <p class="mb-0">
+                            {!! $product->description !!}
+                        </p>
+                    @else
+                        <p class="mb-0">
+                            {!! $product_feature[0]->detailtext !!}
+                        </p>
+                    @endif
                 </div>
 
                 <div id="reviews_tab" class="tab-pane fade">
@@ -175,9 +181,11 @@
                 </div>
 
                 <div id="information_tab" class="tab-pane fade">
-                    @foreach($product_feature[0]->properties as $key=>$val)
-                        <p><strong>{{ $key }}</strong>: {{ $val }}</p>
-                    @endforeach
+                    @if(isset($product_feature[0]))
+                        @foreach($product_feature[0]->properties as $key=>$val)
+                            <p><strong>{{ $key }}</strong>: {{ $val }}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

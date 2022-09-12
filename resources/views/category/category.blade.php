@@ -47,7 +47,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="carparts_product_grid" data-bg-color="#f0eeee" style="background: rgb(240, 238, 238);">
                                         <div class="item_image" data-bg-color="#f8f8f8" style="background: rgb(248, 248, 248);">
-                                            <img src="{{ $product->getThumb() }}" alt="image_not_found">
+                                            <img @if($product->category_id > 566) src="/uploads/products/{{ $product->getThumb() }}" @else src="{{ $product->getThumb() }}" @endif alt="image_not_found">
                                             <ul class="product_action_btns ul_li_center clearfix">
                                                 <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
                                                 <li><a class="tooltips" data-placement="top" title="Add To Cart" href="#!"><i class="fal fa-shopping-basket"></i></a></li>
