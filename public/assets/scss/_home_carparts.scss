@@ -667,9 +667,9 @@
 		margin-bottom: 5px;
 		>a {
 			color: #414141;
-			font-size: 23px;
-			font-weight: 700;
-			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: normal;
+			text-transform: none;
 		}
 	}
 	&:hover {
@@ -897,7 +897,7 @@
 			}
 		}
 	}
-	
+
 	.product_action_btns {
 		top: 50%;
 		left: 0px;

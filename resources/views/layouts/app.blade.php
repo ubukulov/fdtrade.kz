@@ -8,32 +8,36 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Интернет магазин FastDev Trade</title>
-    <link rel="shortcut icon" href="assets/images/logo/favourite_icon_01.png">
+    <link rel="shortcut icon" href="/assets/images/logo/favourite_icon_01.png">
 
     <!-- fraimwork - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
 
     <!-- icon - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css">
 
     <!-- animation - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
 
     <!-- nice select - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/nice-select.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css">
 
     <!-- carousel - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css">
 
     <!-- popup images & videos - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/magnific-popup.css">
 
     <!-- jquery ui - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery-ui.css">
 
     <!-- custom - css include -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 
@@ -92,7 +96,7 @@
                 <div class="col-lg-3">
                     <div class="brand_logo">
                         <a class="brand_link" href="{{ route('home') }}">
-                            <img src="assets/images/logo/logo_18_1x.png" srcset="assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
+                            <img src="/assets/images/logo/logo.jpg" srcset="/assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
                         </a>
 
                         <ul class="mh_action_btns ul_li clearfix">
@@ -124,7 +128,7 @@
                     </form>
                 </div>
 
-                <div class="col-lg-3">
+                {{--<div class="col-lg-3">
                     <div class="supermarket_header_btns clearfix">
                         <ul class="action_btns_group ul_li_right clearfix">
                             <li>
@@ -147,22 +151,23 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>
 
     <div class="header_bottom clearfix">
         <div class="container maxw_1460">
-            <nav class="main_menu clearfix">
-                <ul class="ul_li clearfix">
-                    <li>
-                        <button class="alldepartments_btn bg_supermarket_red text-uppercase" type="button" data-toggle="collapse" data-target="#alldepartments_dropdown" aria-expanded="false" aria-controls="alldepartments_dropdown">
-                            <i class="far fa-bars"></i> Все категории
-                        </button>
-                    </li>
+            <div class="btn-group">
+                <button style="text-align: left; padding-left: 30px;" type="button" class="btn btn-danger dropdown-toggle alldepartments_btn bg_supermarket_red text-uppercase" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="far fa-bars"></i> Все категории
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach($categories as $category)
+                    <li><a class="dropdown-item" href="{{ route('category.show', ['id' => $category->id]) }}">{{ $category->name }}</a></li>
+                    @endforeach
                 </ul>
-            </nav>
+            </div>
         </div>
     </div>
 
@@ -328,7 +333,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="payment_methods float-lg-right float-md-right">
-                        <img src="assets/images/payment_methods_01.png" alt="image_not_found">
+                        <img src="/assets/images/payment_methods_01.png" alt="image_not_found">
                     </div>
                 </div>
             </div>
@@ -340,40 +345,42 @@
 
 
 <!-- fraimwork - jquery include -->
-<script src="assets/js/jquery-3.5.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery-3.5.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
 <!-- mobile menu - jquery include -->
-<script src="assets/js/mCustomScrollbar.js"></script>
+<script src="/assets/js/mCustomScrollbar.js"></script>
 
 <!-- animation - jquery include -->
-<script src="assets/js/parallaxie.js"></script>
-<script src="assets/js/wow.min.js"></script>
+<script src="/assets/js/parallaxie.js"></script>
+<script src="/assets/js/wow.min.js"></script>
 
 <!-- nice select - jquery include -->
-<script src="assets/js/nice-select.min.js"></script>
+<script src="/assets/js/nice-select.min.js"></script>
 
 <!-- carousel - jquery include -->
-<script src="assets/js/slick.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
 
 <!-- countdown timer - jquery include -->
-<script src="assets/js/countdown.js"></script>
+<script src="/assets/js/countdown.js"></script>
 
 <!-- popup images & videos - jquery include -->
-<script src="assets/js/magnific-popup.min.js"></script>
+<script src="/assets/js/magnific-popup.min.js"></script>
 
 <!-- filtering & masonry layout - jquery include -->
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/masonry.pkgd.min.js"></script>
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="/assets/js/isotope.pkgd.min.js"></script>
+<script src="/assets/js/masonry.pkgd.min.js"></script>
+<script src="/assets/js/imagesloaded.pkgd.min.js"></script>
 
 <!-- jquery ui - jquery include -->
-<script src="assets/js/jquery-ui.js"></script>
+<script src="/assets/js/jquery-ui.js"></script>
 
 <!-- custom - jquery include -->
-<script src="assets/js/custom.js"></script>
+<script src="/assets/js/custom.js"></script>
 
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

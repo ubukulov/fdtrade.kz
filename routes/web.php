@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,5 @@ use App\Http\Controllers\IndexController;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/cat/{id}', [IndexController::class, 'catProducts']);
 Route::get('/product/{article}', [IndexController::class, 'productInfo']);
+Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/category/{id}/product/{productId}', [ProductController::class, 'detail'])->name('product.detail');

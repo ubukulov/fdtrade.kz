@@ -8,34 +8,10 @@
                     <div class="alldepartments_dropdown show_lg collapse" id="alldepartments_dropdown">
                         <div class="card">
                             <ul class="alldepartments_menulist ul_li_block clearfix">
-                                {{--<li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_01.png" alt="icon_not_found">
-													</span>
-                                        <strong>Free Gift Product</strong>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_02.png" alt="icon_not_found">
-													</span>
-                                        <strong>Trending Product</strong>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_03.png" alt="icon_not_found">
-													</span>
-                                        <strong>Discount Products</strong>
-                                    </a>
-                                </li>--}}
 
                                 @foreach($categories as $category)
                                 <li class="has_child">
-                                    <a href="#!">
+                                    <a href="{{ route('category.show', ['id' => $category->id]) }}">
                                         {{--<span class="icon">
                                             <img src="assets/images/icons/supermarket/icon_04.png" alt="icon_not_found">
                                         </span>--}}
