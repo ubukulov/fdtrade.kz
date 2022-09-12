@@ -63,10 +63,10 @@ class UpdateStocks extends Command
         }
 
         $response = json_decode($response);
-        if(isset($response->result) && $response->result->updated) {
-            $this->info("Product $product->article stocks updated.");
+        if(isset($response->result) && $response->result[0]->updated) {
+            $this->info("Ozon products stocks updated.");
         } else {
-            $this->info("Product $product->article stocks failed.");
+            $this->info("Ozon products stocks failed.");
         }
     }
 }
