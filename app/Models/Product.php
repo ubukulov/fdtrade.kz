@@ -42,7 +42,10 @@ class Product extends Model
     public function getThumb()
     {
         $thumbs = $this->thumb;
-        return $thumbs[0]->path;
+        if(isset($thumbs[0])) {
+            return $thumbs[0]->path;
+        }
+        return false;
     }
 
     public function attachments()

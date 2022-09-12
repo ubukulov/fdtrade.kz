@@ -81,7 +81,9 @@ class SyncProducts extends Command
                         }
                     }
 
-                    $arr['images360'][] = $product->getThumb();
+                    if($thumb = $product->getThumb()) {
+                        $arr['images360'][] = $thumb;
+                    }
 
                     $attributes = OZON::getCategoryAttributes($oz_category->oz_category_id);
                     if($attributes) {
@@ -144,6 +146,7 @@ class SyncProducts extends Command
 
                     $response = json_decode($response);
                     if(isset($response->result)) {
+                        dd($response, $response->result);
                         $this->info("The product with $product->article successfully added.");
                     } else {
                         $this->info("The product with $product->article failed.");
