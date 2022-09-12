@@ -7,7 +7,7 @@
                     <div class="tab-content">
                         @foreach($product->images as $img)
                         <div id="tab_1" class="tab-pane @if($loop->iteration == 1) active @endif">
-                            <img src="{{ $img->path }}" alt="image_not_found">
+                            <img @if($product->category_id > 566) src="/uploads/products/{{ $img->path }}" @else src="{{ $img->path }}" @endif alt="image_not_found">
                         </div>
                         @endforeach
                     </div>
@@ -16,7 +16,7 @@
                         @foreach($product->images as $img)
                         <li>
                             <a @if($loop->iteration == 1) class="active" @endif data-toggle="tab" href="#tab_1">
-                                <img src="{{ $img->path }}" alt="image_not_found">
+                                <img @if($product->category_id > 566) src="/uploads/products/{{ $img->path }}" @else src="{{ $img->path }}" @endif alt="image_not_found">
                             </a>
                         </li>
                         @endforeach
