@@ -15,3 +15,4 @@ use App\Http\Controllers\IndexController;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/cat/{id}', [IndexController::class, 'catProducts']);
+Route::get('/product/{article}', [IndexController::class, 'productInfo']);

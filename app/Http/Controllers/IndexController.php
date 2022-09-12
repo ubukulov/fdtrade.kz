@@ -40,4 +40,10 @@ class IndexController extends BaseController
         $products = Product::where(['category_id' => $catId])->get();
         return view('cat_products', compact('products'));
     }
+
+    public function productInfo($article)
+    {
+        $info = Style::getProductFeature($article);
+        dd($info);
+    }
 }

@@ -55,7 +55,7 @@ class SyncProducts extends Command
 
                 //if(count($products) > 0) {
                     //foreach($products as $product) {
-                        $product = Product::find(2376);
+                        $product = Product::find(802);
                         $category = $product->category;
                         $price = $product->price2 + ($product->price2 * ($category->margin_ozon / 100));
                         $price = $product->convertPrice('RUB', $price);
@@ -102,7 +102,7 @@ class SyncProducts extends Command
 
                                     if($attribute->id == 8229) {
                                         $att['values'] = [
-                                            'value' => $oz_category->name
+                                            'value' => 'Смартфон'
                                         ];
                                     }
 
