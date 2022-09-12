@@ -55,7 +55,7 @@ class Ozon
                 'Api-Key' => $this->token
             ],
 //            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
-            'body' => $data
+            'form_params' => $data
         ]);
 
         return $request->getBody()->getContents();
