@@ -121,4 +121,23 @@ class Ozon
 
         return false;
     }
+
+    public function updateStocks($data)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v1/product/import/stocks', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        if($request->getStatusCode() === 200) {
+            return $request->getBody()->getContents();
+        }
+
+        return false;
+    }
 }
