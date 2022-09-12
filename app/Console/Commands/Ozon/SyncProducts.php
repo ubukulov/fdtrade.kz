@@ -63,7 +63,7 @@ class SyncProducts extends Command
                             'name' => $product->name,
                             'price' => "$price",
                             'category_id' => $oz_category->oz_category_id,
-                            'offer_id' => "$product->article",
+                            //'offer_id' => "$product->article",
                             'vat' => "Не облагается",
                             'weight' => 100,
                             'depth' => 10,
