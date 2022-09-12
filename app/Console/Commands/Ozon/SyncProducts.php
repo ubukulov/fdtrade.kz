@@ -53,6 +53,7 @@ class SyncProducts extends Command
                 $oz_category = OZONCategory::findOrFail($al_oz_category->oz_category_id);*/
                 $oz_category = OZONCategory::findOrFail(9828);
                 $products = Product::where(['category_id' => 2])->get();
+                $count = 0;
 
                 foreach($products as $product) {
                     $category = $product->category;
@@ -131,25 +132,22 @@ class SyncProducts extends Command
                         }
                     }
 
-                    $data['items'] = $arr;
+                    $data['items'][] = $arr;
+                    $count++;
+                }
 
-                    //dd($data);
+                $response = OZON::createOrUpdate($data);
 
-                    //dd(json_encode($data, JSON_UNESCAPED_UNICODE));
+                if(!$response) {
+                    $this->info("Product {$product->article} don't created.");
+                    //continue;
+                }
 
-                    $response = OZON::createOrUpdate($data);
-
-                    if(!$response) {
-                        $this->info("Product {$product->article} don't created.");
-                        //continue;
-                    }
-
-                    $response = json_decode($response);
-                    if(isset($response->result)) {
-                        $this->info("The product with $product->article successfully added. Task ID: " . $response->result->task_id);
-                    } else {
-                        $this->info("The product with $product->article failed.");
-                    }
+                $response = json_decode($response);
+                if(isset($response->result)) {
+                    $this->info("The product with $product->article successfully added. Task ID: " . $response->result->task_id);
+                } else {
+                    $this->info("The product with $product->article failed.");
                 }
            // }
 
