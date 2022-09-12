@@ -96,31 +96,31 @@ class SyncProducts extends Command
 
                                     if($attribute->id == 85) {
                                         $brand = (strtolower($product->brand) == 'no name') ? 'Нет бренда' : trim($product->brand);
-                                        $att['values'] = [
+                                        $att['values'][] = [
                                             'value' => $brand
                                         ];
                                     }
 
                                     if($attribute->id == 8229 || $attribute->id == 9461) {
-                                        $att['values'] = [
+                                        $att['values'][] = [
                                             'value' => 'Смартфон'
                                         ];
                                     }
 
                                     if($attribute->id == 9048) {
-                                        $att['values'] = [
+                                        $att['values'][] = [
                                             'value' => $product->name
                                         ];
                                     }
 
                                     if($attribute->id == 4381) {
-                                        $att['values'] = [
+                                        $att['values'][] = [
                                             'value' => $product->article
                                         ];
                                     }
 
                                     if($attribute->id == 4385) {
-                                        $att['values'] = [
+                                        $att['values'][] = [
                                             'value' => 12
                                         ];
                                     }
