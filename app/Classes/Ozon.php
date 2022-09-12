@@ -22,7 +22,7 @@ class Ozon
         if($this->clientId == '' || $this->token == '' || $this->api == '') {
             $marketplace = MarketPlace::where(['title' => 'ozon'])->first();
             if(!$marketplace) {
-                abort(500, 'В таблице marketplaces отсутствует запись про Wildberries');
+                abort(500, 'В таблице marketplaces отсутствует запись про Ozon');
             }
 
             $this->clientId     = $marketplace->client_id;

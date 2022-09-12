@@ -34,4 +34,10 @@ class IndexController extends BaseController
         $xml = HK::createOrUpdate();
         return response()->view('xml', $xml, 200)->header('Content-Type', 'text/xml');
     }
+
+    public function catProducts($catId)
+    {
+        $products = Product::where(['category_id' => $catId])->get();
+        return view('cat_products', compact('products'));
+    }
 }
