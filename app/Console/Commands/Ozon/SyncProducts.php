@@ -131,7 +131,7 @@ class SyncProducts extends Command
                         }
                     }
 
-                    $data['items'][] = $arr;
+                    $data['items'] = $arr;
 
                     //dd($data);
 
