@@ -7,6 +7,7 @@ use App\Models\OZONCategory;
 use App\Models\Product;
 use Illuminate\Console\Command;
 use OZON;
+use Style;
 
 class SyncProducts extends Command
 {
