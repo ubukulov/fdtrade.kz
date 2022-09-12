@@ -127,7 +127,7 @@ class SyncProducts extends Command
                                 if(isset($product_feature[0])) {
                                     if($attribute->id == 4381) {
                                         $att['values'][] = [
-                                            'value' => "$product_feature[0]->article_pn"
+                                            'value' => (string) $product_feature[0]->article_pn
                                         ];
                                     }
 
