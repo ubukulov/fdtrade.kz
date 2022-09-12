@@ -17,6 +17,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Brand</th>
+            <th scope="col">Photo</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->convertPrice('RUB', round($product->price2 + ($product->price2 * ($product->category->margin_ozon / 100)))) }}</td>
                 <td>{{ $product->brand }}</td>
+                <td>{{ $product->getImage() }}</td>
             </tr>
         @endforeach
         </tbody>
