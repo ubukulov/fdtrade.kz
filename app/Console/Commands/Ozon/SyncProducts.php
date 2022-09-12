@@ -146,8 +146,7 @@ class SyncProducts extends Command
 
                     $response = json_decode($response);
                     if(isset($response->result)) {
-                        dd($response, $response->result);
-                        $this->info("The product with $product->article successfully added.");
+                        $this->info("The product with $product->article successfully added. Task ID: " . $response->result->task_id);
                     } else {
                         $this->info("The product with $product->article failed.");
                     }
