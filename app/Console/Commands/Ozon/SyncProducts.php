@@ -115,7 +115,7 @@ class SyncProducts extends Command
 
                                     if($attribute->id == 4381) {
                                         $att['values'][] = [
-                                            'value' => $product->article
+                                            'value' => "$product->article"
                                         ];
                                     }
 
