@@ -24,4 +24,5 @@ Route::group([
     # Ozon
     $router->resource('ozon-categories', 'OzonCategoryController');
     $router->resource('/al-oz-categories', 'AlOzCategoryController');
+    $router->resource('/ozon-products', 'OzonProductController');
 });
