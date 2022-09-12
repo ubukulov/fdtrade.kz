@@ -121,7 +121,7 @@ class SyncProducts extends Command
 
                                     if($attribute->id == 4385) {
                                         $att['values'][] = [
-                                            'value' => 12
+                                            'value' => "12"
                                         ];
                                     }
 
