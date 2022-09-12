@@ -25,7 +25,7 @@
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $product->article }}</td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->convert('RUB', round($product->price2 + ($product->price2 * ($product->category->margin_ozon / 100)))) }}</td>
+                <td>{{ $product->convertPrice('RUB', round($product->price2 + ($product->price2 * ($product->category->margin_ozon / 100)))) }}</td>
                 <td>{{ $product->brand }}</td>
             </tr>
         @endforeach
