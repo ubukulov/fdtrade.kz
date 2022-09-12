@@ -48,11 +48,11 @@
                                     <div class="carparts_product_grid" data-bg-color="#f0eeee" style="background: rgb(240, 238, 238);">
                                         <div class="item_image" data-bg-color="#f8f8f8" style="background: rgb(248, 248, 248);">
                                             <img @if($product->category_id > 566) src="/uploads/products/{{ $product->getImage() }}" @else src="{{ $product->getThumb() }}" @endif alt="image_not_found">
-                                            <ul class="product_action_btns ul_li_center clearfix">
+                                            {{--<ul class="product_action_btns ul_li_center clearfix">
                                                 <li><a class="tooltips" data-placement="top" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
                                                 <li><a class="tooltips" data-placement="top" title="Add To Cart" href="#!"><i class="fal fa-shopping-basket"></i></a></li>
                                                 <li><a class="tooltips" data-placement="top" title="Quick View" href="#!" data-toggle="modal" data-target="#quickview_modal"><i class="fal fa-search"></i></a></li>
-                                            </ul>
+                                            </ul>--}}
                                         </div>
                                         <div class="item_content">
                                             <ul class="rating_star ul_li clearfix">
