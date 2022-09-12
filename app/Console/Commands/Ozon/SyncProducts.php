@@ -64,11 +64,12 @@ class SyncProducts extends Command
                             'price' => (int) $price,
                             'category_id' => $oz_category->oz_category_id,
                             'offer_id' => $product->article,
-                            'vat' => 0,
+                            'vat' => 0.0,
                             'weight' => 100,
                             'depth' => 10,
                             'width' => 150,
                             'height' => 250,
+                            'primary_image' => $product->getImage()
                         ];
 
                         // Картинки
@@ -100,7 +101,7 @@ class SyncProducts extends Command
                                         ];
                                     }
 
-                                    if($attribute->id == 8229) {
+                                    if($attribute->id == 8229 || $attribute->id == 9461) {
                                         $att['values'] = [
                                             'value' => 'Смартфон'
                                         ];
