@@ -55,10 +55,10 @@ class WB
 
 
         $article_pn = str_replace(" ", '-', $product->article_pn);
-        $barcode = $this->getGeneratedBarcodeForProduct();
+        /*$barcode = $this->getGeneratedBarcodeForProduct();
         if(!$barcode) {
             return false;
-        }
+        }*/
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -138,10 +138,10 @@ class WB
                                             ]
                                         ]
                                     ],
-                                    "barcode"=> $barcode,
+                                    /*"barcode"=> $barcode,
                                     "barcodes"=> [
                                         $barcode
-                                    ],
+                                    ],*/
                                     "chrtId"=> 0,
                                     "errors"=> [
                                         "string"
