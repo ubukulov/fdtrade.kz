@@ -96,10 +96,10 @@
                 <div class="col-lg-3">
                     <div class="brand_logo">
                         <a class="brand_link" href="{{ route('home') }}">
-                            <img src="/assets/images/logo/logo.jpg" srcset="/assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
+                            <img src="/assets/images/logo/logo.jpg" srcset="/assets/images/logo/logo.jpg" alt="logo_not_found">
                         </a>
 
-                        <ul class="mh_action_btns ul_li clearfix">
+                        {{--<ul class="mh_action_btns ul_li clearfix">
                             <li>
                                 <button type="button" class="search_btn" data-toggle="collapse" data-target="#search_body_collapse" aria-expanded="false" aria-controls="search_body_collapse">
                                     <i class="fal fa-search"></i>
@@ -112,7 +112,7 @@
                                 </button>
                             </li>
                             <li><button type="button" class="mobile_menu_btn"><i class="far fa-bars"></i></button></li>
-                        </ul>
+                        </ul>--}}
                     </div>
                 </div>
 
