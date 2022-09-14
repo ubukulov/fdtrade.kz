@@ -65,6 +65,7 @@ class SyncProductsWithWB extends Command
                         if(isset($response->result)) {
                             $this->info("The product with $product->article successfully added.");
                         } else {
+                            dd($response);
                             $this->info("The product with $product->article failed.");
                         }
                     }
