@@ -59,6 +59,7 @@ class WB
         if(!$barcode) {
             return false;
         }*/
+        $barcode = mt_rand(2035270420000, 2035270450000);
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -138,10 +139,10 @@ class WB
                                             ]
                                         ]
                                     ],
-                                    /*"barcode"=> $barcode,
+                                    "barcode"=> $barcode,
                                     "barcodes"=> [
                                         $barcode
-                                    ],*/
+                                    ],
                                     "chrtId"=> 0,
                                     "errors"=> [
                                         "string"
