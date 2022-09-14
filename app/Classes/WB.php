@@ -59,7 +59,7 @@ class WB
         if(!$barcode) {
             return false;
         }*/
-        $barcode = mt_rand(2035270420000, 2035270450000);
+        $barcode = (string) mt_rand(2035270420000, 2035270450000);
 
         $data = [
             "id"=> (string) Str::uuid(),
