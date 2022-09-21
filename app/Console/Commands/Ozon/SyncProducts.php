@@ -52,8 +52,8 @@ class SyncProducts extends Command
                     ->limit(50)
                     ->get();
                 $oz_category = OZONCategory::findOrFail($al_oz_category->oz_category_id);*/
-                $oz_category = OZONCategory::findOrFail(9828);
-                $products = Product::where(['category_id' => 2])->get();
+                $oz_category = OZONCategory::findOrFail(10139);
+                $products = Product::where(['category_id' => 7])->get();
                 $count = 0;
 
                 foreach($products as $product) {
@@ -64,9 +64,9 @@ class SyncProducts extends Command
 
                     $arr = [
                         'name' => $product->name,
-                        'price' => "$price",
+                        'price' => (string) $price,
                         'category_id' => $oz_category->oz_category_id,
-                        'offer_id' => "$product->article",
+                        'offer_id' => (string) $product->article,
                         'vat' => "0.0",
                         'weight' => 100,
                         'depth' => 10,
@@ -108,7 +108,7 @@ class SyncProducts extends Command
 
                                 if($attribute->id == 8229 || $attribute->id == 9461) {
                                     $att['values'][] = [
-                                        'value' => 'Смартфон'
+                                        'value' => 'Чехол'
                                     ];
                                 }
 
