@@ -108,7 +108,7 @@ class SyncProducts extends Command
 
                                 if($attribute->id == 8229 || $attribute->id == 9461) {
                                     $att['values'][] = [
-                                        'value' => 'Чехол'
+                                        'value' => 'Чехол для смартфона'
                                     ];
                                 }
 
