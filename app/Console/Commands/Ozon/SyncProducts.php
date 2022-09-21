@@ -125,6 +125,7 @@ class SyncProducts extends Command
                                 }
 
                                 if(isset($product_feature[0])) {
+                                    $feature = json_decode(json_encode($product_feature[0]->properties), true);
                                     if($attribute->id == 4381) {
                                         $att['values'][] = [
                                             'value' => (string) $product_feature[0]->article_pn
@@ -139,91 +140,91 @@ class SyncProducts extends Command
 
                                     if($attribute->id == 5784) {
                                         $att['values'][] = [
-                                            'value' => $product_feature[0]->properties['Встроенная память']
+                                            'value' => $feature['Встроенная память']
                                         ];
                                     }
 
                                     if($attribute->id == 9622) {
                                         $att['values'][] = [
-                                            'value' => (int) $product_feature[0]->properties['Оперативная память']
+                                            'value' => (int) $feature['Оперативная память']
                                         ];
                                     }
 
                                     if($attribute->id == 10313) {
                                         $att['values'][] = [
-                                            'value' => $product_feature[0]->properties['Процессор']
+                                            'value' => $feature['Процессор']
                                         ];
                                     }
 
                                     if($attribute->id == 10317) {
                                         $att['values'][] = [
-                                            'value' => (float) str_replace(",", '.', $product_feature[0]->properties['Частота процессора'])
+                                            'value' => (float) str_replace(",", '.', $feature['Частота процессора'])
                                         ];
                                     }
 
                                     if($attribute->id == 10318) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Количество ядер']
+                                            'value' => (string) $feature['Количество ядер']
                                         ];
                                     }
 
                                     if($attribute->id == 10096) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Цвет']
+                                            'value' => (string) $feature['Цвет']
                                         ];
                                     }
 
                                     if($attribute->id == 8587) {
                                         $att['values'][] = [
-                                            'value' => (float) $product_feature[0]->properties['Диагональ экрана']
+                                            'value' => (float) $feature['Диагональ экрана']
                                         ];
                                     }
 
                                     if($attribute->id == 5186) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Разрешение экрана']
+                                            'value' => (string) $feature['Разрешение экрана']
                                         ];
                                     }
 
                                     if($attribute->id == 4465) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Wi-Fi']
+                                            'value' => (string) $feature['Wi-Fi']
                                         ];
                                     }
 
                                     if($attribute->id == 4422) {
                                         $att['values'][] = [
-                                            'value' => (float) $product_feature[0]->properties['Основная камера']
+                                            'value' => (float) $feature['Основная камера']
                                         ];
                                     }
 
                                     if($attribute->id == 4421) {
                                         $att['values'][] = [
-                                            'value' => (float) $product_feature[0]->properties['Фронтальная камера']
+                                            'value' => (float) $feature['Фронтальная камера']
                                         ];
                                     }
 
                                     if($attribute->id == 4414) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Bluetooth']
+                                            'value' => (string) $feature['Bluetooth']
                                         ];
                                     }
 
                                     if($attribute->id == 4407) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Количество SIM-карт']
+                                            'value' => (string) $feature['Количество SIM-карт']
                                         ];
                                     }
 
                                     if($attribute->id == 4383) {
                                         $att['values'][] = [
-                                            'value' => (float) $product_feature[0]->properties['Вес']
+                                            'value' => (float) $feature['Вес']
                                         ];
                                     }
 
                                     if($attribute->id == 10314) {
                                         $att['values'][] = [
-                                            'value' => (string) $product_feature[0]->properties['Видеопроцессор']
+                                            'value' => (string) $feature['Видеопроцессор']
                                         ];
                                     }
 
