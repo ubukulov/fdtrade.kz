@@ -138,91 +138,91 @@ class SyncProducts extends Command
                                         ];
                                     }
 
-                                    if($attribute->id == 5784) {
+                                    if($attribute->id == 5784 && isset($feature['Встроенная память'])) {
                                         $att['values'][] = [
                                             'value' => $feature['Встроенная память']
                                         ];
                                     }
 
-                                    if($attribute->id == 9622) {
+                                    if($attribute->id == 9622 && isset($feature['Оперативная память'])) {
                                         $att['values'][] = [
                                             'value' => (int) $feature['Оперативная память']
                                         ];
                                     }
 
-                                    if($attribute->id == 10313) {
+                                    if($attribute->id == 10313 && isset($feature['Процессор'])) {
                                         $att['values'][] = [
                                             'value' => $feature['Процессор']
                                         ];
                                     }
 
-                                    if($attribute->id == 10317) {
+                                    if($attribute->id == 10317 && isset($feature['Частота процессора'])) {
                                         $att['values'][] = [
                                             'value' => (float) str_replace(",", '.', $feature['Частота процессора'])
                                         ];
                                     }
 
-                                    if($attribute->id == 10318) {
+                                    if($attribute->id == 10318 && isset($feature['Количество ядер'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Количество ядер']
                                         ];
                                     }
 
-                                    if($attribute->id == 10096) {
+                                    if($attribute->id == 10096 && isset($feature['Цвет'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Цвет']
                                         ];
                                     }
 
-                                    if($attribute->id == 8587) {
+                                    if($attribute->id == 8587 && isset($feature['Диагональ экрана'])) {
                                         $att['values'][] = [
                                             'value' => (float) $feature['Диагональ экрана']
                                         ];
                                     }
 
-                                    if($attribute->id == 5186) {
+                                    if($attribute->id == 5186 && isset($feature['Разрешение экрана'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Разрешение экрана']
                                         ];
                                     }
 
-                                    if($attribute->id == 4465) {
+                                    if($attribute->id == 4465 && isset($feature['Wi-Fi'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Wi-Fi']
                                         ];
                                     }
 
-                                    if($attribute->id == 4422) {
+                                    if($attribute->id == 4422 && isset($feature['Основная камера'])) {
                                         $att['values'][] = [
                                             'value' => (float) $feature['Основная камера']
                                         ];
                                     }
 
-                                    if($attribute->id == 4421) {
+                                    if($attribute->id == 4421 && isset($feature['Фронтальная камера'])) {
                                         $att['values'][] = [
                                             'value' => (float) $feature['Фронтальная камера']
                                         ];
                                     }
 
-                                    if($attribute->id == 4414) {
+                                    if($attribute->id == 4414 && isset($feature['Bluetooth'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Bluetooth']
                                         ];
                                     }
 
-                                    if($attribute->id == 4407) {
+                                    if($attribute->id == 4407 && isset($feature['Количество SIM-карт'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Количество SIM-карт']
                                         ];
                                     }
 
-                                    if($attribute->id == 4383) {
+                                    if($attribute->id == 4383 && isset($feature['Вес'])) {
                                         $att['values'][] = [
                                             'value' => (float) $feature['Вес']
                                         ];
                                     }
 
-                                    if($attribute->id == 10314) {
+                                    if($attribute->id == 10314 && isset($feature['Видеопроцессор'])) {
                                         $att['values'][] = [
                                             'value' => (string) $feature['Видеопроцессор']
                                         ];
