@@ -131,7 +131,7 @@ class SyncProducts extends Command
                                     ];
                                 }
 
-                                if(isset($product_feature[0])) {
+                                if(is_array($product_feature) && isset($product_feature[0])) {
                                     $feature = json_decode(json_encode($product_feature[0]->properties), true);
                                     if($attribute->id == 4381) {
                                         $att['values'][] = [
