@@ -106,7 +106,14 @@ class SyncProducts extends Command
                                     ];
                                 }
 
-                                if($attribute->id == 8229 || $attribute->id == 9461) {
+                                if($attribute->id == 8229) {
+                                    $att['values'][] = [
+                                        'dictionary_value_id' => 97011,
+                                        'value' => 'Чехол для смартфона'
+                                    ];
+                                }
+
+                                if($attribute->id == 9461) {
                                     $att['values'][] = [
                                         'value' => 'Чехол для смартфона'
                                     ];
