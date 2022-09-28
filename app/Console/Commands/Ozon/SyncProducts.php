@@ -52,7 +52,7 @@ class SyncProducts extends Command
                     ->limit(50)
                     ->get();
                 $oz_category = OZONCategory::findOrFail($al_oz_category->oz_category_id);*/
-                $oz_category = OZONCategory::findOrFail(10139);
+                $oz_category = OZONCategory::findOrFail(9765);
                 $products = Product::where(['category_id' => 7])->get();
                 $count = 0;
 
