@@ -52,7 +52,7 @@ class SyncProducts extends Command
                     ->limit(50)
                     ->get();
                 $oz_category = OZONCategory::findOrFail($al_oz_category->oz_category_id);*/
-                $oz_category = OZONCategory::findOrFail(9765);
+                $oz_category = OZONCategory::findOrFail(9757);
                 $products = Product::where(['category_id' => 10])->get();
                 $count = 0;
 
@@ -108,15 +108,16 @@ class SyncProducts extends Command
 
                                 if($attribute->id == 8229) {
                                     $att['values'][] = [
-                                        'dictionary_value_id' => 97011,
-                                        'value' => 'Чехол для смартфона'
+                                        //'dictionary_value_id' => 97011,
+                                        //'value' => 'Чехол для смартфона'
+                                        'value' => 'Смарт часы'
                                     ];
                                 }
 
                                 if($attribute->id == 9461) {
                                     $att['values'][] = [
-                                        'dictionary_value_id' => 97011,
-                                        'value' => 'Чехол для смартфона'
+                                        //'dictionary_value_id' => 97011,
+                                        'value' => 'Смарт часы'
                                     ];
                                 }
 
