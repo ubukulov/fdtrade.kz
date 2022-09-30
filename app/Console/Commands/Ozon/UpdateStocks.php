@@ -41,38 +41,38 @@ class UpdateStocks extends Command
     public function handle()
     {
         $oProductsLists = OZON::getProducts();
-        dd($oProductsLists);
-        if(!$oProductsLists) {
-            dd($oProductsLists);
-        }
+        if($oProductsLists != false) {
+            $oProductsLists = json_decode($oProductsLists);
+            $count = 0;
+            foreach($oProductsLists->result->items as $item) {
+                $product = Product::where(['article' => $item->offer_id])->first();
+                if($product) {
+                    $data['stocks'][] = [
+                        'offer_id' => (string) $product->article,
+                        'stock' => (int) $product->getQuantity()
+                    ];
 
-        /*$products = Product::where(['category_id' => 2])->get();
-        $count = 0;
+                    if($count == 100) {
+                        $response = OZON::updateStocks($data);
 
-        foreach($products as $product) {
-            $data['stocks'][] = [
-                'offer_id' => (string) $product->article,
-                'stock' => (int) $product->getQuantity()
-            ];
+                        if(!$response) {
+                            $this->info("$count products stocks failed.");
+                        }
 
-            $count++;
-
-            if($count == 100) {
-                break;
+                        $response = json_decode($response);
+                        if(isset($response->result) && $response->result[0]->updated) {
+                            $this->info("$count ozon products stocks updated.");
+                            $data['stocks'] = [];
+                        } else {
+                            $this->info("Ozon products stocks failed.");
+                        }
+                    } else {
+                        $count++;
+                    }
+                }
             }
-        }
-
-        $response = OZON::updateStocks($data);
-
-        if(!$response) {
-            $this->info("Product {$product->article} stocks failed.");
-        }
-
-        $response = json_decode($response);
-        if(isset($response->result) && $response->result[0]->updated) {
-            $this->info("Ozon products stocks updated.");
         } else {
-            $this->info("Ozon products stocks failed.");
-        }*/
+            $this->info("Cannot get list of products from OZON");
+        }
     }
 }
