@@ -146,8 +146,6 @@ class Ozon
         $data = [
             'filter'    => [
                 "visibility" => 'ALL',
-                //"offer_id" => [],
-                //"product_id" => []
             ],
             'limit' => $limit
         ];
