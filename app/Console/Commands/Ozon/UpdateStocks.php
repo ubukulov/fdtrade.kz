@@ -40,7 +40,12 @@ class UpdateStocks extends Command
      */
     public function handle()
     {
-        $products = Product::where(['category_id' => 2])->get();
+        $oProductsLists = OZON::getProducts();
+        if(!$oProductsLists) {
+            dd($oProductsLists);
+        }
+
+        /*$products = Product::where(['category_id' => 2])->get();
         $count = 0;
 
         foreach($products as $product) {
@@ -67,6 +72,6 @@ class UpdateStocks extends Command
             $this->info("Ozon products stocks updated.");
         } else {
             $this->info("Ozon products stocks failed.");
-        }
+        }*/
     }
 }
