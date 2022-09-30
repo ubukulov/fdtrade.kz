@@ -41,6 +41,7 @@ class UpdateStocks extends Command
     public function handle()
     {
         $oProductsLists = OZON::getProducts();
+        dd($oProductsLists);
         if(!$oProductsLists) {
             dd($oProductsLists);
         }
