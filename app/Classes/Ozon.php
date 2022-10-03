@@ -141,6 +141,25 @@ class Ozon
         return false;
     }
 
+    public function updatePrices($data)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'v1/product/import/prices', [
+            'headers' => [
+                'Content-type' => 'application/json',
+                'Client-Id' => $this->clientId,
+                'Api-Key' => $this->token
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        if($request->getStatusCode() === 200) {
+            return json_decode($request->getBody()->getContents());
+        }
+
+        return false;
+    }
+
     public function getProducts($limit = 600)
     {
         $data = [

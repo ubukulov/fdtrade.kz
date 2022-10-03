@@ -13,6 +13,8 @@ use App\Console\Commands\WBUpdatePrices;
 use App\Console\Commands\GetWbImtIdForProduct;
 use App\Console\Commands\GetActualRates;
 use App\Console\Commands\Ozon\UpdateStocks;
+use App\Console\Commands\Ozon\UpdatePrices;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -31,6 +33,7 @@ class Kernel extends ConsoleKernel
         GenerateXalykXml::class,
         SyncHalyk::class,
         UpdateStocks::class,
+        UpdatePrices::class,
     ];
 
     /**
@@ -54,6 +57,7 @@ class Kernel extends ConsoleKernel
 
         /* OZON */
         $schedule->command('ozon:update-stocks')->everyTwoHours();
+        $schedule->command('ozon:update-prices')->everyFourHours();
 
          /* Get Actual Rates */
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
