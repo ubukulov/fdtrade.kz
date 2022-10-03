@@ -40,11 +40,11 @@ class WBUpdatePrices extends Command
     public function handle()
     {
         $getProductCardList = WB::getProductCardList();
-        foreach($getProductCardList->result->cards as $item) {
-            if(!empty($item->supplierVendorCode)) {
-                $product = Product::where(['article' => $item->supplierVendorCode])->first();
-                if($product && isset($item->nomenclatures[0])) {
-                    $updatePrices = json_decode(WB::updatePrices($product, $item->nomenclatures[0]->nmId));
+        foreach($getProductCardList->data->cards as $item) {
+            if(!empty($item->vendorCode)) {
+                $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+                if($product) {
+                    $updatePrices = json_decode(WB::updatePrices($product, $item->nmID));
                     if(isset($updatePrices->errors)) {
                         $this->info("Product: {$product->article} prices failed.");
                     } else {

@@ -55,11 +55,10 @@ class WB
 
 
         $article_pn = str_replace(" ", '-', $product->article_pn);
-        /*$barcode = $this->getGeneratedBarcodeForProduct();
+        $barcode = $this->getGeneratedBarcodeForProduct();
         if(!$barcode) {
             return false;
-        }*/
-        $barcode = (string) mt_rand(2035270420000, 2035270450000);
+        }
 
         $data = [
             "id"=> (string) Str::uuid(),
@@ -273,7 +272,7 @@ class WB
 
         $data = "[".json_encode($data)."]";
 
-        $request = $client->request('POST', '/api/v2/stocks', [
+        $request = $client->request('POST', 'api/v2/stocks', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -296,7 +295,7 @@ class WB
 
         $data = "[".json_encode($data)."]";
 
-        $request = $client->request('POST', '/api/v2/stocks', [
+        $request = $client->request('POST', 'api/v2/stocks', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -310,25 +309,22 @@ class WB
     public function getGeneratedBarcodeForProduct()
     {
         $client = new Client(['base_uri' => $this->api]);
+
         $data = [
-            "id"=> (string) Str::uuid(),
-            "jsonrpc"=> "2.0",
-            "params" => [
-                "quantity" => 1,
-            ]
+            'count' => 1
         ];
 
-        $request = $client->request('POST', '/card/getBarcodes', [
+        $request = $client->request('POST', 'content/v1/barcodes', [
             'headers' => [
-                'Authorization' => "Bearer " . $this->token,
+                'Authorization' => $this->token,
                 'Content-type' => 'application/json'
             ],
             'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
         ]);
 
         $barcode = json_decode($request->getBody()->getContents());
-        if(isset($barcode->result->barcodes[0])) {
-            return $barcode->result->barcodes[0];
+        if($barcode->error == false) {
+            return $barcode->data[0];
         }
 
         return false;
@@ -337,24 +333,18 @@ class WB
     public function getProductCardList($limit = 1000, $offset = 0)
     {
         $client = new Client(['base_uri' => $this->api]);
+
         $data = [
-            "id"=> (string) Str::uuid(),
-            "jsonrpc"=> "2.0",
-            "params" => [
-                "filter" => [
-                    "order" => [
-                        "column"    => "updatedAt",
-                        "order"     => "desc"
-                    ]
-                ],
-                "query" => [
-                    "limit"     => $limit,
-                    "offset"    => $offset
-                ]
+            'sort' => [
+                'limit' => $limit,
+                'offset' => $offset,
+                'searchValue' => '',
+                'sortColumn' => 'updateAt',
+                'ascending' => false
             ]
         ];
 
-        $request = $client->request('POST', '/card/list', [
+        $request = $client->request('POST', 'content/v1/cards/list', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -375,7 +365,7 @@ class WB
 
         $data = "[" . json_encode($data) . "]";
 
-        $request = $client->request('POST', '/public/api/v1/prices', [
+        $request = $client->request('POST', 'public/api/v1/prices', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -386,6 +376,7 @@ class WB
         return $request->getBody()->getContents();
     }
 
+    // Метод устарел
     public function getProductByImtId($product)
     {
         $client = new Client(['base_uri' => $this->api]);
@@ -401,6 +392,37 @@ class WB
         $request = $client->request('POST', '/card/cardByImtID', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return json_decode($request->getBody()->getContents());
+    }
+
+    public function getProductByArticle($product)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        /*$data = [
+            "id" => (string) Str::uuid(),
+            "jsonrpc" => "2.0",
+            "params" => [
+                "imtID" => (int) $product->wb_imtId,
+                "supplierID" => $this->supplierId
+            ]
+        ];*/
+
+        $article = $product->article."".$product->article;
+
+        $data = [
+            'vendorCodes' => [
+                (string) $article
+            ]
+        ];
+
+        $request = $client->request('POST', 'content/v1/cards/filter', [
+            'headers' => [
+                'Authorization' => $this->token,
                 'Content-type' => 'application/json'
             ],
             'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
