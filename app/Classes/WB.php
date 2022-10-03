@@ -212,6 +212,77 @@ class WB
         return $request->getBody()->getContents();
     }
 
+    public function uploadProduct($product, $wb_category)
+    {
+        $properties = $this->getStyleProductProperties($product);
+
+        $product_images = [];
+        $images = $product->images;
+        if($images) {
+            foreach($images as $image) {
+                if($image->thumbs == 0) {
+                    $product_images[]['value'] = $image->path;
+                }
+            }
+            $product_image = (isset($product_images[0])) ? $product_images[0]['value'] : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+        } else {
+            $product_image = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+        }
+
+
+        $article_pn = str_replace(" ", '-', $product->article_pn);
+        $barcode = $this->getGeneratedBarcodeForProduct();
+        if(!$barcode) {
+            return false;
+        }
+
+        $data = [
+            [
+                [
+                    'vendorCode' => $product->article,
+                    'concatVendorCode' => $article_pn,
+                    'countryProduction' => $properties['country'],
+                    'object' => $wb_category->name,
+                    'supplierId' => $this->supplierId,
+                    'characteristics' => [
+                        [
+                            'Бренд' => $properties['brand'],
+                            'Наименование' => $properties['name'],
+                            'Комплектация' => $properties['complex_name'],
+                            'Описание' => $properties['detail_text'],
+                            'Фото' => $product_image,
+                            'Гарантийный срок' => $properties['warranty'],
+                            'Основной цвет' => $properties['general_color'],
+
+                        ]
+                    ],
+                    'sizes' => [
+                        [
+                            'techSize' => '0',
+                            'wbSize' => '0',
+                            'price' => $product->convertPrice(),
+                            'skus' => [
+                                $barcode
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'content/v1/cards/upload', [
+            'headers' => [
+                //'Authorization' => "Bearer " . $this->token,
+                'Authorization' => $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+        ]);
+
+        return $request->getBody()->getContents();
+    }
+
     public function getCategories()
     {
         $client = new Client(['base_uri' => $this->api]);
