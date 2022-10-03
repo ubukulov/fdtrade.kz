@@ -4,6 +4,7 @@ namespace App\Console\Commands\Ozon;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use OZON;
 
 class UpdatePrices extends Command
 {
