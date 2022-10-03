@@ -135,13 +135,13 @@ class Ozon
         ]);
 
         if($request->getStatusCode() === 200) {
-            return $request->getBody()->getContents();
+            return json_decode($request->getBody()->getContents());
         }
 
         return false;
     }
 
-    public function getProducts($limit = 500)
+    public function getProducts($limit = 600)
     {
         $data = [
             'filter'    => [

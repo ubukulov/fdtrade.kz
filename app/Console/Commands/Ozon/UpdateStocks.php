@@ -61,11 +61,10 @@ class UpdateStocks extends Command
 
                 $response = OZON::updateStocks($data);
 
-                if(!$response) {
+                if(!empty($response->errors)) {
                     $this->info("Products stocks failed.");
                 }
 
-                $response = json_decode($response);
                 if(isset($response->result) && $response->result[0]->updated) {
                     $this->info(count($data['stocks']) . " Ozon products stocks updated.");
                 } else {

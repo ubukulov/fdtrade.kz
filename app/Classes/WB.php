@@ -240,20 +240,36 @@ class WB
             [
                 [
                     'vendorCode' => $product->article,
-                    'concatVendorCode' => $article_pn,
-                    'countryProduction' => $properties['country'],
-                    'object' => $wb_category->name,
-                    'supplierId' => $this->supplierId,
                     'characteristics' => [
                         [
-                            'Бренд' => $properties['brand'],
-                            'Наименование' => $properties['name'],
-                            'Комплектация' => $properties['complex_name'],
-                            'Описание' => $properties['detail_text'],
-                            'Фото' => $product_image,
-                            'Гарантийный срок' => $properties['warranty'],
-                            'Основной цвет' => $properties['general_color'],
-
+                            'Название' => $properties['name']
+                        ],
+                        [
+                            'Артикул товара' => $product->article
+                        ],
+                        [
+                            'Бренд' => $properties['brand']
+                        ],
+                        [
+                            'Баркод товара' => $barcode
+                        ],
+                        [
+                            'Комплектация' => $properties['complex_name']
+                        ],
+                        [
+                            'Описание' => $properties['detail_text']
+                        ],
+                        [
+                            'Медиафайлы' => $product_image
+                        ],
+                        [
+                            'Гарантийный срок' => $properties['warranty']
+                        ],
+                        [
+                            'Основной цвет' => $properties['general_color']
+                        ],
+                        [
+                            'Категория' => $wb_category->name
                         ]
                     ],
                     'sizes' => [
@@ -270,6 +286,8 @@ class WB
             ]
         ];
 
+        dd(json_encode($data, JSON_UNESCAPED_UNICODE));
+
         $client = new Client(['base_uri' => $this->api]);
         $request = $client->request('POST', 'content/v1/cards/upload', [
             'headers' => [
@@ -280,7 +298,13 @@ class WB
             'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
         ]);
 
-        return $request->getBody()->getContents();
+        $result = json_decode($request->getBody()->getContents());
+
+        if($result->error) {
+            return $result;
+        }
+
+        return $result;
     }
 
     public function getCategories()
