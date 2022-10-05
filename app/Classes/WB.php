@@ -216,27 +216,15 @@ class WB
     {
         $properties = $this->getStyleProductProperties($product);
 
-        $product_images = [];
-        $images = $product->images;
-        if($images) {
-            foreach($images as $image) {
-                if($image->thumbs == 0) {
-                    $product_images[]['value'] = $image->path;
-                }
-            }
-            $product_image = (isset($product_images[0])) ? $product_images[0]['value'] : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-        } else {
-            $product_image = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
-        }
-
-
-        $article_pn = str_replace(" ", '-', $product->article_pn);
         $barcode = $this->getGeneratedBarcodeForProduct();
         if(!$barcode) {
             return false;
         }
 
         $article = $product->article."".$product->article;
+        $product->wb_imtId = $article;
+        $product->wb_barcode = $barcode;
+        $product->save();
 
         $data = [[
             'vendorCode' => (string) $article,
