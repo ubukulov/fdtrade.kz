@@ -314,7 +314,7 @@ class WB
             return false;
         } else {
             $dataImg = [
-                'vendorCode' => $article,
+                'vendorCode' => (string) $article,
                 'data' => $arrImages
             ];
             $client = new Client(['base_uri' => $this->api]);

@@ -42,6 +42,8 @@ class SyncProductsWithWB extends Command
      */
     public function handle()
     {
+        $lists = WB::getProductCardList(10,0);
+        dd($lists);
         $al_wb_categories = AlWbCategory::all();
         if(count($al_wb_categories) > 0) {
             foreach($al_wb_categories as $al_wb_category) {
