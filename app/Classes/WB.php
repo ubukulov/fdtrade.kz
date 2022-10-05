@@ -236,8 +236,10 @@ class WB
             return false;
         }
 
+        $article = $product->article."".$product->article;
+
         $data = [[
-            'vendorCode' => (string) $product->article,
+            'vendorCode' => (string) $article,
             'characteristics' => [
                 [
                     'Наименование' => (string) Str::limit($properties['name'], 40, '')
