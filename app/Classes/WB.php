@@ -288,7 +288,7 @@ class WB
                     continue;
                 }
 
-                $data['characteristics']['Фото'][] = $arr['value'];
+                $data[0][0]['characteristics']['Фото'][] = $arr['value'];
             }
         }
 
