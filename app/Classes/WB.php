@@ -236,7 +236,7 @@ class WB
             return false;
         }
 
-        $data = [[
+        $data = [
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
@@ -268,7 +268,7 @@ class WB
                     ]
                 ]
             ]
-        ]];
+        ];
 
         dd(json_encode($data, JSON_UNESCAPED_UNICODE));
 
