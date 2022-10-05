@@ -236,13 +236,11 @@ class WB
             return false;
         }
 
-        $product_name = substr(Str::limit($properties['name'], 40),0,40);
-
         $data = [[
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
-                    'Наименование' => (string) $product_name
+                    'Наименование' => (string) Str::limit($properties['name'], 40, '')
                 ],
                 [
                     'Бренд' => (string) $properties['brand']
@@ -284,14 +282,17 @@ class WB
             ]
         ]];
 
+        $arrImages = [];
         if(count($product_images) > 1) {
             foreach($product_images as $key=>$arr) {
                 if($key == 0) {
                     continue;
                 }
 
-                $data[0]['characteristics']['Фото'][] = $arr['value'];
+                $arrImages[] = $arr['value'];
             }
+
+            $data[0]['characteristics'][]['Фото'] = $arrImages;
         }
 
         dd($data, json_encode($data, JSON_UNESCAPED_UNICODE));
