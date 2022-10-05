@@ -238,48 +238,46 @@ class WB
 
         $data = [
             [
-                [
-                    'vendorCode' => $product->article,
-                    'characteristics' => [
-                        [
-                            'Название' => $properties['name']
-                        ],
-                        [
-                            'Артикул товара' => $product->article
-                        ],
-                        [
-                            'Бренд' => $properties['brand']
-                        ],
-                        [
-                            'Баркод товара' => $barcode
-                        ],
-                        [
-                            'Комплектация' => $properties['complex_name']
-                        ],
-                        [
-                            'Описание' => $properties['detail_text']
-                        ],
-                        [
-                            'Медиафайлы' => $product_image
-                        ],
-                        [
-                            'Гарантийный срок' => $properties['warranty']
-                        ],
-                        [
-                            'Основной цвет' => $properties['general_color']
-                        ],
-                        [
-                            'Категория' => $wb_category->name
-                        ]
+                'vendorCode' => $product->article,
+                'characteristics' => [
+                    [
+                        'Название' => $properties['name']
                     ],
-                    'sizes' => [
-                        [
-                            'techSize' => '0',
-                            'wbSize' => '0',
-                            'price' => $product->convertPrice(),
-                            'skus' => [
-                                $barcode
-                            ]
+                    [
+                        'Артикул товара' => $product->article
+                    ],
+                    [
+                        'Бренд' => $properties['brand']
+                    ],
+                    [
+                        'Баркод товара' => $barcode
+                    ],
+                    [
+                        'Комплектация' => $properties['complex_name']
+                    ],
+                    [
+                        'Описание' => $properties['detail_text']
+                    ],
+                    [
+                        'Медиафайлы' => $product_image
+                    ],
+                    [
+                        'Гарантийный срок' => $properties['warranty']
+                    ],
+                    [
+                        'Основной цвет' => $properties['general_color']
+                    ],
+                    [
+                        'Категория' => $wb_category->name
+                    ]
+                ],
+                'sizes' => [
+                    [
+                        'techSize' => '0',
+                        'wbSize' => '0',
+                        'price' => $product->convertPrice(),
+                        'skus' => [
+                            $barcode
                         ]
                     ]
                 ]
