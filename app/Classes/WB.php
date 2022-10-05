@@ -240,7 +240,7 @@ class WB
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
-                    'Наименование' => (string) $properties['name']
+                    'Наименование' => (string) Str::limit($properties['name'], 40)
                 ],
                 [
                     'Бренд' => (string) $properties['brand']
@@ -256,7 +256,19 @@ class WB
                 ],
                 [
                     'Предмет' => (string) $wb_category->name
-                ]
+                ],
+                [
+                    'Страна производства' => (string) $properties['country']
+                ],
+                [
+                    'Ширина упаковки' => '100'
+                ],
+                [
+                    'Глубина упаковки' => '100'
+                ],
+                [
+                    'Высота упаковки' => '100'
+                ],
             ],
             'sizes' => [
                 [
@@ -269,6 +281,16 @@ class WB
                 ]
             ]
         ];
+
+        if(count($product_images) > 1) {
+            foreach($product_images as $key=>$arr) {
+                if($key == 0) {
+                    continue;
+                }
+
+                $data['characteristics']['Фото'][] = $arr['value'];
+            }
+        }
 
         dd(json_encode($data, JSON_UNESCAPED_UNICODE));
 
