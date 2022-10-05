@@ -261,13 +261,13 @@ class WB
                     'Страна производства' => (string) $properties['country']
                 ],
                 [
-                    'Ширина упаковки' => '100'
+                    'Ширина упаковки' => 100
                 ],
                 [
-                    'Глубина упаковки' => '100'
+                    'Глубина упаковки' => 100
                 ],
                 [
-                    'Высота упаковки' => '100'
+                    'Высота упаковки' => 100
                 ],
             ],
             'sizes' => [
@@ -282,7 +282,7 @@ class WB
             ]
         ]];
 
-        $arrImages = [];
+        /*$arrImages = [];
         if(count($product_images) > 1) {
             foreach($product_images as $key=>$arr) {
                 if($key == 0) {
@@ -293,24 +293,26 @@ class WB
             }
 
             $data[0]['characteristics'][]['Фото'] = $arrImages;
-        }
+        }*/
 
-        dd($data, json_encode($data, JSON_UNESCAPED_UNICODE));
+        //dd($data, json_encode($data, JSON_UNESCAPED_UNICODE));
+
+        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $data = "[".$data."]";
 
         $client = new Client(['base_uri' => $this->api]);
         $request = $client->request('POST', 'content/v1/cards/upload', [
             'headers' => [
-                //'Authorization' => "Bearer " . $this->token,
                 'Authorization' => $this->token,
                 'Content-type' => 'application/json'
             ],
-            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
+            'body' => $data
         ]);
 
         $result = json_decode($request->getBody()->getContents());
 
         if($result->error) {
-            return $result;
+            return false;
         }
 
         return $result;
