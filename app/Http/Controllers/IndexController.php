@@ -14,7 +14,6 @@ class IndexController extends BaseController
 {
     public function index()
     {
-        dd(Style::getProductFeature(8611));
         $hitProducts = Product::whereNotNull('price')->inRandomOrder()->limit(4)->get();
         $bestsellerProducts = Product::whereNotNull('price')->inRandomOrder()->limit(6)->get();
         $randomProducts = Product::whereNotNull('price')->inRandomOrder()->limit(20)->get();
