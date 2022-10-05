@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Style;
 
 use App\Models\Category;
 use App\Models\Product;

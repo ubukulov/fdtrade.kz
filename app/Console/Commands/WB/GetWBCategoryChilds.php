@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\WB;
 
 use App\Models\WBCategory;
 use Illuminate\Console\Command;

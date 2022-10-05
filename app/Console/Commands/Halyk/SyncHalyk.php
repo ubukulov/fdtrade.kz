@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Halyk;
 
-use App\Models\WBCategory;
 use Illuminate\Console\Command;
-use WB;
+use HK;
 
-class GetWBCategories extends Command
+class SyncHalyk extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'wb:get-category-parents';
+    protected $signature = 'sync:halyk';
 
     /**
      * The console command description.
@@ -39,16 +38,10 @@ class GetWBCategories extends Command
      */
     public function handle()
     {
-        $wb_categories = json_decode(WB::getCategories());
-        foreach($wb_categories->data as $datum) {
-            $wb_category = WBCategory::whereName($datum->name)->first();
-            if(!$wb_category){
-                WBCategory::create([
-                    'name' => $datum->name
-                ]);
-            }
+        if (HK::createOrUpdate()) {
+            $this->info('Halyk: success.');
+        } else {
+            $this->warn('Halyk: failed.');
         }
-
-        $this->info('The process is finished.');
     }
 }

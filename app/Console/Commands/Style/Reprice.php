@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Style;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
-use Style;
 
-class StyleBrand extends Command
+class Reprice extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'style:brand';
+    protected $signature = 'style:reprice';
 
     /**
      * The console command description.
@@ -39,16 +38,17 @@ class StyleBrand extends Command
      */
     public function handle()
     {
-        Product::whereNull('brand')->chunk(100, function($products){
+        Product::chunk(50, function($products){
             foreach($products as $product) {
-                $product_feature = Style::getProductFeature($product->article);
-                if(isset($product_feature[0])) {
-                    $brand = $product_feature[0]->brand;
-                    $product->brand = $brand;
+                if($product->quantity == '0') continue;
+                $category = $product->category;
+                if($category) {
+                    $product->price = round($product->price2 + ($product->price2 * ($category->margin / 100)));
                     $product->save();
+                    $this->info("Product {$product->article} prices updated.");
                 }
             }
         });
-        $this->info('The finished.');
+        $this->info("Products is updated.");
     }
 }

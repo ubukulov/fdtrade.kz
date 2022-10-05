@@ -2,15 +2,15 @@
 
 namespace App\Console;
 
-use App\Console\Commands\GenerateXalykXml;
-use App\Console\Commands\SyncHalyk;
+use App\Console\Commands\Halyk\GenerateXalykXml;
+use App\Console\Commands\Halyk\SyncHalyk;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\SyncProductsWithWB;
-use App\Console\Commands\SyncWithAlstyle;
-use App\Console\Commands\WBUpdateStocks;
-use App\Console\Commands\WBUpdatePrices;
-use App\Console\Commands\GetWbImtIdForProduct;
+use App\Console\Commands\WB\SyncProductsWithWB;
+use App\Console\Commands\Style\SyncWithAlstyle;
+use App\Console\Commands\WB\WBUpdateStocks;
+use App\Console\Commands\WB\WBUpdatePrices;
+use App\Console\Commands\WB\GetWbImtIdForProduct;
 use App\Console\Commands\GetActualRates;
 use App\Console\Commands\Ozon\UpdateStocks;
 use App\Console\Commands\Ozon\UpdatePrices;
