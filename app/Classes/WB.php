@@ -284,28 +284,44 @@ class WB
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
-                    'Название' => (string) $properties['name']
+                    'Название' => [
+                        (string) $properties['name']
+                    ]
                 ],
                 [
-                    'Артикул товара' => (string) $product->article
+                    'Артикул товара' => [
+                        (string) $product->article
+                    ]
                 ],
                 [
-                    'Бренд' => (string) $properties['brand']
+                    'Бренд' => [
+                        (string) $properties['brand']
+                    ]
                 ],
                 [
-                    'Баркод товара' => (string) $barcode
+                    'Баркод товара' => [
+                        (string) $barcode
+                    ]
                 ],
                 [
-                    'Комплектация' => (string) $properties['complex_name']
+                    'Комплектация' => [
+                        (string) $properties['complex_name']
+                    ]
                 ],
                 [
-                    'Описание' => (string) $properties['detail_text']
+                    'Описание' => [
+                        (string) $properties['detail_text']
+                    ]
                 ],
                 [
-                    'Гарантийный срок' => (string) $properties['warranty']
+                    'Гарантийный срок' => [
+                        (string) $properties['warranty']
+                    ]
                 ],
                 [
-                    'Основной цвет' => (string) $properties['general_color']
+                    'Основной цвет' => [
+                        (string) $properties['general_color']
+                    ]
                 ],
                 [
                     'Предмет' => (string) $wb_category->name
