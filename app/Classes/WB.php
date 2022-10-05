@@ -236,92 +236,23 @@ class WB
             return false;
         }
 
-        /*$data = [[
-            'vendorCode' => $product->article,
-            'characteristics' => [
-                [
-                    'Название' => $properties['name']
-                ],
-                [
-                    'Артикул товара' => $product->article
-                ],
-                [
-                    'Бренд' => $properties['brand']
-                ],
-                [
-                    'Баркод товара' => $barcode
-                ],
-                [
-                    'Комплектация' => $properties['complex_name']
-                ],
-                [
-                    'Описание' => $properties['detail_text']
-                ],
-                [
-                    'Медиафайлы' => $product_image
-                ],
-                [
-                    'Гарантийный срок' => $properties['warranty']
-                ],
-                [
-                    'Основной цвет' => $properties['general_color']
-                ],
-                [
-                    'Категория' => $wb_category->name
-                ]
-            ],
-            'sizes' => [
-                'techSize' => '',
-                'wbSize' => '',
-                'price' => $product->convertPrice(),
-                'skus' => [
-                    $barcode
-                ]
-            ]
-        ]];*/
-
         $data = [[
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
-                    'Название' => [
-                        (string) $properties['name']
-                    ]
+                    'Наименование' => (string) $properties['name']
                 ],
                 [
-                    'Артикул товара' => [
-                        (string) $product->article
-                    ]
+                    'Бренд' => (string) $properties['brand']
                 ],
                 [
-                    'Бренд' => [
-                        (string) $properties['brand']
-                    ]
+                    'Комплектация' => (string) $properties['complex_name']
                 ],
                 [
-                    'Баркод товара' => [
-                        (string) $barcode
-                    ]
+                    'Описание' => (string) $properties['detail_text']
                 ],
                 [
-                    'Комплектация' => [
-                        (string) $properties['complex_name']
-                    ]
-                ],
-                [
-                    'Описание' => [
-                        (string) $properties['detail_text']
-                    ]
-                ],
-                [
-                    'Гарантийный срок' => [
-                        (string) $properties['warranty']
-                    ]
-                ],
-                [
-                    'Основной цвет' => [
-                        (string) $properties['general_color']
-                    ]
+                    'Гарантийный срок' => (string) $properties['warranty']
                 ],
                 [
                     'Предмет' => (string) $wb_category->name
