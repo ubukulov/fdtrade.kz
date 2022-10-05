@@ -236,7 +236,7 @@ class WB
             return false;
         }
 
-        $data = [
+        $data = [[
             'vendorCode' => $product->article,
             'characteristics' => [
                 [
@@ -271,16 +271,14 @@ class WB
                 ]
             ],
             'sizes' => [
-                [
-                    'techSize' => '0',
-                    'wbSize' => '0',
-                    'price' => $product->convertPrice(),
-                    'skus' => [
-                        $barcode
-                    ]
+                'techSize' => '',
+                'wbSize' => '',
+                'price' => $product->convertPrice(),
+                'skus' => [
+                    $barcode
                 ]
             ]
-        ];
+        ]];
 
         //dd(json_encode($data, JSON_UNESCAPED_UNICODE));
 
