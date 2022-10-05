@@ -236,7 +236,7 @@ class WB
             return false;
         }
 
-        $data = [
+        $data = [[
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
@@ -280,7 +280,7 @@ class WB
                     ]
                 ]
             ]
-        ];
+        ]];
 
         if(count($product_images) > 1) {
             foreach($product_images as $key=>$arr) {
