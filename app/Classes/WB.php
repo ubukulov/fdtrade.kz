@@ -236,11 +236,13 @@ class WB
             return false;
         }
 
+        $product_name = substr(Str::limit($properties['name'], 40),0,40);
+
         $data = [[
             'vendorCode' => (string) $product->article,
             'characteristics' => [
                 [
-                    'Наименование' => (string) Str::limit($properties['name'], 40)
+                    'Наименование' => (string) $product_name
                 ],
                 [
                     'Бренд' => (string) $properties['brand']
@@ -288,7 +290,7 @@ class WB
                     continue;
                 }
 
-                $data[0][0]['characteristics']['Фото'][] = $arr['value'];
+                $data[0]['characteristics']['Фото'][] = $arr['value'];
             }
         }
 
