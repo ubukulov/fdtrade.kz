@@ -236,7 +236,7 @@ class WB
             return false;
         }
 
-        $data = [[
+        /*$data = [[
             'vendorCode' => $product->article,
             'characteristics' => [
                 [
@@ -276,6 +276,49 @@ class WB
                 'price' => $product->convertPrice(),
                 'skus' => [
                     $barcode
+                ]
+            ]
+        ]];*/
+
+        $data = [[
+            'vendorCode' => (string) $product->article,
+            'characteristics' => [
+                [
+                    'Название' => (string) $properties['name']
+                ],
+                [
+                    'Артикул товара' => (string) $product->article
+                ],
+                [
+                    'Бренд' => (string) $properties['brand']
+                ],
+                [
+                    'Баркод товара' => (string) $barcode
+                ],
+                [
+                    'Комплектация' => (string) $properties['complex_name']
+                ],
+                [
+                    'Описание' => (string) $properties['detail_text']
+                ],
+                [
+                    'Гарантийный срок' => (string) $properties['warranty']
+                ],
+                [
+                    'Основной цвет' => (string) $properties['general_color']
+                ],
+                [
+                    'Предмет' => (string) $wb_category->name
+                ]
+            ],
+            'sizes' => [
+                [
+                    'techSize' => '',
+                    'wbSize' => '',
+                    'price' => (int) $product->convertPrice(),
+                    'skus' => [
+                        (string) $barcode
+                    ]
                 ]
             ]
         ]];
