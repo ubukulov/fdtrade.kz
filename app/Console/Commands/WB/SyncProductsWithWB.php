@@ -55,19 +55,14 @@ class SyncProductsWithWB extends Command
                 if(count($products) > 0) {
                     foreach($products as $product) {
                         $response = WB::uploadProduct($product, $wb_category);
-                        dd($response);
 
-                        if(!$response) {
-                            $this->info("Product {$product->article} don't created.");
+                        if($response->error) {
+                            $this->info("Product {$product->article} don't created. ". $response->errorText);
                             continue;
                         }
 
-                        $response = json_decode($response);
-                        if(isset($response->result)) {
+                        if(!$response->error) {
                             $this->info("The product with $product->article successfully added.");
-                        } else {
-                            $str = $response->error->code . " : " . $response->error->message;
-                            $this->info("The product with $product->article failed. Error: ".$str);
                         }
                     }
                 }

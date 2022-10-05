@@ -215,6 +215,15 @@ class WB
     public function uploadProduct($product, $wb_category)
     {
         $properties = $this->getStyleProductProperties($product);
+        $product_images = [];
+        $images = $product->images;
+        if($images) {
+            foreach($images as $image) {
+                if($image->thumbs == 0) {
+                    $product_images[]['value'] = $image->path;
+                }
+            }
+        }
 
         $barcode = $this->getGeneratedBarcodeForProduct();
         if(!$barcode) {
@@ -272,7 +281,7 @@ class WB
             ]
         ]];
 
-        /*$arrImages = [];
+        $arrImages = [];
         if(count($product_images) > 1) {
             foreach($product_images as $key=>$arr) {
                 if($key == 0) {
@@ -282,8 +291,8 @@ class WB
                 $arrImages[] = $arr['value'];
             }
 
-            $data[0]['characteristics'][]['Фото'] = $arrImages;
-        }*/
+            //$data[0]['characteristics'][]['Фото'] = $arrImages;
+        }
 
         //dd($data, json_encode($data, JSON_UNESCAPED_UNICODE));
 
@@ -303,9 +312,24 @@ class WB
 
         if($result->error) {
             return false;
-        }
+        } else {
+            $dataImg = [
+                'vendorCode' => $article,
+                'data' => $arrImages
+            ];
+            $client = new Client(['base_uri' => $this->api]);
+            $request = $client->request('POST', 'content/v1/media/save', [
+                'headers' => [
+                    'Authorization' => $this->token,
+                    'Content-type' => 'application/json'
+                ],
+                'body' => json_encode($dataImg)
+            ]);
 
-        return $result;
+            $resultImg = json_decode($request->getBody()->getContents());
+            //if($resultImg->error)
+            return $result;
+        }
     }
 
     public function getCategories()
