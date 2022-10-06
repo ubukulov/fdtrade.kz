@@ -513,10 +513,6 @@ class WB
         $properties = [];
         $product_feature = Style::getProductFeature($product->article);
 
-        if($product_feature->status == 'error') {
-            return false;
-        }
-
         if(isset($product_feature[0])) {
             $product_feature = $product_feature[0];
             $arr = (array) $product_feature->properties;
