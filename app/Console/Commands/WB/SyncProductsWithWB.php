@@ -60,12 +60,12 @@ class SyncProductsWithWB extends Command
                             continue;
                         }
 
-                        if(isset($response->error)) {
+                        if(isset($response->error) && $response->error) {
                             $this->info("Product {$product->article} don't created. ". $response->errorText);
                             continue;
                         }
 
-                        if(!$response->error) {
+                        if(isset($response->error) && !$response->error) {
                             $this->info("The product with $product->article successfully added.");
                         }
                     }
