@@ -215,6 +215,7 @@ class WB
     public function uploadProduct($product, $wb_category)
     {
         $properties = $this->getStyleProductProperties($product);
+        dd($properties);
         if(!$properties) {
             return false;
         }
