@@ -39,7 +39,7 @@ class UpdateProductImages extends Command
      */
     public function handle()
     {
-        $lists = WB::getProductCardList(3000, 0);
+        $lists = WB::getProductCardList(1000, 1000);
         foreach($lists->data->cards as $card) {
             if(empty($card->mediaFiles)) {
                 $product = Product::where(['wb_imtId' => $card->vendorCode])->first();
