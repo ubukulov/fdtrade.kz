@@ -215,15 +215,6 @@ class WB
     public function uploadProduct($product, $wb_category)
     {
         $properties = $this->getStyleProductProperties($product);
-        $product_images = [];
-        $images = $product->images;
-        if($images) {
-            foreach($images as $image) {
-                if($image->thumbs == 0) {
-                    $product_images[]['value'] = $image->path;
-                }
-            }
-        }
 
         $barcode = $this->getGeneratedBarcodeForProduct();
         if(!$barcode) {
@@ -281,21 +272,6 @@ class WB
             ]
         ]];
 
-        $arrImages = [];
-        if(count($product_images) > 1) {
-            foreach($product_images as $key=>$arr) {
-                if($key == 0) {
-                    continue;
-                }
-
-                $arrImages[] = $arr['value'];
-            }
-
-            //$data[0]['characteristics'][]['Фото'] = $arrImages;
-        }
-
-        //dd($data, json_encode($data, JSON_UNESCAPED_UNICODE));
-
         $data = json_encode($data, JSON_UNESCAPED_UNICODE);
         $data = "[".$data."]";
 
@@ -312,24 +288,9 @@ class WB
 
         if($result->error) {
             return false;
-        } else {
-            $dataImg = [
-                'vendorCode' => (string) $article,
-                'data' => $arrImages
-            ];
-            $client = new Client(['base_uri' => $this->api]);
-            $request = $client->request('POST', 'content/v1/media/save', [
-                'headers' => [
-                    'Authorization' => $this->token,
-                    'Content-type' => 'application/json'
-                ],
-                'body' => json_encode($dataImg)
-            ]);
-
-            $resultImg = json_decode($request->getBody()->getContents());
-            //if($resultImg->error)
-            return $result;
         }
+
+        return $result;
     }
 
     public function getCategories()
@@ -523,14 +484,6 @@ class WB
     public function getProductByArticle($product)
     {
         $client = new Client(['base_uri' => $this->api]);
-        /*$data = [
-            "id" => (string) Str::uuid(),
-            "jsonrpc" => "2.0",
-            "params" => [
-                "imtID" => (int) $product->wb_imtId,
-                "supplierID" => $this->supplierId
-            ]
-        ];*/
 
         $article = $product->article."".$product->article;
 
@@ -549,127 +502,6 @@ class WB
         ]);
 
         return json_decode($request->getBody()->getContents());
-    }
-
-    public function updateProduct($wb_product, $product)
-    {
-        $product_feature = Style::getProductFeature($product->article);
-        $product_feature = $product_feature[0];
-
-        $product_images = [];
-        foreach($product->images as $image) {
-            if($image->thumbs == 0) {
-                $product_images[]['value'] = $image->path;
-            }
-        }
-
-
-        $article_pn = str_replace(" ", '-', $product->article_pn);
-        $barcode = $product->wb_barcode;
-        $nmId = $wb_product->result->card->nomenclatures[0]->nmId;
-        $cat = $wb_product->result->card->object;
-        $parent = $wb_product->result->card->parent;
-
-        $data = [
-            "id"=> (string) Str::uuid(),
-            "jsonrpc"=> "2.0",
-            "params"=> [
-                "card"=> [
-                    "addin"=> [
-                        [
-                            [
-                                "type"=> "Описание",
-                                "params"=> [
-                                    [
-                                        "value"=> (string) Str::limit(strip_tags($product_feature->detailtext), 1000),
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    "countryProduction"=> "Китай",
-                    //"createdAt"=> "2022-05-26T08=>09=>14.805Z",
-                    "id"=> (string) Str::uuid(),
-                    "imtId"=> $product->wb_imtId,
-                    //"imtSupplierId"=> 0,
-                    "nomenclatures"=> [
-                        [
-//                            "addin"=> [
-//                                [
-//                                    "type"=> "Фото",
-//                                    "params"=> [
-//                                        [
-//                                            'value' => $product_images[0]['value']
-//                                        ]
-//                                    ]
-//                                ]
-//                            ],
-                            "concatVendorCode"=> $article_pn,
-                            "id"=> (string) Str::uuid(),
-                            "isArchive"=> false,
-                            "nmId"=> $nmId,
-                            "variations"=> [
-                                [
-                                    "addin"=> [
-                                        [
-                                            "type"=> "Розничная цена",
-                                            "params"=> [
-                                                [
-                                                    "count"=> (int) $product->convertPrice(),
-                                                    "units" => "рубли",
-                                                    "value" => "рубли"
-                                                ]
-                                            ]
-                                        ]
-                                    ],
-                                    "barcode"=> $barcode,
-                                    "barcodes"=> [
-                                        $barcode
-                                    ],
-                                    "chrtId"=> 0,
-                                    "errors"=> [
-                                        "string"
-                                    ],
-                                    "id"=> (string) Str::uuid()
-                                ]
-                            ],
-                            "vendorCode"=> (string) $product->article
-                        ]
-                    ],
-                    "object"=> $cat,
-                    "parent"=> $parent,
-                    "supplierId"=> $this->supplierId,
-                    "supplierVendorCode"=> (string) $product->article,
-                    //"updatedAt"=> "2022-05-26T08=>09=>14.805Z",
-                    //"uploadID"=> "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                    "userId"=> 0
-                ],
-                "supplierID"=> $this->supplierId
-            ]
-        ];
-
-        /*foreach($product_images as $image) {
-            $data["params"]["card"]["nomenclatures"][0]["addin"][] = [
-                "type"=> "Фото",
-                "params"=> [
-                    [
-                        'value' => $image['value']
-                    ]
-                ]
-            ];
-        }*/
-
-        $client = new Client(['base_uri' => $this->api]);
-        $request = $client->request('POST', 'card/update', [
-            'headers' => [
-                'Authorization' => "Bearer " . $this->token,
-                'Content-type' => 'application/json'
-            ],
-            'body' => json_encode($data, JSON_UNESCAPED_UNICODE)
-        ]);
-
-        return $request->getBody()->getContents();
-
     }
 
     public function getStyleProductProperties($product) :array
@@ -742,5 +574,29 @@ class WB
             $string = str_replace($symbol, ' ', $string);
         }
         return $string;
+    }
+
+    public function updateProductImages($article, $arrImages)
+    {
+        $dataImg = [
+            'vendorCode' => (string) $article,
+            'data' => $arrImages
+        ];
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'content/v1/media/save', [
+            'headers' => [
+                'Authorization' => $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($dataImg)
+        ]);
+
+        $resultImg = json_decode($request->getBody()->getContents());
+
+        if($resultImg->error) {
+            return false;
+        }
+
+        return true;
     }
 }
