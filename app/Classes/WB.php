@@ -512,7 +512,6 @@ class WB
     {
         $properties = [];
         $product_feature = Style::getProductFeature($product->article);
-        dd($product_feature, $product->article);
 
         if(isset($product_feature[0])) {
             $product_feature = $product_feature[0];

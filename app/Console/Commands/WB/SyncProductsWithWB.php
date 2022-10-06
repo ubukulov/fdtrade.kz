@@ -55,7 +55,6 @@ class SyncProductsWithWB extends Command
                 if(count($products) > 0) {
                     foreach($products as $product) {
                         $response = WB::uploadProduct($product, $wb_category);
-                        dd($response);
 
                         if($response->error) {
                             $this->info("Product {$product->article} don't created. ". $response->errorText);
