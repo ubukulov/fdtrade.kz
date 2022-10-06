@@ -512,7 +512,7 @@ class WB
     {
         $properties = [];
         $product_feature = Style::getProductFeature($product->article);
-        if($product_feature->status == 'error') {
+        if(isset($product_feature->status) && $product_feature->status == 'error') {
             return false;
         }
 
