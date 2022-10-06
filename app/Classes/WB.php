@@ -511,7 +511,10 @@ class WB
     {
         $properties = [];
         $product_feature = Style::getProductFeature($product->article);
-        dd($product_feature);
+
+        if(!is_object($product_feature)) {
+            return false;
+        }
 
         if($product_feature->status == 'error') {
             return false;
