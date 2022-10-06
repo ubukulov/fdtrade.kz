@@ -39,19 +39,25 @@ class WBUpdateStocks extends Command
      */
     public function handle()
     {
-        $getProductCardList = WB::getProductCardList();
-        foreach($getProductCardList->data->cards as $item) {
-            if(!empty($item->vendorCode)) {
-                $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
-                if($product) {
-                    $updateStocks = json_decode(WB::updateStocks($product));
-                    if($updateStocks->error) {
-                        $this->info("Product: {$product->article} stocks failed.");
-                    } else {
-                        $this->info("Product: {$product->article} stocks success.");
+        for($i=1000; $i<=8000; $i = $i + 1000) {
+            $limit = 1000;
+            $offset = ($i == 1000) ? 0 : 1000;
+            $getProductCardList = WB::getProductCardList($limit, $offset);
+            foreach($getProductCardList->data->cards as $item) {
+                if(!empty($item->vendorCode)) {
+                    $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+                    if($product) {
+                        $updateStocks = json_decode(WB::updateStocks($product));
+                        if($updateStocks->error) {
+                            $this->info("Product: {$product->article} stocks failed.");
+                        } else {
+                            $this->info("Product: {$product->article} stocks success.");
+                        }
                     }
                 }
             }
+            $this->info('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
         }
+        $this->info('Process completed.');
     }
 }
