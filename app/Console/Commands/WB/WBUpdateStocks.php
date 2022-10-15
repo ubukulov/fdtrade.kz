@@ -48,7 +48,6 @@ class WBUpdateStocks extends Command
                     $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
                     if($product) {
                         $updateStocks = json_decode(WB::updateStocks($product));
-                        dd($updateStocks);
                         if($updateStocks->error) {
                             $this->info("Product: {$product->article} stocks failed.");
                         } else {
