@@ -54,11 +54,12 @@ class UpdatePrices extends Command
                         $category = $product->category;
                         $price = $product->price2 + ($product->price2 * ($category->margin_ozon / 100));
                         $price = $product->convertPrice('RUB', $price);
+                        $oldPrice = $price * 2;
 
                         $data['prices'][] = [
                             'offer_id' => (string) $product->article,
                             'price' => (string) $price,
-                            'old_price' => (string) $price * 2,
+                            'old_price' => (string) $oldPrice,
                             'premium_price' => "0",
                             'min_price' => "0",
                             'currency_code' => "RUB",
