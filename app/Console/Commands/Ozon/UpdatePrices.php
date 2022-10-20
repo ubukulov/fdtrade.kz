@@ -58,7 +58,7 @@ class UpdatePrices extends Command
                         $data['prices'][] = [
                             'offer_id' => (string) $product->article,
                             'price' => (string) $price,
-                            'old_price' => "0",
+                            'old_price' => (string) $price * 2,
                             'premium_price' => "0",
                             'min_price' => "0",
                             'currency_code' => "RUB",
