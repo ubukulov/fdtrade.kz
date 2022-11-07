@@ -666,7 +666,6 @@ class WB
         ]];
 
         $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-        $data = "[".$data."]";
 
         $client = new Client(['base_uri' => $this->api]);
         $request = $client->request('POST', 'content/v1/cards/update', [
