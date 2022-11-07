@@ -41,34 +41,30 @@ class UpdateProduct extends Command
      */
     public function handle()
     {
-        $al_wb_categories = AlWbCategory::all();
-        if(count($al_wb_categories) > 0) {
-            foreach($al_wb_categories as $al_wb_category) {
-                $products = Product::where(['category_id' => $al_wb_category->al_category_id])
-                    ->whereNotNull('wb_imtId')
-                    ->limit(50)
-                    ->get();
-                $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
+        $catId = $this->ask('Enter catId (al_wb_categories): ');
+        $al_wb_category = AlWbCategory::find($catId);
+        $products = Product::where(['category_id' => $al_wb_category->al_category_id])
+            ->whereNotNull('wb_imtId')
+            ->limit(50)
+            ->get();
+        $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
 
-                if(count($products) > 0) {
-                    foreach($products as $product) {
-                        $productDetails = WB::getProductByArticle($product);
+        if(count($products) > 0) {
+            foreach($products as $product) {
+                $productDetails = WB::getProductByArticle($product);
 
-                        $response = WB::updateProduct($product, $wb_category, $productDetails);
+                $response = WB::updateProduct($product, $wb_category, $productDetails);
 
-                        if(isset($response->error) && $response->error) {
-                            $this->info("Product {$product->article} don't updated. ". $response->errorText);
-                            continue;
-                        }
+                if(isset($response->error) && $response->error) {
+                    $this->info("Product {$product->article} don't updated. ". $response->errorText);
+                    continue;
+                }
 
-                        if(isset($response->error) && !$response->error) {
-                            $this->info("The product with $product->article successfully updated.");
-                        }
-                    }
+                if(isset($response->error) && !$response->error) {
+                    $this->info("The product with $product->article successfully updated.");
                 }
             }
-
-            $this->info('The process "wb:update-product" is finished.');
         }
+        $this->info('The process "wb:update-product" is finished.');
     }
 }
