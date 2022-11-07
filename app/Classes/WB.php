@@ -608,7 +608,7 @@ class WB
         return true;
     }
 
-    public function updateProduct($product, $wb_category)
+    public function updateProduct($product, $wb_category, $productDetails)
     {
         $properties = $this->getStyleProductProperties($product);
 
@@ -617,6 +617,8 @@ class WB
         }
 
         $data = [[
+            'imtID' => (int) $productDetails->data[0]->imtID,
+            'nmID' => (int) $productDetails->data[0]->nmID,
             'vendorCode' => (string) $product->wb_imtId,
             'characteristics' => [
                 [
@@ -654,6 +656,7 @@ class WB
                 [
                     'techSize' => '',
                     'wbSize' => '',
+                    'chrtID' => (int) $productDetails->data[0]->sizes[0]->chrtID,
                     'price' => (int) $product->convertPrice(),
                     'skus' => [
                         (string) $product->wb_barcode

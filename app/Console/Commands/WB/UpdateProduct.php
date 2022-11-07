@@ -52,7 +52,9 @@ class UpdateProduct extends Command
 
                 if(count($products) > 0) {
                     foreach($products as $product) {
-                        $response = WB::updateProduct($product, $wb_category);
+                        $productDetails = WB::getProductByArticle($product);
+
+                        $response = WB::updateProduct($product, $wb_category, $productDetails);
 
                         if(isset($response->error) && $response->error) {
                             $this->info("Product {$product->article} don't updated. ". $response->errorText);
