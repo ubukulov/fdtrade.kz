@@ -616,6 +616,10 @@ class WB
             return false;
         }
 
+        if(!$productDetails->data[0]) {
+            return false;
+        }
+
         $data = [[
             'imtID' => (int) $productDetails->data[0]->imtID,
             'nmID' => (int) $productDetails->data[0]->nmID,
