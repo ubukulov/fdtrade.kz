@@ -255,13 +255,13 @@ class WB
                     'Страна производства' => (string) $properties['country']
                 ],
                 [
-                    'Ширина упаковки' => 100
+                    'Ширина упаковки' => 0
                 ],
                 [
-                    'Глубина упаковки' => 100
+                    'Глубина упаковки' => 0
                 ],
                 [
-                    'Высота упаковки' => 100
+                    'Высота упаковки' => 0
                 ],
             ],
             'sizes' => [
@@ -606,5 +606,80 @@ class WB
         }
 
         return true;
+    }
+
+    public function updateProduct($product, $wb_category)
+    {
+        $properties = $this->getStyleProductProperties($product);
+
+        if(!$properties) {
+            return false;
+        }
+
+        $data = [[
+            'vendorCode' => (string) $product->wb_imtId,
+            'characteristics' => [
+                [
+                    'Наименование' => (string) Str::limit($properties['name'], 40, '')
+                ],
+                [
+                    'Бренд' => (string) $properties['brand']
+                ],
+                [
+                    'Комплектация' => (string) $properties['complex_name']
+                ],
+                [
+                    'Описание' => (string) $properties['detail_text']
+                ],
+                [
+                    'Гарантийный срок' => (string) $properties['warranty']
+                ],
+                [
+                    'Предмет' => (string) $wb_category->name
+                ],
+                [
+                    'Страна производства' => (string) $properties['country']
+                ],
+                [
+                    'Ширина упаковки' => 0
+                ],
+                [
+                    'Глубина упаковки' => 0
+                ],
+                [
+                    'Высота упаковки' => 0
+                ],
+            ],
+            'sizes' => [
+                [
+                    'techSize' => '',
+                    'wbSize' => '',
+                    'price' => (int) $product->convertPrice(),
+                    'skus' => [
+                        (string) $product->wb_barcode
+                    ]
+                ]
+            ]
+        ]];
+
+        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $data = "[".$data."]";
+
+        $client = new Client(['base_uri' => $this->api]);
+        $request = $client->request('POST', 'content/v1/cards/update', [
+            'headers' => [
+                'Authorization' => $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => $data
+        ]);
+
+        $result = json_decode($request->getBody()->getContents());
+
+        if($result->error) {
+            return false;
+        }
+
+        return $result;
     }
 }
