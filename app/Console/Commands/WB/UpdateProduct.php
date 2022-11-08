@@ -41,7 +41,7 @@ class UpdateProduct extends Command
      */
     public function handle()
     {
-        $catId = $this->ask('Enter catId (al_wb_categories): ');
+        /*$catId = $this->ask('Enter catId (al_wb_categories): ');
         $al_wb_category = AlWbCategory::find($catId);
         $products = Product::where(['category_id' => $al_wb_category->al_category_id])
             ->where('quantity', '<>', '0')
@@ -66,6 +66,33 @@ class UpdateProduct extends Command
                 }
             }
         }
+        $this->info('The process "wb:update-product" is finished.');*/
+
+        $getProductCardList = WB::getProductCardList();
+        foreach($getProductCardList->data->cards as $item) {
+            if(!empty($item->vendorCode)) {
+                $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+                if($product) {
+                    $category = $product->category;
+                    $al_wb_category = AlWbCategory::where(['al_category_id' => $category->id])->first();
+                    if($al_wb_category) {
+                        $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
+                        $productDetails = WB::getProductByArticle($product);
+                        $response = WB::updateProduct($product, $wb_category, $productDetails);
+
+                        if(isset($response->error) && $response->error) {
+                            $this->info("Product {$product->article} don't updated. ". $response->errorText);
+                            continue;
+                        }
+
+                        if(isset($response->error) && !$response->error) {
+                            $this->info("The product with $product->article successfully updated.");
+                        }
+                    }
+                }
+            }
+        }
+
         $this->info('The process "wb:update-product" is finished.');
     }
 }
