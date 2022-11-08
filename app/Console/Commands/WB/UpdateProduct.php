@@ -71,7 +71,7 @@ class UpdateProduct extends Command
         $getProductCardList = WB::getProductCardList();
         foreach($getProductCardList->data->cards as $item) {
             if(!empty($item->vendorCode)) {
-                echo $item->vendorCode .",";
+                echo $item->vendorCode ."<br>";
                 /*$product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
                 if($product) {
                     $category = $product->category;
