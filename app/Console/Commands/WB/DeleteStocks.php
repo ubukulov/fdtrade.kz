@@ -43,11 +43,14 @@ class DeleteStocks extends Command
         foreach($getProductCardList->data->cards as $item) {
             if(!empty($item->vendorCode)) {
                 $barcode = $item->sizes[0]->skus[0];
-                $updateStocks = json_decode(WB::deleteStocks($barcode));
-                if($updateStocks->error) {
-                    $this->info("{$barcode} stocks failed.");
-                } else {
-                    $this->info("{$barcode} stocks deleted.");
+                $product = Product::where(['wb_barcode' => $barcode])->first();
+                if($product->category_id == 7) {
+                    $updateStocks = json_decode(WB::deleteStocks($barcode));
+                    if($updateStocks->error) {
+                        $this->info("{$barcode} stocks failed.");
+                    } else {
+                        $this->info("{$barcode} stocks deleted.");
+                    }
                 }
             }
         }

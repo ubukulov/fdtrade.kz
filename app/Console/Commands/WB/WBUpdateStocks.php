@@ -46,6 +46,11 @@ class WBUpdateStocks extends Command
             foreach($getProductCardList->data->cards as $item) {
                 if(!empty($item->vendorCode)) {
                     $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+
+                    if($product->category_id == 7){
+                        continue;
+                    }
+
                     if($product) {
                         $updateStocks = json_decode(WB::updateStocks($product));
                         if($updateStocks->error) {
