@@ -44,7 +44,8 @@ class DeleteStocks extends Command
             if(!empty($item->vendorCode)) {
                 $barcode = $item->sizes[0]->skus[0];
                 $product = Product::where(['wb_barcode' => $barcode])->first();
-                if($product->category_id == 7) {
+
+                if($product && $product->category_id == 7) {
                     $updateStocks = json_decode(WB::deleteStocks($barcode));
                     if($updateStocks->error) {
                         $this->info("{$barcode} stocks failed.");
