@@ -47,11 +47,12 @@ class WBUpdateStocks extends Command
                 if(!empty($item->vendorCode)) {
                     $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
 
-                    if($product->category_id == 7){
-                        continue;
-                    }
-
                     if($product) {
+
+                        if($product->category_id == 7){
+                            continue;
+                        }
+
                         $updateStocks = json_decode(WB::updateStocks($product));
                         if($updateStocks->error) {
                             $this->info("Product: {$product->article} stocks failed.");
