@@ -71,7 +71,8 @@ class UpdateProduct extends Command
         $getProductCardList = WB::getProductCardList();
         foreach($getProductCardList->data->cards as $item) {
             if(!empty($item->vendorCode)) {
-                $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+                echo $item->sizes[0]->skus[0] .",";
+                /*$product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
                 if($product) {
                     $category = $product->category;
                     $al_wb_category = AlWbCategory::where(['al_category_id' => $category->id])->first();
@@ -89,7 +90,7 @@ class UpdateProduct extends Command
                             $this->info("The product with $product->article successfully updated.");
                         }
                     }
-                }
+                }*/
             }
         }
 
