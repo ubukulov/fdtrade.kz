@@ -44,7 +44,7 @@ class UpdateProduct extends Command
         $catId = $this->ask('Enter catId (al_wb_categories): ');
         $al_wb_category = AlWbCategory::find($catId);
         $products = Product::where(['category_id' => $al_wb_category->al_category_id])
-            ->where('quantity', '<>', 0)
+            ->where('quantity', '<>', '0')
             ->whereNotNull('wb_imtId')
             ->limit(50)
             ->get();
