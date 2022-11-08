@@ -13,7 +13,7 @@ class CancelProducts extends Command
      *
      * @var string
      */
-    protected $signature = 'cancel:products';
+    protected $signature = 'wb:cancel-products';
 
     /**
      * The console command description.
@@ -40,11 +40,10 @@ class CancelProducts extends Command
     public function handle()
     {
         $getProductCardList = WB::getProductCardList();
-        foreach($getProductCardList->result->cards as $item) {
-            if(!empty($item->supplierVendorCode)) {
-                $product = Product::where(['article' => $item->supplierVendorCode])->first();
+        foreach($getProductCardList->data->cards as $item) {
+            if(!empty($item->vendorCode)) {
+                $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
                 if($product) {
-
                     $updateStocks = json_decode(WB::cancelStocks($product));
                     if($updateStocks->error) {
                         $this->info("Product: {$product->article} stocks failed.");
