@@ -688,4 +688,26 @@ class WB
 
         return $result;
     }
+
+    public function deleteStocks($barcode)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "barcode" => (string) $barcode,
+            "warehouseId" => (int) $this->warehouseId
+        ];
+
+
+        $data = "[".json_encode($data)."]";
+
+        $request = $client->request('DELETE', 'api/v2/stocks', [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => $data
+        ]);
+
+        return $request->getBody()->getContents();
+    }
 }
