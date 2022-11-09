@@ -49,7 +49,7 @@ class WBUpdateStocks extends Command
 
                     if($product) {
 
-                        if($product->category_id == 7){
+                        if($product->category_id == 7 || $product->category_id == 208){
                             continue;
                         }
 
