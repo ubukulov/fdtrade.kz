@@ -54,6 +54,12 @@ class SyncProductsWithWB extends Command
 
                 if(count($products) > 0) {
                     foreach($products as $product) {
+                        $wbProduct = WB::getProductByArticle($product);
+
+                        if($wbProduct->error) {
+                            continue;
+                        }
+
                         $response = WB::uploadProduct($product, $wb_category);
                         if(!$response) {
                             $this->info("Product {$product->article} don't created. Cannot get properties from Al-style.kz");
