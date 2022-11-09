@@ -225,7 +225,7 @@ class WB
             return false;
         }
 
-        $article = $product->article."".$product->article;
+        $article = "17".$product->article."".$product->article;
         $product->wb_imtId = $article;
         $product->wb_barcode = $barcode;
         $product->save();
