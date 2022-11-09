@@ -47,7 +47,7 @@ class SyncProductsWithWB extends Command
             foreach($al_wb_categories as $al_wb_category) {
                 $products = Product::where(['category_id' => $al_wb_category->al_category_id])
                     ->where('price', '<>', 0)
-                    ->whereNull('wb_imtId')
+                    ->whereNotNull('wb_imtId')
                     ->limit(50)
                     ->get();
                 $wb_category = WBCategory::findOrFail($al_wb_category->wb_category_id);
