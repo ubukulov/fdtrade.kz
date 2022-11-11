@@ -48,12 +48,17 @@ class WBUpdateStocks extends Command
                     $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
 
                     if($product) {
-
                         if($product->category_id == 7 || $product->category_id == 208){
                             continue;
                         }
 
-                        $updateStocks = json_decode(WB::updateStocks($product));
+                        $price = $product->convertPrice();
+                        if($price < 1000) {
+                            $updateStocks = json_decode(WB::cancelStocks($product));
+                        } else {
+                            $updateStocks = json_decode(WB::updateStocks($product));
+                        }
+
                         if($updateStocks->error) {
                             $this->info("Product: {$product->article} stocks failed.");
                         } else {

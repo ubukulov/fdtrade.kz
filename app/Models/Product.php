@@ -93,4 +93,10 @@ class Product extends Model
     {
         return number_format($this->price, 0, ',', ' ');
     }
+
+    public function getPriceForMarketPlace($margin_value)
+    {
+        $price = $this->price2 + ($this->price2 * ($margin_value/100));
+        return $this->convertPrice('RUB', $price);
+    }
 }
