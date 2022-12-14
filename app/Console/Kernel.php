@@ -56,8 +56,8 @@ class Kernel extends ConsoleKernel
          //$schedule->command('sync:halyk')->everyThreeHours();
 
         /* OZON */
-        $schedule->command('ozon:update-stocks')->everyTwoHours();
-        $schedule->command('ozon:update-prices')->everyFourHours();
+        //$schedule->command('ozon:update-stocks')->everyTwoHours();
+        //$schedule->command('ozon:update-prices')->everyFourHours();
 
          /* Get Actual Rates */
          $schedule->command('get:actual-rates')->cron('0 8 * * *');
