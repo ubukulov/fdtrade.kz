@@ -297,6 +297,9 @@ class WB
         return $result;
     }
 
+    /**
+     * TODO: Надо переписать АПИ
+     */
     public function getCategories()
     {
         $client = new Client(['base_uri' => $this->api]);
@@ -309,6 +312,7 @@ class WB
         return $request->getBody()->getContents();
     }
 
+    // TODO:: Надо переписать
     public function getCategoryChild($parent_name)
     {
         $client = new Client(['base_uri' => $this->api]);
@@ -485,15 +489,13 @@ class WB
         return json_decode($request->getBody()->getContents());
     }
 
-    public function getProductByArticle($product)
+    public function getProductByArticle($article_code)
     {
         $client = new Client(['base_uri' => $this->api]);
 
-        $article = $product->article."".$product->article;
-
         $data = [
             'vendorCodes' => [
-                (string) $article
+                (string) $article_code
             ]
         ];
 

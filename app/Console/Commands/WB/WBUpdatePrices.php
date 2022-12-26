@@ -39,7 +39,7 @@ class WBUpdatePrices extends Command
      */
     public function handle()
     {
-        for($i=1000; $i<=8000; $i = $i + 1000) {
+        /*for($i=1000; $i<=8000; $i = $i + 1000) {
             $limit = 1000;
             $offset = ($i == 1000) ? 0 : 1000;
             $getProductCardList = WB::getProductCardList($limit, $offset);
@@ -58,6 +58,24 @@ class WBUpdatePrices extends Command
             }
             $this->info('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
         }
+        $this->info('Process completed.');*/
+
+        Product::whereNotNull('wb_imtId')->chunk(100, function($products){
+            foreach($products as $product) {
+                $wb_product = WB::getProductByArticle($product->wb_imtId);
+                if($wb_product->error){
+                    $this->info("Product: {$product->wb_imtId} not found.");
+                } else {
+                    $updatePrices = json_decode(WB::updatePrices($product, $wb_product->data[0]->nmID));
+                    if(isset($updatePrices->errors)) {
+                        $this->info("Product: {$product->article} prices failed.");
+                    } else {
+                        $this->info("Product: {$product->article} prices success.");
+                    }
+                }
+            }
+        });
+
         $this->info('Process completed.');
     }
 }

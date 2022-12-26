@@ -39,7 +39,7 @@ class UpdateProductImages extends Command
      */
     public function handle()
     {
-        for($i=1000; $i<=8000; $i = $i + 1000) {
+        /*for($i=1000; $i<=8000; $i = $i + 1000) {
             $limit = 1000;
             $offset = ($i == 1000) ? 0 : 1000;
             $lists = WB::getProductCardList($limit, $offset);
@@ -82,6 +82,6 @@ class UpdateProductImages extends Command
         }
 
 
-        $this->info("Product Images process is finished.");
+        $this->info("Product Images process is finished.");*/
     }
 }
