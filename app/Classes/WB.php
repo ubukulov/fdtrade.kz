@@ -697,14 +697,14 @@ class WB
         ];
 
 
-        $data = "[".json_encode($data)."]";
+        //$data = "[".json_encode($data)."]";
 
         $request = $client->request('DELETE', 'api/v3/stocks/' . $this->warehouseId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
             ],
-            'body' => $data
+            'body' => json_encode($data)
         ]);
 
         return $request->getBody()->getContents();
