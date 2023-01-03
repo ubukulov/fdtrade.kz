@@ -44,11 +44,11 @@ class DeleteStocks extends Command
             if(!empty($item->vendorCode)) {
                 $barcode = $item->sizes[0]->skus[0];
                 $updateStocks = json_decode(WB::deleteStocks($barcode));
-                if($updateStocks->error) {
+                /*if($updateStocks->error) {
                     $this->info("{$barcode} stocks failed.");
                 } else {
                     $this->info("{$barcode} stocks deleted.");
-                }
+                }*/
             }
         }
     }
