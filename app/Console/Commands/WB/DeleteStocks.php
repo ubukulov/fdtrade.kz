@@ -39,20 +39,15 @@ class DeleteStocks extends Command
      */
     public function handle()
     {
-        $category_id = $this->ask("CategoryId: ");
         $getProductCardList = WB::getProductCardList();
         foreach($getProductCardList->data->cards as $item) {
             if(!empty($item->vendorCode)) {
                 $barcode = $item->sizes[0]->skus[0];
-                $product = Product::where(['wb_barcode' => $barcode])->first();
-
-                if($product && $product->category_id == $category_id) {
-                    $updateStocks = json_decode(WB::deleteStocks($barcode));
-                    if($updateStocks->error) {
-                        $this->info("{$barcode} stocks failed.");
-                    } else {
-                        $this->info("{$barcode} stocks deleted.");
-                    }
+                $updateStocks = json_decode(WB::deleteStocks($barcode));
+                if($updateStocks->error) {
+                    $this->info("{$barcode} stocks failed.");
+                } else {
+                    $this->info("{$barcode} stocks deleted.");
                 }
             }
         }

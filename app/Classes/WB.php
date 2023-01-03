@@ -425,15 +425,13 @@ class WB
 
         $data = [
             'sort' => [
-                'limit' => $limit,
-                'offset' => $offset,
-                'searchValue' => '',
-                'sortColumn' => 'updateAt',
-                'ascending' => false
+                'cursor' => [
+                    'limit' => $limit,
+                ],
             ]
         ];
 
-        $request = $client->request('POST', 'content/v1/cards/list', [
+        $request = $client->request('POST', 'content/v1/cards/cursor/list', [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -695,14 +693,13 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "barcode" => (string) $barcode,
-            "warehouseId" => (int) $this->warehouseId
+            "skus" => [$barcode]
         ];
 
 
         $data = "[".json_encode($data)."]";
 
-        $request = $client->request('DELETE', 'api/v2/stocks', [
+        $request = $client->request('DELETE', 'api/v3/stocks/' . $this->warehouseId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
