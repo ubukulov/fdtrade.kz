@@ -16,6 +16,7 @@ class WB
     protected $token = '';
     protected $api = '';
     protected $warehouseId = 248653;
+    protected $warehouseNewId = 662796;
 
     public function __construct()
     {
@@ -352,21 +353,25 @@ class WB
     public function updateStocks($product)
     {
         $client = new Client(['base_uri' => $this->api]);
+
         $data = [
-            "barcode" => (string) $product->wb_barcode,
-            "stock" => (int) $product->getQuantity(),
-            "warehouseId" => (int) $this->warehouseId
+            'stocks' => [
+                [
+                    'sku' => (string) $product->wb_barcode,
+                    'amount' => (int) $product->getQuantity()
+                ]
+            ]
         ];
 
 
-        $data = "[".json_encode($data)."]";
+        //$data = "[".json_encode($data)."]";
 
-        $request = $client->request('POST', 'api/v2/stocks', [
+        $request = $client->request('PUT', 'api/v3/stocks/' . $this->warehouseNewId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
             ],
-            'body' => $data
+            'body' => json_encode($data)
         ]);
 
         return $request->getBody()->getContents();
