@@ -83,7 +83,7 @@ class WBUpdateStocks extends Command
                     $updateStocks = json_decode(WB::updateStocks($product));
                 }
 
-                if($updateStocks->error) {
+                if(isset($updateStocks->error)) {
                     $this->info("Product: {$product->article} stocks failed.");
                 } else {
                     $this->info("Product: {$product->article} stocks success.");
