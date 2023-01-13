@@ -71,14 +71,6 @@ class WBUpdateStocks extends Command
         }
         $this->info('Process completed.');*/
 
-        $hasProductInWB = WB::getProductByArticle('68540371');
-        dd($hasProductInWB);
-
-        /*if(isset($hasProductInWB->error) && $hasProductInWB->error) {
-            $this->info("Product: {$product->article} not found.");
-            continue;
-        }*/
-
         Product::whereNotNull('wb_imtId')->chunk(100, function($products){
             foreach($products as $product) {
                 if($product->category_id == 7 || $product->category_id == 208){
@@ -86,7 +78,7 @@ class WBUpdateStocks extends Command
                 }
                 $hasProductInWB = WB::getProductByArticle($product->wb_imtId);
 
-                if(isset($hasProductInWB->error) && $hasProductInWB->error) {
+                if(empty($hasProductInWB->data)) {
                     $this->info("Product: {$product->article} not found.");
                     continue;
                 }
