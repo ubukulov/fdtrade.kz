@@ -449,27 +449,30 @@ class WB
 
     public function updatePrices($price, $nmId)
     {
-        $client = new Client(['base_uri' => $this->api]);
-        $data = [
-            "nmId" => (int) $nmId,
-            "price" => (int) $price
-        ];
+        try {
+            $client = new Client(['base_uri' => $this->api]);
+            $data = [
+                "nmId" => (int) $nmId,
+                "price" => (int) $price
+            ];
 
-        $data = "[" . json_encode($data) . "]";
+            $data = "[" . json_encode($data) . "]";
 
-        $request = $client->request('POST', 'public/api/v1/prices', [
-            'headers' => [
-                'Authorization' => "Bearer " . $this->token,
-                'Content-type' => 'application/json'
-            ],
-            'body' => $data
-        ]);
+            $request = $client->request('POST', 'public/api/v1/prices', [
+                'headers' => [
+                    'Authorization' => "Bearer " . $this->token,
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $data
+            ]);
 
-        if($request->getStatusCode() == 400) {
+            if($request->getStatusCode() == 200) {
+                return $request->getBody()->getContents();
+            }
+        } catch (\Exception $exception) {
             return false;
         }
 
-        return $request->getBody()->getContents();
     }
 
     // Метод устарел
