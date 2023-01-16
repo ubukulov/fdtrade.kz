@@ -64,7 +64,7 @@ class WBUpdatePrices extends Command
             foreach($products as $product) {
                 $wb_product = WB::getProductByArticle($product->wb_imtId);
 
-                if(empty($wb_product->data)) {
+                if(empty($wb_product->data) || is_null($wb_product->data)) {
                     $this->info("Product: {$product->article} not found.");
                     continue;
                 }
