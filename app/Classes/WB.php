@@ -447,12 +447,12 @@ class WB
         return json_decode($request->getBody()->getContents());
     }
 
-    public function updatePrices($product, $nmId)
+    public function updatePrices($price, $nmId)
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
             "nmId" => (int) $nmId,
-            "price" => (int) $product->convertPrice()
+            "price" => (int) $price
         ];
 
         $data = "[" . json_encode($data) . "]";
