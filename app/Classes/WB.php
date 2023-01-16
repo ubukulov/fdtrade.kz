@@ -465,6 +465,10 @@ class WB
             'body' => $data
         ]);
 
+        if($request->getStatusCode() == 400) {
+            return false;
+        }
+
         return $request->getBody()->getContents();
     }
 

@@ -72,7 +72,14 @@ class WBUpdatePrices extends Command
                 $category = $product->category;
                 if($category){
                     $price = $product->getPriceForMarketPlace($category->margin);
-                    $updatePrices = json_decode(WB::updatePrices($price, $wb_product->data[0]->nmID));
+                    $updatePrices = WB::updatePrices($price, $wb_product->data[0]->nmID);
+
+                    if(!$updatePrices) {
+                        $this->info("Product: {$product->article} not updated prices with code 400.");
+                        continue;
+                    }
+
+                    $updatePrices = json_decode($updatePrices);
 
                     if(isset($updatePrices->uploadId) && $updatePrices->uploadId > 0) {
                         $this->info("Product: {$product->article} prices success.");
