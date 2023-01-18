@@ -76,6 +76,13 @@ class WBUpdateStocks extends Command
                 if($product->category_id == 7 || $product->category_id == 208){
                     continue;
                 }
+                $hasProductInWB = WB::getProductByArticle($product->wb_imtId);
+
+                if(empty($hasProductInWB->data)) {
+                    $this->info("Product: {$product->article} not found.");
+                    continue;
+                }
+
                 $price = $product->convertPrice();
                 if($price < 1000) {
                     $updateStocks = json_decode(WB::cancelStocks($product));
@@ -83,7 +90,7 @@ class WBUpdateStocks extends Command
                     $updateStocks = json_decode(WB::updateStocks($product));
                 }
 
-                if($updateStocks->error) {
+                if(isset($updateStocks->error)) {
                     $this->info("Product: {$product->article} stocks failed.");
                 } else {
                     $this->info("Product: {$product->article} stocks success.");
