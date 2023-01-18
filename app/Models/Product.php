@@ -31,7 +31,9 @@ class Product extends Model
     public function getImage()
     {
         $images = $this->images;
-        return $images[0]->path;
+        if(isset($images[0])) {
+            return $images[0]->path;
+        }
     }
 
     public function thumb()
