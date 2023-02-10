@@ -160,13 +160,14 @@ class Ozon
         return false;
     }
 
-    public function getProducts($limit = 600)
+    public function getProducts($limit = 1000, $last_id="")
     {
         $data = [
             'filter'    => [
                 "visibility" => 'ALL',
             ],
-            'limit' => $limit
+            'limit' => $limit,
+            'last_id' => $last_id
         ];
         $client = new Client(['base_uri' => $this->api]);
         $request = $client->request('POST', 'v2/product/list', [
