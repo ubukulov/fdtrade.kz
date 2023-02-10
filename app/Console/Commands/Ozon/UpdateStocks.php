@@ -40,7 +40,7 @@ class UpdateStocks extends Command
      */
     public function handle()
     {
-        $oProductsLists = OZON::getProducts();
+        $oProductsLists = OZON::getProducts(2000);
         if($oProductsLists != false) {
             $oProductsLists = json_decode($oProductsLists);
             $items = collect($oProductsLists->result->items);
