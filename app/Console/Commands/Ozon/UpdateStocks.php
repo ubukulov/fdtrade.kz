@@ -77,7 +77,7 @@ class UpdateStocks extends Command
                 $this->info("Cannot get list of products from OZON");
             }
         } catch (\Exception $exception) {
-            $this->info('Error');
+            $this->info("Ошибка: " . $exception->getMessage());
         }
     }
 }
