@@ -726,4 +726,26 @@ class WB
 
         return false;
     }
+
+    public function getStocks($barcode)
+    {
+        $client = new Client(['base_uri' => $this->api]);
+        $data = [
+            "skus" => [$barcode]
+        ];
+
+        $request = $client->request('POST', 'api/v3/stocks/' . $this->warehouseNewId, [
+            'headers' => [
+                'Authorization' => "Bearer " . $this->token,
+                'Content-type' => 'application/json'
+            ],
+            'body' => json_encode($data)
+        ]);
+
+        if($request->getStatusCode() == 200) {
+            return true;
+        }
+
+        return false;
+    }
 }
