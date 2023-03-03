@@ -712,10 +712,7 @@ class WB
             "skus" => [$barcode]
         ];
 
-
-        //$data = "[".json_encode($data)."]";
-
-        $request = $client->request('DELETE', 'api/v3/stocks/' . $this->warehouseId, [
+        $request = $client->request('DELETE', 'api/v3/stocks/' . $this->warehouseNewId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
@@ -723,6 +720,10 @@ class WB
             'body' => json_encode($data)
         ]);
 
-        return $request->getBody()->getContents();
+        if($request->getStatusCode() == 204) {
+            return true;
+        }
+
+        return false;
     }
 }
