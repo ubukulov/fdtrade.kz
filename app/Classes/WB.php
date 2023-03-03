@@ -380,11 +380,12 @@ class WB
     public function cancelStocks($product)
     {
         $client = new Client(['base_uri' => $this->api]);
+
         $data = [
             'stocks' => [
                 [
                     'sku' => (string) $product->wb_barcode,
-                    'amount' => (int) $product->getQuantity()
+                    'amount' => 0
                 ]
             ]
         ];
@@ -392,7 +393,7 @@ class WB
 
         //$data = "[".json_encode($data)."]";
 
-        $request = $client->request('POST', 'api/v3/stocks/' . $this->warehouseNewId, [
+        $request = $client->request('PUT', 'api/v3/stocks/' . $this->warehouseNewId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
