@@ -46,7 +46,9 @@ class WBUpdateStocks extends Command
                         continue;
                     }
 
-                    if($product->getQuantity() == 0) {
+                    $price = $product->convertPrice();
+
+                    if($product->getQuantity() == 0 || $price < 1000) {
                         $wb_stocks = WB::getStocks($product->wb_barcode);
                         if(!empty($wb_stocks->stocks)) {
                             if(WB::deleteStocks($product->wb_barcode)) {
@@ -63,12 +65,7 @@ class WBUpdateStocks extends Command
                         continue;
                     }
 
-                    $price = $product->convertPrice();
-                    if($price < 1000) {
-                        $updateStocks = json_decode(WB::cancelStocks($product));
-                    } else {
-                        $updateStocks = json_decode(WB::updateStocks($product));
-                    }
+                    $updateStocks = json_decode(WB::updateStocks($product));
 
                     if(isset($updateStocks->error)) {
                         $this->info("Product: {$product->article} stocks failed.");

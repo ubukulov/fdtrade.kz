@@ -39,27 +39,6 @@ class WBUpdatePrices extends Command
      */
     public function handle()
     {
-        /*for($i=1000; $i<=8000; $i = $i + 1000) {
-            $limit = 1000;
-            $offset = ($i == 1000) ? 0 : 1000;
-            $getProductCardList = WB::getProductCardList($limit, $offset);
-            foreach($getProductCardList->data->cards as $item) {
-                if(!empty($item->vendorCode)) {
-                    $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
-                    if($product) {
-                        $updatePrices = json_decode(WB::updatePrices($product, $item->nmID));
-                        if(isset($updatePrices->errors)) {
-                            $this->info("Product: {$product->article} prices failed.");
-                        } else {
-                            $this->info("Product: {$product->article} prices success.");
-                        }
-                    }
-                }
-            }
-            $this->info('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-        }
-        $this->info('Process completed.');*/
-
         Product::whereNotNull('wb_imtId')->chunk(100, function($products){
             foreach($products as $product) {
                 $wb_product = WB::getProductByArticle($product->wb_imtId);
