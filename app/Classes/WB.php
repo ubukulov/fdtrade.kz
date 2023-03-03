@@ -709,7 +709,7 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "skus" => [$barcode]
+            "skus" => [(string) $barcode]
         ];
 
         $request = $client->request('DELETE', 'api/v3/stocks/' . $this->warehouseNewId, [
