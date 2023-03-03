@@ -51,6 +51,7 @@ class WBUpdateStocks extends Command
                         if(!empty($wb_stocks->stocks)) {
                             if(WB::deleteStocks($product->wb_barcode)) {
                                 $this->info("Product: {$product->article} deleted in Stocks.");
+                                continue;
                             }
                         }
                     }
