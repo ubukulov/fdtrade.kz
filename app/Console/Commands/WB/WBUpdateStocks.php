@@ -39,65 +39,36 @@ class WBUpdateStocks extends Command
      */
     public function handle()
     {
-        /*for($i=1000; $i<=8000; $i = $i + 1000) {
-            $limit = 1000;
-            $offset = ($i == 1000) ? 0 : 1000;
-            $getProductCardList = WB::getProductCardList($limit, $offset);
-            foreach($getProductCardList->data->cards as $item) {
-                if(!empty($item->vendorCode)) {
-                    $product = Product::where(['wb_barcode' => $item->sizes[0]->skus[0]])->first();
+        try {
+            Product::whereNotNull('wb_imtId')->chunk(100, function($products){
+                foreach($products as $product) {
+                    if($product->category_id == 7 || $product->category_id == 208){
+                        continue;
+                    }
+                    $hasProductInWB = WB::getProductByArticle($product->wb_imtId);
 
-                    if($product) {
-                        if($product->category_id == 7 || $product->category_id == 208){
-                            continue;
-                        }
+                    if(empty($hasProductInWB->data)) {
+                        $this->info("Product: {$product->article} not found.");
+                        continue;
+                    }
 
-                        $price = $product->convertPrice();
-                        if($price < 1000) {
-                            $updateStocks = json_decode(WB::cancelStocks($product));
-                        } else {
-                            $updateStocks = json_decode(WB::updateStocks($product));
-                        }
+                    $price = $product->convertPrice();
+                    if($price < 1000) {
+                        $updateStocks = json_decode(WB::cancelStocks($product));
+                    } else {
+                        $updateStocks = json_decode(WB::updateStocks($product));
+                    }
 
-                        if($updateStocks->error) {
-                            $this->info("Product: {$product->article} stocks failed.");
-                        } else {
-                            $this->info("Product: {$product->article} stocks success.");
-                        }
+                    if(isset($updateStocks->error)) {
+                        $this->info("Product: {$product->article} stocks failed.");
+                    } else {
+                        $this->info("Product: {$product->article} stocks success.");
                     }
                 }
-            }
-            $this->info('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+            });
+            $this->info('Process completed.');
+        } catch (\Exception $exception) {
+            $this->info("Ошибка: " . $exception->getMessage());
         }
-        $this->info('Process completed.');*/
-
-        Product::whereNotNull('wb_imtId')->chunk(100, function($products){
-            foreach($products as $product) {
-                if($product->category_id == 7 || $product->category_id == 208){
-                    continue;
-                }
-                $hasProductInWB = WB::getProductByArticle($product->wb_imtId);
-
-                if(empty($hasProductInWB->data)) {
-                    $this->info("Product: {$product->article} not found.");
-                    continue;
-                }
-
-                $price = $product->convertPrice();
-                if($price < 1000) {
-                    $updateStocks = json_decode(WB::cancelStocks($product));
-                } else {
-                    $updateStocks = json_decode(WB::updateStocks($product));
-                }
-
-                if(isset($updateStocks->error)) {
-                    $this->info("Product: {$product->article} stocks failed.");
-                } else {
-                    $this->info("Product: {$product->article} stocks success.");
-                }
-            }
-        });
-
-        $this->info('Process completed.');
     }
 }
