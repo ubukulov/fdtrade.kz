@@ -47,12 +47,12 @@ class WBUpdateStocks extends Command
                     }
 
                     if($product->getQuantity() == 0) {
-                        if(WB::getStocks($product->wb_barcode)) {
+                        $wb_stocks = WB::getStocks($product->wb_barcode);
+                        if(!empty($wb_stocks->stocks)) {
                             if(WB::deleteStocks($product->wb_barcode)) {
                                 $this->info("Product: {$product->article} deleted in Stocks.");
                             }
                         }
-
                     }
 
                     $hasProductInWB = WB::getProductByArticle($product->wb_imtId);

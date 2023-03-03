@@ -731,7 +731,7 @@ class WB
     {
         $client = new Client(['base_uri' => $this->api]);
         $data = [
-            "skus" => [$barcode]
+            "skus" => [(string) $barcode]
         ];
 
         $request = $client->request('POST', 'api/v3/stocks/' . $this->warehouseNewId, [
@@ -742,10 +742,6 @@ class WB
             'body' => json_encode($data)
         ]);
 
-        if($request->getStatusCode() == 200) {
-            return true;
-        }
-
-        return false;
+        return json_decode($request->getBody()->getContents());
     }
 }
