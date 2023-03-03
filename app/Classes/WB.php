@@ -392,7 +392,7 @@ class WB
 
         //$data = "[".json_encode($data)."]";
 
-        $request = $client->request('POST', 'api/v3/stocks' . $this->warehouseNewId, [
+        $request = $client->request('POST', 'api/v3/stocks/' . $this->warehouseNewId, [
             'headers' => [
                 'Authorization' => "Bearer " . $this->token,
                 'Content-type' => 'application/json'
