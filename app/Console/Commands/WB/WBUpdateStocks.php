@@ -82,6 +82,18 @@ class WBUpdateStocks extends Command
                         $this->info("Product: {$product->article} stocks failed.");
                     } else {
                         $this->info("Product: {$product->article} stocks success.");
+                        $oldArticle = substr($product->wb_imtId,2);
+                        $hasProductInWBCopy = WB::getProductByArticle($oldArticle);
+
+                        if(empty($hasProductInWBCopy->data)) {
+                            $this->info("Product (copy): {$oldArticle} not found.");
+                            continue;
+                        }
+
+                        if(WB::deleteStocks($hasProductInWBCopy->data[0]->sizes[0]->skus[0])) {
+                            $this->info("Product(copy): {$oldArticle} deleted in Stocks.");
+                            continue;
+                        }
                     }
                 }
             });
