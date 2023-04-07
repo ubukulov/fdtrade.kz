@@ -4,8 +4,6 @@
 namespace App\Classes;
 
 use App\Models\MarketPlace;
-use App\Models\Product;
-use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Style;
 use Illuminate\Support\Str;
@@ -15,7 +13,6 @@ class WB
     protected $supplierId = '';
     protected $token = '';
     protected $api = '';
-    protected $warehouseId = 248653;
     protected $warehouseNewId = 662796;
 
     public function __construct()
