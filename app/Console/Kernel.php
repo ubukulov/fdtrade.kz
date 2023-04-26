@@ -48,8 +48,8 @@ class Kernel extends ConsoleKernel
          //$schedule->command('sync:products-with-wb')->everyFiveMinutes();
          //$schedule->command('wb:get-imtId-for-product')->everyTenMinutes();
          $schedule->command('sync:price-and-quantity-with-al-style')->everyFifteenMinutes();
-         $schedule->command('wb:update-stocks')->everyThirtyMinutes();
-         $schedule->command('wb:update-prices')->everyFourHours();
+         //$schedule->command('wb:update-stocks')->everyThirtyMinutes();
+         //$schedule->command('wb:update-prices')->everyFourHours();
 
          /* Halyk */
          $schedule->command('generate:halyk-xml')->everyTwoHours();
