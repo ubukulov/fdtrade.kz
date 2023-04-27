@@ -24,11 +24,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        SyncProductsWithWB::class,
+        //SyncProductsWithWB::class,
         SyncWithAlstyle::class,
-        WBUpdateStocks::class,
-        WBUpdatePrices::class,
-        GetWbImtIdForProduct::class,
+        //WBUpdateStocks::class,
+        //WBUpdatePrices::class,
+        //GetWbImtIdForProduct::class,
         GetActualRates::class,
         GenerateXalykXml::class,
         SyncHalyk::class,
