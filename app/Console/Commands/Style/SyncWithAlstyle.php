@@ -57,6 +57,9 @@ class SyncWithAlstyle extends Command
 
                         $this->info("Sync with Al: Product {$product->article} is updated.");
                     }
+                } else {
+                    $product->quantity = 0;
+                    $product->save();
                 }
             }
         });
